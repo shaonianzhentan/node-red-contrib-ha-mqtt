@@ -1,0 +1,25 @@
+<script type="text/x-red" data-template-name="mqtt-switch">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> 实体名称</label>
+        <input type="text" id="node-input-name" placeholder="开关">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt-switch', {
+        category: 'HA-MQTT',
+        color: '#C0DEED',
+        icon: "font-awesome/fa-toggle-on",
+        paletteLabel: 'switch',
+        defaults: {
+            server: { value: "", type: "mqtt-broker" },
+            name: { value: "" }
+        },
+        inputs: 1,
+        outputs: 0,
+        label: function () {
+            return this.name || "switch";
+        }
+    });
+</script>
+<script type="text/x-red" data-help-name="mqtt-switch">
+</script>
