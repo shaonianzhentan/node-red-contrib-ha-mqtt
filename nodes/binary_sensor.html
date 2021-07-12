@@ -1,15 +1,15 @@
-<script type="text/x-red" data-template-name="mqtt-switch">
+<script type="text/x-red" data-template-name="mqtt-binary_sensor">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> 实体名称</label>
         <input type="text" id="node-input-name" placeholder="开关">
     </div>
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('mqtt-switch', {
-        category: 'HA-MQTT',
+    RED.nodes.registerType('mqtt-binary_sensor', {
+        category: 'MQTT',
         color: '#C0DEED',
         icon: "font-awesome/fa-toggle-on",
-        paletteLabel: 'switch',
+        paletteLabel: 'binary_sensor',
         defaults: {
             server: { value: "", type: "mqtt-broker" },
             name: { value: "" }
@@ -17,9 +17,9 @@
         inputs: 1,
         outputs: 0,
         label: function () {
-            return this.name || "switch";
+            return this.name || "binary_sensor";
         }
     });
 </script>
-<script type="text/x-red" data-help-name="mqtt-switch">
+<script type="text/x-red" data-help-name="mqtt-binary_sensor">
 </script>

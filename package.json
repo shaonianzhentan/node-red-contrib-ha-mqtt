@@ -12,7 +12,7 @@
   ],
   "node-red": {
     "nodes": {
-      "all": "index.js"
+      "binary_sensor": "binary_sensor.js"
     }
   },
   "scripts": {

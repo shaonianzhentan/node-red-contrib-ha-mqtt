@@ -18,5 +18,6 @@ module.exports = {
             // 控制
             command: `${topic}set`
         }
-    }
+    },
+    
 }
