@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt.git"
   },
-  "author": "",
+  "author": "shaonianzhentan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/issues"
