@@ -1,22 +1,23 @@
-<script type="text/x-red" data-template-name="binary_sensor">
+<script type="text/html" data-template-name="ha-mqtt-binary_sensor">
     <div class="form-row">
         <label for="node-input-server"><i class="fa fa-bookmark"></i> MQTT</label>
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> 实体名称</label>
-        <input type="text" id="node-input-name" placeholder="开关">
+        <label for="node-input-name"><i class="fa fa-tag"></i> 实体名称</label>
+        <input type="text" id="node-input-name" placeholder="二进制传感器">
     </div>
+    <div class="form-tips"><b>Tip:</b> 别搞些奇奇怪怪的字符，使用中文汉字</div>
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('binary_sensor', {
+    RED.nodes.registerType('ha-mqtt-binary_sensor', {
         category: 'MQTT',
         color: '#C0DEED',
         icon: "font-awesome/fa-circle-o",
         paletteLabel: 'binary_sensor',
         defaults: {
-            server: { value: "", type: "config-server" },
-            name: { value: "" }
+            server: { value: "", type: "mqtt-broker", required: true },
+            name: { value: "", required: true }
         },
         inputs: 1,
         outputs: 0,
@@ -24,6 +25,4 @@
             return this.name || "binary_sensor";
         }
     });
-</script>
-<script type="text/x-red" data-help-name="binary_sensor">
 </script>

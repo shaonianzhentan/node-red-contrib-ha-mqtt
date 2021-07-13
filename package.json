@@ -2,17 +2,13 @@
   "name": "node-red-contrib-ha-mqtt",
   "version": "1.0.0",
   "description": "在HomeAssistant生成MQTT实体",
-  "main": "index.js",
   "keywords": [
-    "node-red",
-    "home-assistant",
-    "home assistant",
-    "home automation",
-    "mqtt"
+    "node-red"
   ],
   "node-red": {
     "nodes": {
-      "binary_sensor": "binary_sensor.js"
+      "switch": "./switch/switch.js",
+      "binary_sensor": "./binary_sensor/binary_sensor.js"
     }
   },
   "scripts": {
