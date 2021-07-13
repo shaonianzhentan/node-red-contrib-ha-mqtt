@@ -35,7 +35,9 @@ module.exports = function (RED) {
             })
             // 订阅主题
             ha.subscribe(ha.config.command_topic, (payload) => {
-                node.send({ payload, state: payload })
+                node.send({ payload })
+                // 改变状态
+                ha.publish_state(payload)
             })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
