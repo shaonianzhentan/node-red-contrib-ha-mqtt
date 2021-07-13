@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt#readme",
   "dependencies": {
+    "mqtt": "^4.2.8",
     "node-pinyin": "^0.2.3"
   }
 }
