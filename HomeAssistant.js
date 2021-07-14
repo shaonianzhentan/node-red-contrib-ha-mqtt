@@ -31,10 +31,10 @@ module.exports = class {
             state_topic,
             json_attr_t,
             device: {
-                name: 'HA-MQTT',
+                name: '家庭助理',
                 identifiers: ['635147515'],
                 manufacturer: 'shaonianzhentan',
-                model: '635147515',
+                model: 'HA-MQTT',
                 sw_version: '0.1'
             }
         }, data))
