@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "在HomeAssistant生成MQTT实体",
   "keywords": [
     "node-red",
@@ -15,7 +15,8 @@
       "light": "light/light.js",
       "lock": "lock/lock.js",
       "sensor": "sensor/sensor.js",
-      "switch": "switch/switch.js"
+      "switch": "switch/switch.js",
+      "keyboard": "keyboard/keyboard.js"
     }
   },
   "scripts": {
@@ -32,6 +33,8 @@
   },
   "homepage": "https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt#readme",
   "dependencies": {
+    "input-event": "^1.2.6",
+    "lodash": "^4.17.21",
     "node-pinyin": "^0.2.3"
   }
 }

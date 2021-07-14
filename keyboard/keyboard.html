@@ -1,0 +1,22 @@
+<script type="text/html" data-template-name="ha-mqtt-keyboard">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> 键盘驱动路径</label>
+        <input type="text" id="node-input-name" placeholder="/dev/input/event5">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('ha-mqtt-keyboard', {
+        category: '家庭助理',
+        color: '#C0DEED',
+        icon: "font-awesome/fa-toggle-on",
+        paletteLabel: 'keyboard',
+        defaults: {
+            name: { value: "", required: true }
+        },
+        inputs: 0,
+        outputs: 1,
+        label: function () {
+            return this.name || "keyboard";
+        }
+    });
+</script>
