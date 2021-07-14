@@ -35,7 +35,7 @@ module.exports = class {
                 identifiers: ['635147515'],
                 manufacturer: 'shaonianzhentan',
                 model: 'HA-MQTT',
-                sw_version: '0.1'
+                sw_version: '1.0.1'
             }
         }, data))
     }
