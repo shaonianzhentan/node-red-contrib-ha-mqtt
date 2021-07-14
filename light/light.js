@@ -16,7 +16,6 @@ module.exports = function (RED) {
                     if (config && typeof config === 'object') {
                         ha.publish_config(Object.assign({
                             command_topic, effect_state_topic, effect_command_topic, brightness_state_topic, brightness_command_topic,
-                            schema: "json",
                             payload_on: "ON",
                             payload_off: "OFF",
                         }, config))
