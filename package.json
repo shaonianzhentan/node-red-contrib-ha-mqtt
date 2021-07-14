@@ -7,8 +7,12 @@
   ],
   "node-red": {
     "nodes": {
-      "switch": "./switch/switch.js",
-      "binary_sensor": "./binary_sensor/binary_sensor.js"
+      "alarm_control_panel": "alarm_control_panel/alarm_control_panel.js",
+      "binary_sensor": "binary_sensor/binary_sensor.js",
+      "light": "light/light.js",
+      "lock": "lock/lock.js",
+      "sensor": "sensor/sensor.js",
+      "switch": "switch/switch.js"
     }
   },
   "scripts": {
