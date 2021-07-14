@@ -17,7 +17,7 @@
     RED.nodes.registerType('ha-mqtt-alarm_control_panel', {
         category: 'HA-MQTT',
         color: '#C0DEED',
-        icon: "font-awesome/fa-circle-o",
+        icon: "font-awesome/fa-bell",
         paletteLabel: 'alarm_control_panel',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
@@ -25,7 +25,7 @@
             code: { value: "" }
         },
         inputs: 1,
-        outputs: 0,
+        outputs: 1,
         label: function () {
             return this.name || "alarm_control_panel";
         }
