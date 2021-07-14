@@ -8,13 +8,17 @@ module.exports = function (RED) {
             this.server.register(this)
             const ha = new HomeAssistant(this, cfg)
             const node = this
+            const { command_topic, effect_command_topic, brightness_command_topic } = ha.config
             node.on('input', function (msg) {
                 const { config, state, attributes } = msg
                 try {
                     // 更新配置
                     if (config && typeof config === 'object') {
                         ha.publish_config(Object.assign({
-                            command_topic: ha.config.command_topic,
+                            effect_command_topic,
+                            brightness_command_topic,
+                            command_topic,
+                            schema: "json",
                             payload_on: "ON",
                             payload_off: "OFF",
                         }, config))
@@ -32,10 +36,17 @@ module.exports = function (RED) {
                 }
             })
             // 订阅主题
-            ha.subscribe(ha.config.command_topic, (payload) => {
-                node.send({ payload })
+            ha.subscribe(command_topic, (payload) => {
+                console.log(payload)
+                // node.send([payload, null])
                 // 改变状态
-                ha.publish_state(payload)
+                // ha.publish_state(payload)
+            })
+            ha.subscribe(effect_command_topic, (payload) => {
+                console.log(payload)
+            })
+            ha.subscribe(brightness_command_topic, (payload) => {
+                console.log(payload)
             })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });

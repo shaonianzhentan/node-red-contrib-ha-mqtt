@@ -19,6 +19,10 @@ module.exports = class {
             state_topic: `${topic}state`,
             json_attr_t: `${topic}attr`,
             command_topic: `${topic}set`,
+            // 效果
+            effect_command_topic: `${topic}effect/set`,
+            // 亮度
+            brightness_command_topic: `${topic}brightness/set`
         }
     }
 
