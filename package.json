@@ -3,7 +3,10 @@
   "version": "1.0.1",
   "description": "在HomeAssistant生成MQTT实体",
   "keywords": [
-    "node-red"
+    "node-red",
+    "ha-mqtt",
+    "homeassistant",
+    "home-assistant"
   ],
   "node-red": {
     "nodes": {
