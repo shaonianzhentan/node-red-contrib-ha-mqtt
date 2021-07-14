@@ -13,7 +13,7 @@
 - [ ] device_trigger
 - [ ] fan
 - [ ] light
-- [ ] lock
+- [x] lock
 - [ ] number
 - [ ] scene
 - [ ] select
@@ -21,3 +21,11 @@
 - [x] switch
 - [ ] tag
 - [ ] vacuum
+
+## 配置
+
+```json
+{
+    "aaaa": "xxxx"
+}
+```
