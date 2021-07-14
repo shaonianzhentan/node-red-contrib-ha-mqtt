@@ -16,7 +16,9 @@ module.exports = function (RED) {
                         ha.publish_config(Object.assign({
                             command_topic: ha.config.command_topic,
                             payload_lock: "LOCK",
-                            payload_unlock: "UNLOCK"
+                            payload_unlock: "UNLOCK",
+                            state_locked: "LOCK",
+                            state_unlocked: "UNLOCK",
                         }, config))
                     }
                     // 更新状态
