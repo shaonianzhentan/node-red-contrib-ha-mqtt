@@ -1,0 +1,33 @@
+<script type="text/html" data-template-name="ha-mqtt-sensor">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-bookmark"></i> MQTT</label>
+        <select id="node-input-server"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> 实体名称</label>
+        <input type="text" id="node-input-name" placeholder="二进制传感器">
+    </div>
+    <div class="form-tips"><b>Tip:</b> 别搞些奇奇怪怪的字符，使用中文汉字</div>
+    <div class="form-row">
+        <label for="node-input-unit_of_measurement"><i class="fa fa-tag"></i> 计量单位</label>
+        <input type="text" id="node-input-unit_of_measurement" placeholder="%">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('ha-mqtt-sensor', {
+        category: 'HA-MQTT',
+        color: '#C0DEED',
+        icon: "font-awesome/fa-circle-o",
+        paletteLabel: 'sensor',
+        defaults: {
+            server: { value: "", type: "mqtt-broker", required: true },
+            name: { value: "", required: true },
+            unit_of_measurement: { value: "" }
+        },
+        inputs: 1,
+        outputs: 0,
+        label: function () {
+            return this.name || "sensor";
+        }
+    });
+</script>
