@@ -20,8 +20,10 @@ module.exports = class {
             json_attr_t: `${topic}attr`,
             command_topic: `${topic}set`,
             // 效果
+            effect_state_topic: `${topic}effect/state`,
             effect_command_topic: `${topic}effect/set`,
             // 亮度
+            brightness_state_topic: `${topic}brightness/state`,
             brightness_command_topic: `${topic}brightness/set`
         }
     }
@@ -52,6 +54,16 @@ module.exports = class {
     // 属性
     publish_attributes(data) {
         this.publish(this.config.json_attr_t, data)
+    }
+
+    // 效果
+    publish_effect(data) {
+        this.publish(this.config.effect_state_topic, data)
+    }
+
+    // 亮度
+    publish_brightness(data) {
+        this.publish(this.config.brightness_state_topic, data)
     }
 
     // 订阅
