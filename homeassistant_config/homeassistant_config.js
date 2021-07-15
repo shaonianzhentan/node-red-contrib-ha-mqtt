@@ -7,5 +7,10 @@ module.exports = function (RED) {
             const { host, port, token } = cfg
             this.hass = new HomeAssistant({ host, port, token, ignoreCert: false });
         }
+    }, {
+        credentials: {
+            username: { type: "text" },
+            password: { type: "password" }
+        }
     })
 }
