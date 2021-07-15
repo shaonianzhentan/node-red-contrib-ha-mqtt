@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "在HomeAssistant生成MQTT实体",
   "keywords": [
     "node-red",
@@ -10,6 +10,7 @@
   ],
   "node-red": {
     "nodes": {
+      "homeassistant_config": "homeassistant_config/homeassistant_config.js",
       "alarm_control_panel": "alarm_control_panel/alarm_control_panel.js",
       "binary_sensor": "binary_sensor/binary_sensor.js",
       "light": "light/light.js",
@@ -18,7 +19,7 @@
       "switch": "switch/switch.js",
       "keyboard": "keyboard/keyboard.js",
       "call_service": "call_service/call_service.js",
-      "homeassistant_config": "homeassistant_config/homeassistant_config.js"
+      "fire_event": "fire_event/fire_event.js"
     }
   },
   "scripts": {

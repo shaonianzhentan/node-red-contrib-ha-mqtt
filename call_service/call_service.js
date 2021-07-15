@@ -7,15 +7,18 @@ module.exports = function (RED) {
         if (this.server) {
             const node = this
             node.on('input', function (msg) {
-                const { service, entity_id, payload } = msg
+                let { service, payload } = msg
                 try {
-                    const arr = service.split('.')
+                    if (!service) service = cfg.service
                     node.status({ fill: "blue", shape: "ring", text: `调用中：${service}` });
-                    const res = this.server.hass.services.call(arr[1], arr[0], { entity_id, ...payload })
-                    node.send({
-                        payload: res
-                    })
-                    node.status({ fill: "green", shape: "ring", text: `调用成功：${service}` });
+                    this.server.callService(service, this.server.getServiceData(payload, cfg.entity_id)).then(res => {
+                        node.send({
+                            payload: res
+                        })
+                        node.status({ fill: "green", shape: "ring", text: `调用成功：${service}` });
+                    }).catch(err => {
+                        node.status({ fill: "red", shape: "ring", text: err });
+                    });
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
                 }
