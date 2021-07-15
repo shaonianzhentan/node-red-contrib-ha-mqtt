@@ -16,7 +16,9 @@
       "lock": "lock/lock.js",
       "sensor": "sensor/sensor.js",
       "switch": "switch/switch.js",
-      "keyboard": "keyboard/keyboard.js"
+      "keyboard": "keyboard/keyboard.js",
+      "call_service": "call_service/call_service.js",
+      "homeassistant_config": "homeassistant_config/homeassistant_config.js"
     }
   },
   "scripts": {
@@ -33,6 +35,7 @@
   },
   "homepage": "https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt#readme",
   "dependencies": {
+    "homeassistant": "^0.2.0",
     "input-event": "^1.2.6",
     "lodash": "^4.17.21",
     "node-pinyin": "^0.2.3"

@@ -1,0 +1,32 @@
+<script type="text/html" data-template-name="ha-mqtt-call_service">
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-bookmark"></i> HomeAssistant</label>
+        <select id="node-input-server"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-service"><i class="fa fa-tag"></i> 服务</label>
+        <input type="text" id="node-input-service" placeholder="light.turn_off">
+    </div>
+    <div class="form-row">
+        <label for="node-input-entity_id"><i class="fa fa-tag"></i> 实体ID</label>
+        <input type="text" id="node-input-entity_id" placeholder="light.cai_deng">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('ha-mqtt-call_service', {
+        category: '家庭助理',
+        color: '#C0DEED',
+        icon: "font-awesome/fa-toggle-on",
+        paletteLabel: 'call_service',
+        defaults: {
+            server: { value: "", type: "ha-mqtt-homeassistant_config", required: true },
+            service: { value: "" },
+            entity_id: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        label: function () {
+            return this.name || "call_service";
+        }
+    });
+</script>
