@@ -48,22 +48,26 @@ module.exports = class {
 
     // 状态
     publish_state(data) {
-        this.publish(this.config.state_topic, data)
+        this.publish(this.config.state_topic, String(data))
+        this.node.status({ fill: "green", shape: "ring", text: `更新状态：${data}` });
     }
 
     // 属性
     publish_attributes(data) {
         this.publish(this.config.json_attr_t, data)
+        this.node.status({ fill: "green", shape: "ring", text: `更新属性` });
     }
 
     // 效果
     publish_effect(data) {
         this.publish(this.config.effect_state_topic, data)
+        this.node.status({ fill: "green", shape: "ring", text: `更新特效：${data}` });
     }
 
     // 亮度
     publish_brightness(data) {
         this.publish(this.config.brightness_state_topic, data)
+        this.node.status({ fill: "green", shape: "ring", text: `更新亮度：${data}` });
     }
 
     // 订阅

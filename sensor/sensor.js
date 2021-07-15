@@ -9,22 +9,22 @@ module.exports = function (RED) {
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
-                const { config, state, attributes } = msg
+                const { config, payload, attributes } = msg
                 try {
                     // 更新配置
                     if (config && typeof config === 'object') {
                         ha.publish_config(Object.assign({ unit_of_measurement: cfg.unit_of_measurement }, config))
                     }
                     // 更新状态
-                    if (state) {
-                        ha.publish_state(state)
+                    if (payload) {
+                        ha.publish_state(payload)
                     }
                     // 更新属性
                     if (attributes) {
                         ha.publish_attributes(attributes)
                     }
                 } catch (ex) {
-                    node.status({ fill: "red", shape: "ring", text: ex });
+                    node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
         } else {
