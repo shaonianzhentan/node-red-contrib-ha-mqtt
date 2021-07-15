@@ -11,15 +11,15 @@ module.exports = function (RED) {
         ls.stdout.on('data', (data) => {
             console.log(`stdout: ${data}`);
             data = JSON.parse(data)
-            if (payload in res) {
+            if ('code' in data) {
                 node.status({ fill: "green", shape: "ring", text: `键码：${data.code}` });
                 // console.log(data)
-                node.send([{
+                node.send({
                     payload: {
                         dev: inputDevice,
                         ...data
                     }
-                }])
+                })
             } else {
                 node.status(data)
             }
