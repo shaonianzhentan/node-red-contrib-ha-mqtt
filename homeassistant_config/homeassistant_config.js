@@ -6,7 +6,7 @@ module.exports = function (RED) {
             RED.nodes.createNode(this, cfg);
             const { hassUrl, token } = cfg
             const url = new URL(hassUrl);
-            console.log(url)
+            // console.log(url)
             let port = url.port
             if (!port) {
                 port = url.protocol == 'https' ? 443 : 80
