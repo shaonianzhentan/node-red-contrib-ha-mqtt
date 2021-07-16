@@ -7,13 +7,14 @@ module.exports = function (RED) {
             const { hassUrl, token } = cfg
             const url = new URL(hassUrl);
             // console.log(url)
+            const host = `${url.protocol}//${url.hostname}`
             let port = url.port
             if (!port) {
                 port = url.protocol == 'https' ? 443 : 80
             }
-            this.hass = new HomeAssistant({ host: `${url.protocol}//${url.hostname}`, port, token, ignoreCert: false });
+            this.hass = new HomeAssistant({ host, port, token, ignoreCert: false });
             this.hass.status().then((res) => {
-                console.log(res)
+                console.log(host, res)
             })
         }
 
