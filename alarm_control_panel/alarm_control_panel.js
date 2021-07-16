@@ -9,7 +9,7 @@ module.exports = function (RED) {
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
-                const { config, state, attributes } = msg
+                const { config, payload, attributes } = msg
                 try {
                     // 更新配置
                     if (config && typeof config === 'object') {
@@ -23,8 +23,8 @@ module.exports = function (RED) {
                         }, config))
                     }
                     // 更新状态
-                    if (state) {
-                        ha.publish_state(state)
+                    if (payload) {
+                        ha.publish_state(payload)
                     }
                     // 更新属性
                     if (attributes) {

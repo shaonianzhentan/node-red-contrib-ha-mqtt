@@ -10,7 +10,7 @@ module.exports = function (RED) {
             const node = this
             const { command_topic, effect_state_topic, effect_command_topic, brightness_state_topic, brightness_command_topic } = ha.config
             node.on('input', function (msg) {
-                const { config, state, attributes, effect, brightness } = msg
+                const { config, payload, attributes, effect, brightness } = msg
                 try {
                     // 更新配置
                     if (config && typeof config === 'object') {
@@ -21,8 +21,8 @@ module.exports = function (RED) {
                         }, config))
                     }
                     // 更新状态
-                    if (state) {
-                        ha.publish_state(state)
+                    if (payload) {
+                        ha.publish_state(payload)
                     }
                     // 更新属性
                     if (attributes) {

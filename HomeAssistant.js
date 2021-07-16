@@ -1,4 +1,8 @@
+const fs = require('fs')
 const pinyin = require("node-pinyin")
+
+const package = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf-8'))
+
 
 function object_id(name) {
     let arr = pinyin(name, { style: 'normal' })
@@ -39,9 +43,9 @@ module.exports = class {
             device: {
                 name: '家庭助理',
                 identifiers: ['635147515'],
-                manufacturer: 'shaonianzhentan',
+                manufacturer: package.author,
                 model: 'HA-MQTT',
-                sw_version: '1.0.1'
+                sw_version: package.version
             }
         }, data))
     }
