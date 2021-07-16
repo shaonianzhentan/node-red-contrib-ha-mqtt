@@ -6,11 +6,7 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(cfg.server);
         if (this.server) {
             this.server.register(this)
-            const ha = new HomeAssistant(this, cfg, () => {
-                return {
-                    unit_of_measurement: cfg.unit_of_measurement
-                }
-            })
+            const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
@@ -26,6 +22,10 @@ module.exports = function (RED) {
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
+            })
+
+            ha.discovery({
+                unit_of_measurement: cfg.unit_of_measurement
             })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });

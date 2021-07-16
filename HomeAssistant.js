@@ -1,16 +1,18 @@
 const fs = require('fs')
 const pinyin = require("node-pinyin")
 
-const package = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf-8'))
-
+const pk = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf-8'))
 
 function object_id(name) {
     let arr = pinyin(name, { style: 'normal' })
     return arr.map(ele => ele[0]).join('_')
 }
 
+const DiscoveryDevice = {}
+
 module.exports = class {
-    constructor(node, cfg, defaultConfig) {
+    constructor(node, cfg) {
+        node.config = cfg.config
         this.node = node
         const { name } = cfg
         const entity_id = object_id(name)
@@ -30,15 +32,25 @@ module.exports = class {
             brightness_state_topic: `${topic}brightness/state`,
             brightness_command_topic: `${topic}brightness/set`
         }
-        // 配置自动发现
-        this.subscribe('ha-mqtt/discovery', () => {
-            let defConfig = defaultConfig()
-            console.log(cfg.config)
-            let config = {}
-            if (cfg.config) {
-                config = cfg.config
+    }
+
+    // 配置自动发现
+    discovery(config) {
+        DiscoveryDevice[this.config.unique_id] = () => {
+            try {
+                if (this.node.config) {
+                    config = Object.assign(config, JSON.parse(this.node.config))
+                }
+                // console.log(config)
+                this.publish_config(config)
+            } catch (ex) {
+                this.node.status({ fill: "red", shape: "ring", text: `自动配置失败：${ex}` });
             }
-            this.publish_config(Object.assign(defConfig, config))
+        }
+        this.subscribe('ha-mqtt/discovery', () => {
+            for (const key in DiscoveryDevice) {
+                DiscoveryDevice[key]()
+            }
         })
     }
 
@@ -53,11 +65,12 @@ module.exports = class {
             device: {
                 name: '家庭助理',
                 identifiers: ['635147515'],
-                manufacturer: package.author,
+                manufacturer: pk.author,
                 model: 'HA-MQTT',
-                sw_version: package.version
+                sw_version: pk.version
             }
         }, data))
+        this.node.status({ fill: "green", shape: "ring", text: `更新配置：${name}` });
     }
 
     // 状态

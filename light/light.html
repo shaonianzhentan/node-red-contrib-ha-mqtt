@@ -32,6 +32,9 @@
         outputs: 3,
         label: function () {
             return this.name || "light";
+        },
+        oneditprepare: function () {
+            $("#node-input-config").typedInput({ type: "json", types: ["json"] })
         }
     });
 </script>

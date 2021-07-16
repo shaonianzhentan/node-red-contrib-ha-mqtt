@@ -6,29 +6,12 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(cfg.server);
         if (this.server) {
             this.server.register(this)
-            const ha = new HomeAssistant(this, cfg, () => {
-                const { command_topic, effect_state_topic, effect_command_topic, brightness_state_topic, brightness_command_topic } = ha.config
-                return {
-                    command_topic,
-                    effect_state_topic,
-                    effect_command_topic,
-                    brightness_state_topic,
-                    brightness_command_topic,
-                    payload_on: "ON",
-                    payload_off: "OFF",
-                }
-            })
+            const ha = new HomeAssistant(this, cfg)
             const node = this
-            const { command_topic, effect_command_topic, brightness_command_topic } = ha.config
+            const { command_topic, effect_state_topic, effect_command_topic, brightness_state_topic, brightness_command_topic } = ha.config
             node.on('input', function (msg) {
-                const { config, payload, attributes, effect, brightness } = msg
+                const { payload, attributes, effect, brightness } = msg
                 try {
-                    // 更新配置
-                    if (config && typeof config === 'object') {
-                        ha.publish_config(Object.assign({
-
-                        }, config))
-                    }
                     // 更新状态
                     if (payload) {
                         ha.publish_state(payload)
@@ -57,6 +40,16 @@ module.exports = function (RED) {
             })
             ha.subscribe(effect_command_topic, (payload) => {
                 node.send([null, null, payload])
+            })
+
+            ha.discovery({
+                command_topic,
+                effect_state_topic,
+                effect_command_topic,
+                brightness_state_topic,
+                brightness_command_topic,
+                payload_on: "ON",
+                payload_off: "OFF",
             })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });

@@ -6,15 +6,7 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(config.server);
         if (this.server) {
             this.server.register(this)
-            const ha = new HomeAssistant(this, config, () => {
-                return {
-                    command_topic: ha.config.command_topic,
-                    payload_on: "ON",
-                    payload_off: "OFF",
-                    state_on: "ON",
-                    state_off: "OFF"
-                }
-            })
+            const ha = new HomeAssistant(this, config)
             const node = this
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
@@ -36,6 +28,14 @@ module.exports = function (RED) {
                 node.send({ payload })
                 // 改变状态
                 ha.publish_state(payload)
+            })
+
+            ha.discovery({
+                command_topic: ha.config.command_topic,
+                payload_on: "ON",
+                payload_off: "OFF",
+                state_on: "ON",
+                state_off: "OFF"
             })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });

@@ -32,3 +32,10 @@
     "effect_list": [ "模式一", "模式二" ]
 }
 ```
+
+> 在HomeAssistant启动时自动配置设备
+```yaml
+service: mqtt.publish
+data:
+  topic: ha-mqtt/discovery
+```

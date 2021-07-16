@@ -13,12 +13,6 @@
     </div>
 </script>
 <script type="text/javascript">
-
-    $("#node-input-config").typedInput({
-        type: "json",
-        types: ["json"]
-    })
-
     RED.nodes.registerType('ha-mqtt-binary_sensor', {
         category: '家庭助理',
         color: '#C0DEED',
@@ -33,6 +27,10 @@
         outputs: 0,
         label: function () {
             return this.name || "binary_sensor";
+        },
+        oneditprepare: function () {
+            $("#node-input-config").typedInput({ type: "json", types: ["json"] })
         }
     });
+
 </script>
