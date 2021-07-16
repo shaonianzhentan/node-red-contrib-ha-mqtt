@@ -1,15 +1,24 @@
 <script type="text/html" data-template-name="ha-mqtt-binary_sensor">
     <div class="form-row">
-        <label for="node-input-server"><i class="fa fa-bookmark"></i> MQTT</label>
+        <label for="node-input-server">MQTT</label>
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> 实体名称</label>
+        <label for="node-input-name"> 实体名称</label>
         <input type="text" id="node-input-name" placeholder="二进制传感器">
     </div>
-    <div class="form-tips"><b>Tip:</b> 别搞些奇奇怪怪的字符，使用中文汉字</div>
+    <div class="form-row">
+        <label for="node-input-config"> 配置</label>        
+        <input type="text" id="node-input-config" placeholder="配置">
+    </div>
 </script>
 <script type="text/javascript">
+
+    $("#node-input-config").typedInput({
+        type: "json",
+        types: ["json"]
+    })
+
     RED.nodes.registerType('ha-mqtt-binary_sensor', {
         category: '家庭助理',
         color: '#C0DEED',
@@ -17,7 +26,8 @@
         paletteLabel: 'binary_sensor',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
-            name: { value: "", required: true }
+            name: { value: "", required: true },
+            config: { value: "" }
         },
         inputs: 1,
         outputs: 0,

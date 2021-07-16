@@ -22,6 +22,8 @@
 - [ ] tag
 - [ ] vacuum
 
+- [x] keyboard - 键盘监听器
+
 ## 配置
 
 灯

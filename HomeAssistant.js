@@ -10,9 +10,9 @@ function object_id(name) {
 }
 
 module.exports = class {
-    constructor(node, config) {
+    constructor(node, cfg, defaultConfig) {
         this.node = node
-        const { name } = config
+        const { name } = cfg
         const entity_id = object_id(name)
         const type = node.type.replace('ha-mqtt-', '')
         const topic = `ha-mqtt/${type}/${entity_id}/`
@@ -30,6 +30,16 @@ module.exports = class {
             brightness_state_topic: `${topic}brightness/state`,
             brightness_command_topic: `${topic}brightness/set`
         }
+        // 配置自动发现
+        this.subscribe('ha-mqtt/discovery', () => {
+            let defConfig = defaultConfig()
+            console.log(cfg.config)
+            let config = {}
+            if (cfg.config) {
+                config = cfg.config
+            }
+            this.publish_config(Object.assign(defConfig, config))
+        })
     }
 
     // 配置
