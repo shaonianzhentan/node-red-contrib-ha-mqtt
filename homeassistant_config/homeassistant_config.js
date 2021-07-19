@@ -6,9 +6,15 @@ module.exports = function (RED) {
             RED.nodes.createNode(this, cfg);
             const { hassUrl, token } = cfg
             const url = new URL(hassUrl);
-            this.hass = new HomeAssistant({ host: `${url.protocol}//${url.hostname}`, port: url.port, token, ignoreCert: false });
+            // console.log(url)
+            const host = `${url.protocol}//${url.hostname}`
+            let port = url.port
+            if (!port) {
+                port = url.protocol == 'https' ? 443 : 80
+            }
+            this.hass = new HomeAssistant({ host, port, token, ignoreCert: false });
             this.hass.status().then((res) => {
-                console.log(res)
+                console.log(host, res)
             })
         }
 
