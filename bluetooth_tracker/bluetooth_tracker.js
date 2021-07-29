@@ -11,7 +11,7 @@ module.exports = function (RED) {
         const ls = spawn('node', [__dirname + '/tracker.js', JSON.stringify(cfg)]);
 
         ls.stdout.on('data', (data) => {
-            log(data.toString());
+            // log(data.toString());
             try {
                 data = JSON.parse(data)
                 if ('payload' in data) {
@@ -21,12 +21,13 @@ module.exports = function (RED) {
                 } else if ('isAlive' in data) {
                     node.status({ fill: "green", shape: "ring", text: `检测到IP${data.isAlive ? '在线' : '离线'}` });
                 }
-            } catch {
+            } catch (ex) {
+                node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
             }
         });
 
         ls.stderr.on('data', (data) => {
-            node.status({ fill: "red", shape: "ring", text: `stderr: ${data}` });
+            node.status({ fill: "red", shape: "ring", text: `stderr: ${JSON.stringify(data)}` });
         });
 
         ls.on('close', (code) => {
