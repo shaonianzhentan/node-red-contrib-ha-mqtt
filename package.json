@@ -19,7 +19,8 @@
       "switch": "switch/switch.js",
       "keyboard": "keyboard/keyboard.js",
       "call_service": "call_service/call_service.js",
-      "fire_event": "fire_event/fire_event.js"
+      "fire_event": "fire_event/fire_event.js",
+      "bluetooth_tracker": "bluetooth_tracker/bluetooth_tracker.js"
     }
   },
   "scripts": {
@@ -39,6 +40,7 @@
     "homeassistant": "^0.2.0",
     "input-event": "^1.2.6",
     "lodash": "^4.17.21",
-    "node-pinyin": "^0.2.3"
+    "node-pinyin": "^0.2.3",
+    "ping": "^0.4.1"
   }
 }
