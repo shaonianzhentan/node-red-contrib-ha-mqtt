@@ -16,6 +16,10 @@ module.exports = function (RED) {
                 data = JSON.parse(data)
                 if ('payload' in data) {
                     node.send({ payload: data.payload })
+                    // 判断是否蓝牙检测
+                    if ('bluetooth' in data) {
+                        node.status({ fill: "green", shape: "ring", text: `蓝牙检测：${data.bluetooth}` });
+                    }
                 } else if ('error' in data) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(data.error) });
                 } else if ('isAlive' in data) {

@@ -29,7 +29,7 @@ const ble_tracker = () => {
             }
             // 检测到有人
             if (stdout) {
-                log({ payload: 'home' })
+                log({ payload: 'home', bluetooth: stdout })
                 resolve()
             } else {
                 // 没有检测到设备时，计数器加一
