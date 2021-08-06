@@ -14,15 +14,16 @@
 - [ ] fan
 - [x] light
 - [x] lock
-- [ ] number
+- [x] number
 - [ ] scene
-- [ ] select
+- [x] select
 - [x] sensor
 - [x] switch
 - [ ] tag
 - [ ] vacuum
 
 - [x] keyboard - 键盘监听器
+- [x] bluetooth_tracker - 蓝牙检测在家
 
 ## 配置
 
