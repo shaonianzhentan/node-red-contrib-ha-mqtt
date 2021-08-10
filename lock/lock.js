@@ -20,7 +20,7 @@ module.exports = function (RED) {
                         ha.publish_attributes(attributes)
                     }
                 } catch (ex) {
-                    node.status({ fill: "red", shape: "ring", text: ex });
+                    node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
             // 订阅主题
@@ -29,7 +29,6 @@ module.exports = function (RED) {
                 // 改变状态
                 ha.publish_state(payload)
             })
-
             ha.discovery({
                 command_topic: ha.config.command_topic,
                 payload_lock: "LOCK",

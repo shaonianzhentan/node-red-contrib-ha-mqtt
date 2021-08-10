@@ -1,4 +1,3 @@
-const HomeAssistant = require('../HomeAssistant')
 
 module.exports = function (RED) {
     RED.nodes.registerType('ha-mqtt-fire_event', function (cfg) {
