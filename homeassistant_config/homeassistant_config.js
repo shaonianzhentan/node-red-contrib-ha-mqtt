@@ -29,7 +29,7 @@ module.exports = function (RED) {
         }
 
         async callService(service, data) {
-            const arr = service.split('.')
+            const arr = service.trim().split('.')
             const res = await this.hass.services.call(arr[1], arr[0], data)
             return res
         }
