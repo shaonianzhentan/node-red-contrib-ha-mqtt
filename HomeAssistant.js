@@ -25,12 +25,20 @@ module.exports = class {
             state_topic: `${topic}state`,
             json_attr_t: `${topic}attr`,
             command_topic: `${topic}set`,
+            // 可用
+            availability_topic: `${topic}availability/state`,
             // 效果
             effect_state_topic: `${topic}effect/state`,
             effect_command_topic: `${topic}effect/set`,
             // 亮度
             brightness_state_topic: `${topic}brightness/state`,
-            brightness_command_topic: `${topic}brightness/set`
+            brightness_command_topic: `${topic}brightness/set`,
+            // 温度
+            temperature_state_topic: `${topic}temperature/state`,
+            temperature_command_topic: `${topic}temperature/set`,
+            // 模式
+            mode_state_topic: `${topic}mode/state`,
+            mode_command_topic: `${topic}mode/set`,
         }
     }
 
@@ -57,7 +65,8 @@ module.exports = class {
     // 配置
     publish_config(data) {
         const { name, unique_id, discovery_topic, state_topic, json_attr_t } = this.config
-        this.publish(discovery_topic, Object.assign({
+        // 合并配置
+        const mergeConfig = Object.assign({
             name,
             unique_id,
             state_topic,
@@ -69,7 +78,14 @@ module.exports = class {
                 model: 'HA-MQTT',
                 sw_version: pk.version
             }
-        }, data))
+        }, data)
+        // 删除为null的属性
+        Object.keys(mergeConfig).forEach(key => {
+            if (a[key] === null) {
+                delete a[key]
+            }
+        })
+        this.publish(discovery_topic, mergeConfig)
         this.node.status({ fill: "green", shape: "ring", text: `更新配置：${name}` });
     }
 
