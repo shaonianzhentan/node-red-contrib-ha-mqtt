@@ -6,31 +6,36 @@ module.exports = function (RED) {
         const node = this
         const inputDevice = config.name
 
-        const ls = spawn('node', [__dirname + '/input.js', inputDevice]);
+        function monitorKeyboard() {
+            const ls = spawn('node', [__dirname + '/input.js', inputDevice]);
 
-        ls.stdout.on('data', (data) => {
-            console.log(`stdout: ${data}`);
-            data = JSON.parse(data)
-            if ('code' in data) {
-                node.status({ fill: "green", shape: "ring", text: `键码：${data.code}` });
-                // console.log(data)
-                node.send({
-                    payload: {
-                        dev: inputDevice,
-                        ...data
-                    }
-                })
-            } else {
-                node.status(data)
-            }
-        });
+            ls.stdout.on('data', (data) => {
+                console.log(`stdout: ${data}`);
+                data = JSON.parse(data)
+                if ('code' in data) {
+                    node.status({ fill: "green", shape: "ring", text: `键码：${data.code}` });
+                    // console.log(data)
+                    node.send({
+                        payload: {
+                            dev: inputDevice,
+                            ...data
+                        }
+                    })
+                } else {
+                    node.status(data)
+                }
+            });
 
-        ls.stderr.on('data', (data) => {
-            node.status({ fill: "red", shape: "ring", text: `stderr: ${data}` });
-        });
+            ls.stderr.on('data', (data) => {
+                node.status({ fill: "red", shape: "ring", text: `stderr: ${data}` });
+            });
 
-        ls.on('close', (code) => {
-            node.status({ fill: "red", shape: "ring", text: `child process exited with code ${code}` });
-        });
+            ls.on('close', (code) => {
+                node.status({ fill: "red", shape: "ring", text: `child process exited with code ${code}` });
+                monitorKeyboard()
+            });
+        }
+
+        monitorKeyboard()
     })
 }
