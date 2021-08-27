@@ -39,6 +39,15 @@ module.exports = class {
             // 模式
             mode_state_topic: `${topic}mode/state`,
             mode_command_topic: `${topic}mode/set`,
+            // 摆动
+            oscillation_state_topic: `${topic}oscillation/state`,
+            oscillation_command_topic: `${topic}oscillation/set`,
+            // 百分比            
+            percentage_state_topic: `${topic}percentage/state`,
+            percentage_command_topic: `${topic}percentage/set`,
+            // 预设模式            
+            preset_mode_state_topic: `${topic}preset_mode/state`,
+            preset_mode_command_topic: `${topic}preset_mode/set`,
         }
     }
 
@@ -81,8 +90,8 @@ module.exports = class {
         }, data)
         // 删除为null的属性
         Object.keys(mergeConfig).forEach(key => {
-            if (a[key] === null) {
-                delete a[key]
+            if (mergeConfig[key] === null) {
+                delete mergeConfig[key]
             }
         })
         this.publish(discovery_topic, mergeConfig)
@@ -105,6 +114,24 @@ module.exports = class {
     publish_effect(data) {
         this.publish(this.config.effect_state_topic, data)
         this.node.status({ fill: "green", shape: "ring", text: `更新特效：${data}` });
+    }
+
+    // 摆动
+    publish_oscillation(data) {
+        this.publish(this.config.oscillation_state_topic, data)
+        this.node.status({ fill: "green", shape: "ring", text: `更新摆动：${data}` });
+    }
+    
+    // 百分比
+    publish_percentage(data) {
+        this.publish(this.config.percentage_state_topic, data)
+        this.node.status({ fill: "green", shape: "ring", text: `更新百分比：${data}` });
+    }
+
+    // 预设模式
+    publish_preset_mode(data) {
+        this.publish(this.config.preset_mode_state_topic, data)
+        this.node.status({ fill: "green", shape: "ring", text: `更新预设模式：${data}` });
     }
 
     // 亮度

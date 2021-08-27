@@ -1,0 +1,35 @@
+<script type="text/html" data-template-name="ha-mqtt-fan">
+    <div class="form-row">
+        <label for="node-input-server"> MQTT</label>
+        <select id="node-input-server"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"> 实体名称</label>
+        <input type="text" id="node-input-name" placeholder="实体名称">
+    </div>
+    <div class="form-row">
+        <label for="node-input-config"> 配置</label>
+        <input type="text" id="node-input-config" placeholder="配置">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('ha-mqtt-fan', {
+        category: '家庭助理',
+        color: '#C0DEED',
+        icon: "font-awesome/fa-bell",
+        paletteLabel: 'fan',
+        defaults: {
+            server: { value: "", type: "mqtt-broker", required: true },
+            name: { value: "", required: true },
+            config: { value: "" }
+        },
+        inputs: 1,
+        outputs: 4,
+        label: function () {
+            return this.name || "fan";
+        },
+        oneditprepare: function () {
+            $("#node-input-config").typedInput({ type: "json", types: ["json"] })
+        }
+    });
+</script>

@@ -23,25 +23,27 @@ module.exports = function (RED) {
                     node.status({ fill: "red", shape: "ring", text: ex });
                 }
             })
-            // // 订阅主题
-            // ha.subscribe(ha.config.command_topic, (payload) => {
-            //     node.send({ payload })
-            //     // 改变状态
-            //     ha.publish_state(payload)
-            // })
+            const { state_topic, availability_topic, mode_command_topic, temperature_command_topic } = ha.config
+            // 订阅主题
+            ha.subscribe(temperature_command_topic, (payload) => {
+                node.send([{ payload }, null])
+            })
+            ha.subscribe(mode_command_topic, (payload) => {
+                node.send([null, { payload }])
+            })
 
             ha.discovery({
                 state_topic: null,
-                "mode_cmd_t": ha.config.mode_command_topic,
-                "mode_stat_t": ha.config.state_topic,
+                "mode_cmd_t": mode_command_topic,
+                "mode_stat_t": state_topic,
                 "mode_stat_tpl": "",
-                "avty_t": ha.config.availability_topic,
+                "avty_t": availability_topic,
                 "pl_avail": "online",
                 "pl_not_avail": "offline",
-                "temp_cmd_t": ha.config.temperature_command_topic,
-                "temp_stat_t": ha.config.state_topic,
+                "temp_cmd_t": temperature_command_topic,
+                "temp_stat_t": state_topic,
                 "temp_stat_tpl": "",
-                "curr_temp_t": ha.config.state_topic,
+                "curr_temp_t": state_topic,
                 "curr_temp_tpl": "",
                 "min_temp": "15",
                 "max_temp": "25",
