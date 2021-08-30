@@ -13,6 +13,7 @@
       "homeassistant_config": "homeassistant_config/homeassistant_config.js",
       "alarm_control_panel": "alarm_control_panel/alarm_control_panel.js",
       "binary_sensor": "binary_sensor/binary_sensor.js",
+      "device_tracker": "device_tracker/device_tracker.js",
       "device_automation": "device_automation/device_automation.js",
       "light": "light/light.js",
       "lock": "lock/lock.js",

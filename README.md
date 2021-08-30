@@ -9,7 +9,7 @@
 - [ ] camera
 - [ ] climate
 - [ ] cover
-- [ ] device_tracker
+- [x] device_tracker
 - [ ] device_trigger - device_automation
 - [ ] fan
 - [x] light
