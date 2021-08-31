@@ -9,7 +9,7 @@ module.exports = function (RED) {
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
-                const { payload, attributes } = msg
+                const { payload, attributes, preset_mode, percentage, oscillation } = msg
                 try {
                     // 更新状态
                     if (payload) {
@@ -19,27 +19,37 @@ module.exports = function (RED) {
                     if (attributes) {
                         ha.publish_attributes(attributes)
                     }
+                    if (preset_mode) {
+                        ha.publish_preset_mode(preset_mode)
+                    }
+                    if (percentage) {
+                        ha.publish_percentage(percentage)
+                    }
+                    if (oscillation) {
+                        ha.publish_oscillation(oscillation)
+                    }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
                 }
             })
             const { command_topic, oscillation_state_topic, oscillation_command_topic,
-                percentage_state_topic, percentage_command_topic, preset_mode_state_topic, preset_mode_command_topic } = ha.config
+                percentage_state_topic, percentage_command_topic,
+                preset_mode_state_topic, preset_mode_command_topic } = ha.config
             // 开关
             ha.subscribe(command_topic, (payload) => {
-                node.send([{ payload }, null, null, null])
+                ha.send_payload(payload, 1, 4)
                 ha.publish_state(payload)
             })
             ha.subscribe(oscillation_command_topic, (payload) => {
-                node.send([null, { payload }, null, null])
+                ha.send_payload(payload, 2, 4)
                 ha.publish_oscillation(payload)
             })
             ha.subscribe(percentage_command_topic, (payload) => {
-                node.send([null, null, { payload }, null])
+                ha.send_payload(payload, 3, 4)
                 ha.publish_percentage(payload)
             })
             ha.subscribe(preset_mode_command_topic, (payload) => {
-                node.send([null, null, null, { payload }])
+                ha.send_payload(payload, 4, 4)
                 ha.publish_preset_mode(payload)
             })
 

@@ -7,18 +7,19 @@
 - [x] alarm_control_panel
 - [x] binary_sensor
 - [ ] camera
-- [ ] climate
+- [x] climate
 - [ ] cover
 - [x] device_tracker
 - [ ] device_trigger - device_automation
-- [ ] fan
+- [x] fan
+- [ ] humidifier
 - [x] light
 - [x] lock
 - [x] number
-- [x] scene
-- [x] select
-- [x] sensor
-- [x] switch
+- [x] scene - 场景
+- [x] select - 选择器
+- [x] sensor - 传感器
+- [x] switch - 开关
 - [ ] tag
 - [ ] vacuum
 

@@ -9,46 +9,66 @@ module.exports = function (RED) {
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
-                const { payload, attributes } = msg
+                const { payload, attributes, mode, temperature } = msg
                 try {
                     // 更新状态
                     if (payload) {
-                        ha.publish_state(payload)
+                        // ha.publish_state(payload)
+                        ha.publish_current_temperature(payload)
                     }
                     // 更新属性
                     if (attributes) {
                         ha.publish_attributes(attributes)
                     }
+                    if (mode) {
+                        ha.publish_mode(mode)
+                    }
+                    if (temperature) {
+                        ha.publish_temperature(temperature)
+                    }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
                 }
             })
-            const { state_topic, availability_topic, mode_command_topic, temperature_command_topic } = ha.config
+            const { mode_state_topic, mode_command_topic, power_command_topic,
+                fan_mode_command_topic, swing_mode_command_topic,
+                current_temperature_topic,
+                temperature_state_topic,
+                temperature_command_topic } = ha.config
+
             // 订阅主题
             ha.subscribe(temperature_command_topic, (payload) => {
-                node.send([{ payload }, null])
+                ha.send_payload(payload, 1, 4)
+                ha.publish_temperature(payload)
             })
             ha.subscribe(mode_command_topic, (payload) => {
-                node.send([null, { payload }])
+                ha.send_payload(payload, 2, 4)
+                ha.publish_mode(payload)
+            })
+            ha.subscribe(swing_mode_command_topic, (payload) => {
+                ha.send_payload(payload, 3, 4)
+                ha.publish_swing_mode(payload)
+            })
+            ha.subscribe(fan_mode_command_topic, (payload) => {
+                ha.send_payload(payload, 4, 4)
+                ha.publish_fan_mode(payload)
             })
 
             ha.discovery({
                 state_topic: null,
-                "mode_cmd_t": mode_command_topic,
-                "mode_stat_t": state_topic,
-                "mode_stat_tpl": "",
-                "avty_t": availability_topic,
-                "pl_avail": "online",
-                "pl_not_avail": "offline",
-                "temp_cmd_t": temperature_command_topic,
-                "temp_stat_t": state_topic,
-                "temp_stat_tpl": "",
-                "curr_temp_t": state_topic,
-                "curr_temp_tpl": "",
-                "min_temp": "15",
-                "max_temp": "25",
-                "temp_step": "0.5",
-                "modes": ["off", "heat"]
+                power_command_topic,
+                mode_state_topic,
+                temperature_state_topic,
+                current_temperature_topic,
+                // 精度
+                precision: 1,
+                temperature_command_topic,
+                mode_command_topic,
+                fan_mode_command_topic,
+                swing_mode_command_topic,
+                swing_modes: ["on", "off"],
+                modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
+                fan_modes: ["auto", "low", "medium", "high"]
             })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
