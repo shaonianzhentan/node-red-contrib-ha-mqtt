@@ -64,9 +64,11 @@ module.exports = class {
                 this.node.status({ fill: "red", shape: "ring", text: `自动配置失败：${ex}` });
             }
         }
-        this.subscribe('ha-mqtt/discovery', () => {
-            for (const key in DiscoveryDevice) {
-                DiscoveryDevice[key]()
+        this.subscribe('homeassistant/status', (payload) => {
+            if (payload === 'online') {
+                for (const key in DiscoveryDevice) {
+                    DiscoveryDevice[key]()
+                }
             }
         })
     }
@@ -121,7 +123,7 @@ module.exports = class {
         this.publish(this.config.oscillation_state_topic, data)
         this.node.status({ fill: "green", shape: "ring", text: `更新摆动：${data}` });
     }
-    
+
     // 百分比
     publish_percentage(data) {
         this.publish(this.config.percentage_state_topic, data)
