@@ -20,27 +20,11 @@
 - [x] select - 选择器
 - [x] sensor - 传感器
 - [x] switch - 开关
-- [ ] tag
-- [ ] vacuum
+- [ ] tag - 标签
+- [ ] vacuum - 扫地机器人
 
 - [x] keyboard - 键盘监听器
 - [x] bluetooth_tracker - 蓝牙检测在家
-
-## 配置
-
-灯
-```json
-{
-    "effect_list": [ "模式一", "模式二" ]
-}
-```
-
-> 在HomeAssistant启动时自动配置设备
-```yaml
-service: mqtt.publish
-data:
-  topic: ha-mqtt/discovery
-```
 
 
 ## 如果这个项目对你有帮助，请我喝杯<del style="font-size: 14px;">咖啡</del>奶茶吧😘
