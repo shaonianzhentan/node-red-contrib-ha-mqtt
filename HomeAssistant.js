@@ -112,74 +112,62 @@ module.exports = class {
 
     // 状态
     publish_state(data) {
-        this.publish(this.config.state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新状态：${data}` });
+        this.publish(this.config.state_topic, data, "更新状态")
     }
 
     // 属性
     publish_attributes(data) {
-        this.publish(this.config.json_attr_t, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新属性` });
+        this.publish(this.config.json_attr_t, data, "更新属性")
     }
 
     // 当前温度
     publish_current_temperature(data) {
-        this.publish(this.config.current_temperature_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新当前温度：${data}` });
+        this.publish(this.config.current_temperature_topic, data, "更新当前温度")
     }
 
     // 当前温度
     publish_temperature(data) {
-        this.publish(this.config.temperature_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新温度：${data}` });
+        this.publish(this.config.temperature_state_topic, data, "更新温度")
     }
 
     // 效果
     publish_effect(data) {
-        this.publish(this.config.effect_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新特效：${data}` });
+        this.publish(this.config.effect_state_topic, data, "更新特效")
     }
 
     // 摆动
     publish_oscillation(data) {
-        this.publish(this.config.oscillation_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新摆动：${data}` });
+        this.publish(this.config.oscillation_state_topic, data, "更新摆动")
     }
 
     // 百分比
     publish_percentage(data) {
-        this.publish(this.config.percentage_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新百分比：${data}` });
+        this.publish(this.config.percentage_state_topic, data, "更新百分比")
     }
 
     // 预设模式
     publish_mode(data) {
-        this.publish(this.config.mode_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新模式：${data}` });
+        this.publish(this.config.mode_state_topic, data, "更新模式")
     }
 
     // 预设模式
     publish_preset_mode(data) {
-        this.publish(this.config.preset_mode_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新预设模式：${data}` });
+        this.publish(this.config.preset_mode_state_topic, data, "更新预设模式")
     }
 
     // 摆动模式
     publish_swing_mode(data) {
-        this.publish(this.config.swing_mode_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新预设模式：${data}` });
+        this.publish(this.config.swing_mode_state_topic, data, "更新摆动模式")
     }
 
     // 风速模式
     publish_fan_mode(data) {
-        this.publish(this.config.fan_mode_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新预设模式：${data}` });
+        this.publish(this.config.fan_mode_state_topic, data, "更新风速模式")
     }
 
     // 亮度
     publish_brightness(data) {
-        this.publish(this.config.brightness_state_topic, data)
-        this.node.status({ fill: "green", shape: "ring", text: `更新亮度：${data}` });
+        this.publish(this.config.brightness_state_topic, data, "更新亮度")
     }
 
     // 订阅
@@ -198,13 +186,22 @@ module.exports = class {
     }
 
     // 发布
-    publish(topic, payload) {
-        if (typeof payload === 'object') {
-            payload = JSON.stringify(payload)
-        }
-        if (isNumber(payload)) {
-            payload = String(payload)
+    publish(topic, payload, msg = "") {
+        const type = Object.prototype.toString.call(payload)
+        switch (type) {
+            case '[object Uint8Array]':
+                this.node.server.client.publish(topic, payload, { retain: false })
+                return;
+            case '[object Object]':
+                payload = JSON.stringify(payload)
+                break;
+            case '[object Number]':
+                payload = String(payload)
+                break;
         }
         this.node.server.client.publish(topic, payload)
+        if (msg) {
+            this.node.status({ fill: "green", shape: "ring", text: `${msg}：${payload}` });
+        }
     }
 }
