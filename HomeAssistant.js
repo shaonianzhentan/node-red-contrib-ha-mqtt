@@ -26,6 +26,8 @@ module.exports = class {
             state_topic: `${topic}state`,
             json_attr_t: `${topic}attr`,
             command_topic: `${topic}set`,
+            // 位置
+            position_topic: `${topic}position/state`,
             // 可用
             availability_topic: `${topic}availability/state`,
             power_command_topic: `${topic}power/set`,
@@ -58,6 +60,9 @@ module.exports = class {
             // 预设模式
             preset_mode_state_topic: `${topic}preset_mode/state`,
             preset_mode_command_topic: `${topic}preset_mode/set`,
+            // 倾斜
+            tilt_state_topic: `${topic}tilt/state`,
+            tilt_command_topic: `${topic}tilt/set`,
         }
     }
 

@@ -6,9 +6,9 @@
 ## 支持组件
 - [x] alarm_control_panel
 - [x] binary_sensor
-- [ ] camera
+- [x] camera
 - [x] climate
-- [ ] cover
+- [x] cover
 - [x] device_tracker
 - [ ] device_trigger - device_automation
 - [x] fan
