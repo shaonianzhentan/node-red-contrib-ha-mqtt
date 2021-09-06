@@ -12,7 +12,7 @@
 - [x] device_tracker
 - [ ] device_trigger - device_automation
 - [x] fan
-- [ ] humidifier
+- [x] humidifier
 - [x] light
 - [x] lock
 - [x] number
@@ -21,7 +21,7 @@
 - [x] sensor - 传感器
 - [x] switch - 开关
 - [ ] tag - 标签
-- [ ] vacuum - 扫地机器人
+- [x] vacuum - 扫地机器人
 
 - [x] keyboard - 键盘监听器
 - [x] bluetooth_tracker - 蓝牙检测在家

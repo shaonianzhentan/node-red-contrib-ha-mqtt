@@ -39,6 +39,9 @@ module.exports = class {
             brightness_command_topic: `${topic}brightness/set`,
             // 当前温度
             current_temperature_topic: `${topic}current_temperature`,
+            // 目标湿度
+            target_humidity_state_topic: `${topic}target_humidity/state`,
+            target_humidity_command_topic: `${topic}target_humidity/set`,
             // 温度
             temperature_state_topic: `${topic}temperature/state`,
             temperature_command_topic: `${topic}temperature/set`,
@@ -63,6 +66,20 @@ module.exports = class {
             // 倾斜
             tilt_state_topic: `${topic}tilt/state`,
             tilt_command_topic: `${topic}tilt/set`,
+            // 电量
+            battery_level_topic: `${topic}battery_level/state`,
+            // 充电中
+            charging_topic: `${topic}charging/state`,
+            // 清洁中
+            cleaning_topic: `${topic}cleaning/state`,
+            // 停靠
+            docked_topic: `${topic}docked/state`,
+            // 错误
+            error_topic: `${topic}error/state`,
+            // 风速
+            fan_speed_topic: `${topic}fan_speed/state`,
+            set_fan_speed_topic: `${topic}set_fan_speed/set`,
+            send_command_topic: `${topic}send_command/set`,
         }
     }
 
@@ -135,6 +152,11 @@ module.exports = class {
         this.publish(this.config.temperature_state_topic, data, "更新温度")
     }
 
+    // 目标湿度
+    publish_target_humidity(data) {
+        this.publish(this.config.target_humidity_state_topic, data, "更新目标湿度")
+    }
+
     // 效果
     publish_effect(data) {
         this.publish(this.config.effect_state_topic, data, "更新特效")
@@ -173,6 +195,31 @@ module.exports = class {
     // 亮度
     publish_brightness(data) {
         this.publish(this.config.brightness_state_topic, data, "更新亮度")
+    }
+
+    // 电量
+    publish_battery_level(data) {
+        this.publish(this.config.battery_level_topic, data, "更新电量")
+    }
+
+    publish_charging(data) {
+        this.publish(this.config.charging_topic, data, "更新充电状态")
+    }
+
+    publish_cleaning(data) {
+        this.publish(this.config.cleaning_topic, data, "更新清扫状态")
+    }
+
+    publish_docked(data) {
+        this.publish(this.config.docked_topic, data, "更新停靠状态")
+    }
+
+    publish_error(data) {
+        this.publish(this.config.error_topic, data, "更新错误状态")
+    }
+
+    publish_fan_speed(data) {
+        this.publish(this.config.fan_speed_topic, data, "更新风速")
     }
 
     // 订阅
