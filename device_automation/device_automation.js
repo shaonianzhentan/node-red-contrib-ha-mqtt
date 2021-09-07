@@ -7,7 +7,7 @@ module.exports = function (RED) {
         if (this.server) {
             this.server.register(this)
             const ha = new HomeAssistant(this, cfg)
-            const node = this            
+            const node = this
             const { name, state_topic } = ha.config
             node.on('input', function (msg) {
                 const { payload } = msg
