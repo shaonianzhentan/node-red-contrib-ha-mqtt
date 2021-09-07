@@ -7,22 +7,21 @@ module.exports = function (RED) {
         if (this.server) {
             this.server.register(this)
             const ha = new HomeAssistant(this, cfg)
-            const node = this
+            const node = this            
+            const { name, state_topic } = ha.config
             node.on('input', function (msg) {
                 const { payload } = msg
                 try {
                     // 更新状态
                     if (payload) {
-                        ha.publish_state(payload)
+                        ha.publish_state(name)
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
-            const { state_topic } = ha.config
-            // 
-            const typeList = ['button_short_press', 'button_short_release', 'button_long_press', 'button_long_release', 'button_double_press', 'button_triple_press', 'button_quadruple_press', 'button_quintuple_press']
-            const subtypeList = ['button_1', 'button_2', 'button_3', 'button_4', 'button_5', 'button_6', 'button_2']
+            // const typeList = ['button_short_press', 'button_short_release', 'button_long_press', 'button_long_release', 'button_double_press', 'button_triple_press', 'button_quadruple_press', 'button_quintuple_press']
+            // const subtypeList = ['button_1', 'button_2', 'button_3', 'button_4', 'button_5', 'button_6', 'button_2']
             ha.discovery({
                 name: null,
                 unique_id: null,
@@ -31,7 +30,7 @@ module.exports = function (RED) {
                 automation_type: 'trigger',
                 topic: state_topic,
                 type: 'action',
-                subtype: 'arrow_left_click',
+                subtype: name,
 
             })
         } else {
