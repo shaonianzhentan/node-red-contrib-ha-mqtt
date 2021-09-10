@@ -12,7 +12,7 @@ const DiscoveryDevice = {}
 
 module.exports = class {
     constructor(node, cfg) {
-        node.config = cfg.config || {}
+        node.config = cfg.config
         this.node = node
         const { name } = cfg
         const entity_id = object_id(name)

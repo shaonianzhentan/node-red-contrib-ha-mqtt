@@ -10,7 +10,7 @@
 - [x] climate
 - [x] cover
 - [x] device_tracker
-- [ ] device_trigger - device_automation
+- [x] device_trigger - device_automation
 - [x] fan
 - [x] humidifier
 - [x] light

@@ -8,16 +8,16 @@ module.exports = function (RED) {
             this.server.register(this)
             // 格式化名称值，保证name值唯一
             const subtype = cfg.name
-            cfg.name = `${cfg.subtype}${cfg.action}`
+            cfg.name = `${subtype}${cfg.action}`
             const ha = new HomeAssistant(this, cfg)
             const node = this
-            const { state_topic } = ha.config
+            const { name, state_topic } = ha.config
             node.on('input', function (msg) {
                 const { payload } = msg
                 try {
                     // 更新状态
                     if (payload) {
-                        ha.publish_state(subtype)
+                        ha.publish_state(name)
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
