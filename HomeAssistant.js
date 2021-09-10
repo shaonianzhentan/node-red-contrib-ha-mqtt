@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { isNumber } = require('lodash')
 const pinyin = require("node-pinyin")
 
 const pk = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf-8'))
@@ -13,7 +12,7 @@ const DiscoveryDevice = {}
 
 module.exports = class {
     constructor(node, cfg) {
-        node.config = cfg.config
+        node.config = cfg.config || {}
         this.node = node
         const { name } = cfg
         const entity_id = object_id(name)
