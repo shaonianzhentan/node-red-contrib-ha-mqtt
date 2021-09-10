@@ -29,9 +29,6 @@
             const { name, action } = this
             if (!name) return "device_automation"
             return `${name} ${action}`;
-        },
-        oneditprepare: function () {
-            $("#node-input-config").typedInput({ type: "json", types: ["json"] })
         }
     });
 

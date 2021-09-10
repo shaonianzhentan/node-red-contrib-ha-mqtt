@@ -9,21 +9,21 @@ module.exports = function (RED) {
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
-                const { payload, attributes } = msg
                 try {
                     // 更新状态
-                    if (payload) {
-                        ha.publish_state(payload)
-                    }
-                    // 更新属性
-                    if (attributes) {
-                        ha.publish_attributes(attributes)
-                    }
+                    ha.publish_state(cfg.name)
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
-            ha.discovery({})
+            const { state_topic } = ha.config
+            ha.discovery({
+                name: null,
+                unique_id: null,
+                state_topic: null,
+                json_attr_t: null,
+                topic: state_topic
+            })
         } else {
             this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
         }

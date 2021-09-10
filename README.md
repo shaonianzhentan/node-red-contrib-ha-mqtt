@@ -20,9 +20,8 @@
 - [x] select - 选择器
 - [x] sensor - 传感器
 - [x] switch - 开关
-- [ ] tag - 标签
+- [x] tag - 标签
 - [x] vacuum - 扫地机器人
-
 - [x] keyboard - 键盘监听器
 - [x] bluetooth_tracker - 蓝牙检测在家
 
