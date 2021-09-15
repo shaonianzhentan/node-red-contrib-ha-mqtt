@@ -4,26 +4,24 @@
 参考文档：https://www.home-assistant.io/docs/mqtt/discovery/
 
 ## 支持组件
-- [x] alarm_control_panel
-- [x] binary_sensor
-- [x] camera
-- [x] climate
-- [x] cover
-- [x] device_tracker
-- [x] device_trigger - device_automation
-- [x] fan
-- [x] humidifier
-- [x] light
-- [x] lock
-- [x] number
+- [x] alarm_control_panel - 警报面板
+- [x] binary_sensor - 二元传感器
+- [x] camera - 摄像头
+- [x] climate - 空调
+- [x] cover - 窗帘
+- [x] device_tracker - 设备检测
+- [x] device_automation - 设备自动化
+- [x] fan - 风扇
+- [x] humidifier - 加湿器
+- [x] light - 灯
+- [x] lock - 锁
+- [x] number - 数字
 - [x] scene - 场景
 - [x] select - 选择器
 - [x] sensor - 传感器
 - [x] switch - 开关
 - [x] tag - 标签
 - [x] vacuum - 扫地机器人
-- [x] keyboard - 键盘监听器
-- [x] bluetooth_tracker - 蓝牙检测在家
 
 
 ## 如果这个项目对你有帮助，请我喝杯<del style="font-size: 14px;">咖啡</del>奶茶吧😘
