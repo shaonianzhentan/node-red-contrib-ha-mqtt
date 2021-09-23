@@ -116,7 +116,7 @@ module.exports = class {
             device: {
                 name: '家庭助理',
                 identifiers: ['635147515-shaonianzhentan'],
-                manufacturer: pk.author,
+                manufacturer: "shaonianzhentan",
                 model: 'HA-MQTT',
                 sw_version: pk.version
             }
