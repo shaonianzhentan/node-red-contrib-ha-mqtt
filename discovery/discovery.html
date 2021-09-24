@@ -1,0 +1,23 @@
+<script type="text/html" data-template-name="ha-mqtt-discovery">
+    <div class="form-row">
+        <label for="node-input-server">MQTT</label>
+        <select id="node-input-server"></select>
+    </div>
+    <div class="form-tips"> 通过发送<b>online</b>给<b>homeassistant/status</b>订阅节点，会自动发现当前MQTT下所有相关设备</div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('ha-mqtt-discovery', {
+        category: '家庭助理',
+        color: '#C0DEED',
+        icon: "font-awesome/fa-search",
+        paletteLabel: '自动发现',
+        defaults: {
+            server: { value: "", type: "mqtt-broker", required: true }
+        },
+        inputs: 1,
+        outputs: 0,
+        label: function () {
+            return "HomeAssistant发现设备";
+        }
+    });
+</script>
