@@ -6,6 +6,7 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(cfg.server);
         if (this.server) {
             this.server.register(this)
+            cfg.device = RED.nodes.getNode(cfg.device);
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {

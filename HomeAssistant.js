@@ -3,11 +3,6 @@ const pinyin = require("node-pinyin")
 
 const pk = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf-8'))
 
-function object_id(name) {
-    let arr = pinyin(name, { style: 'normal' })
-    return arr.map(ele => ele[0]).join('_')
-}
-
 const DiscoveryDevice = {}
 
 module.exports = class {
@@ -15,11 +10,18 @@ module.exports = class {
         node.config = cfg.config
         this.node = node
         const { name } = cfg
-        const entity_id = object_id(name)
+        const entity_id = name
         const type = node.type.replace('ha-mqtt-', '')
         const topic = `ha-mqtt/${type}/${entity_id}/`
+        const device = Object.assign({
+            name: 'Home Assistant',
+            identifiers: ['ha-mqtt-default-device'],
+            model: 'HA-MQTT',
+            sw_version: pk.version
+        }, cfg.device)
         this.config = {
             name,
+            device,
             unique_id: topic.replace(/\//g, '_'),
             discovery_topic: `homeassistant/${type}/${entity_id}/config`,
             state_topic: `${topic}state`,
@@ -106,20 +108,14 @@ module.exports = class {
 
     // Configure
     publish_config(data) {
-        const { name, unique_id, discovery_topic, state_topic, json_attr_t } = this.config
+        const { name, device, unique_id, discovery_topic, state_topic, json_attr_t } = this.config
         // Consolidation configuration
         const mergeConfig = Object.assign({
             name,
             unique_id,
             state_topic,
             json_attr_t,
-            device: {
-                name: 'Home Assistant',
-                identifiers: ['635147515-shaonianzhentan'],
-                manufacturer: "shaonianzhentan",
-                model: 'HA-MQTT',
-                sw_version: pk.version
-            }
+            device
         }, data)
         // Delete the property of NULL
         Object.keys(mergeConfig).forEach(key => {

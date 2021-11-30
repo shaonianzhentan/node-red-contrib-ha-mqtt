@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ha_device',{
+        category: 'config',
+        defaults: {
+            name: {value:"device",required:true},
+            identifiers: {value:['device_id'],required:true,validate:RED.validators.array()},
+        },
+        label: function() {
+            return this.name;
+        },
+        oneditprepare: function () {
+            $("#node-config-input-identifiers").typedInput({
+                type:"str",
+                types:["str","json"],
+                typeField: "#node-config-input-identifiers-type"
+            })
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ha_device">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-bookmark"></i> Name</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-identifiers"><i class="fa fa-bookmark"></i> Identifiers</label>
+        <input type="text" id="node-config-input-identifiers">
+        <input type="hidden" id="node-config-input-identifiers-type">
+    </div>
+</script>
