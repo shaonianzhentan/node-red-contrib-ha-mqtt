@@ -29,7 +29,7 @@ module.exports = function (RED) {
                 topic: state_topic
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

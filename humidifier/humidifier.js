@@ -56,7 +56,7 @@ module.exports = function (RED) {
                 max_humidity: 80
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

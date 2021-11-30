@@ -28,7 +28,7 @@ module.exports = function (RED) {
                 unit_of_measurement: cfg.unit_of_measurement
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

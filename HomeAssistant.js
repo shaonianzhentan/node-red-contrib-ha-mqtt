@@ -82,7 +82,7 @@ module.exports = class {
         }
     }
 
-    // 配置自动发现
+    // Automatic discovery
     discovery(config) {
         DiscoveryDevice[this.config.unique_id] = () => {
             try {
@@ -92,7 +92,7 @@ module.exports = class {
                 // console.log(config)
                 this.publish_config(config)
             } catch (ex) {
-                this.node.status({ fill: "red", shape: "ring", text: `自动配置失败：${ex}` });
+                this.node.status({ fill: "red", shape: "ring", text: `Auto configuration failed: ${ex}` });
             }
         }
         this.subscribe('homeassistant/status', (payload) => {
@@ -104,121 +104,121 @@ module.exports = class {
         })
     }
 
-    // 配置
+    // Configure
     publish_config(data) {
         const { name, unique_id, discovery_topic, state_topic, json_attr_t } = this.config
-        // 合并配置
+        // Consolidation configuration
         const mergeConfig = Object.assign({
             name,
             unique_id,
             state_topic,
             json_attr_t,
             device: {
-                name: '家庭助理',
+                name: 'Home Assistant',
                 identifiers: ['635147515-shaonianzhentan'],
                 manufacturer: "shaonianzhentan",
                 model: 'HA-MQTT',
                 sw_version: pk.version
             }
         }, data)
-        // 删除为null的属性
+        // Delete the property of NULL
         Object.keys(mergeConfig).forEach(key => {
             if (mergeConfig[key] === null) {
                 delete mergeConfig[key]
             }
         })
         this.publish(discovery_topic, mergeConfig)
-        this.node.status({ fill: "green", shape: "ring", text: `更新配置：${name}` });
+        this.node.status({ fill: "green", shape: "ring", text: `Update configuration：${name}` });
     }
 
     // 状态
     publish_state(data) {
-        this.publish(this.config.state_topic, data, "更新状态")
+        this.publish(this.config.state_topic, data, "Update state")
     }
 
     // 属性
     publish_attributes(data) {
-        this.publish(this.config.json_attr_t, data, "更新属性")
+        this.publish(this.config.json_attr_t, data, "Update attribute")
     }
 
     // 当前温度
     publish_current_temperature(data) {
-        this.publish(this.config.current_temperature_topic, data, "更新当前温度")
+        this.publish(this.config.current_temperature_topic, data, "Update the current temperature")
     }
 
     // 当前温度
     publish_temperature(data) {
-        this.publish(this.config.temperature_state_topic, data, "更新温度")
+        this.publish(this.config.temperature_state_topic, data, "Update temperature")
     }
 
     // 目标湿度
     publish_target_humidity(data) {
-        this.publish(this.config.target_humidity_state_topic, data, "更新目标湿度")
+        this.publish(this.config.target_humidity_state_topic, data, "Update the target humidity")
     }
 
     // 效果
     publish_effect(data) {
-        this.publish(this.config.effect_state_topic, data, "更新特效")
+        this.publish(this.config.effect_state_topic, data, "Update effects")
     }
 
     // 摆动
     publish_oscillation(data) {
-        this.publish(this.config.oscillation_state_topic, data, "更新摆动")
+        this.publish(this.config.oscillation_state_topic, data, "Update oscillation")
     }
 
     // 百分比
     publish_percentage(data) {
-        this.publish(this.config.percentage_state_topic, data, "更新百分比")
+        this.publish(this.config.percentage_state_topic, data, "Update percentage")
     }
 
     // 预设模式
     publish_mode(data) {
-        this.publish(this.config.mode_state_topic, data, "更新模式")
+        this.publish(this.config.mode_state_topic, data, "Update mode")
     }
 
     // 预设模式
     publish_preset_mode(data) {
-        this.publish(this.config.preset_mode_state_topic, data, "更新预设模式")
+        this.publish(this.config.preset_mode_state_topic, data, "Update preset mode")
     }
 
     // 摆动模式
     publish_swing_mode(data) {
-        this.publish(this.config.swing_mode_state_topic, data, "更新摆动模式")
+        this.publish(this.config.swing_mode_state_topic, data, "Update swing mode")
     }
 
     // 风速模式
     publish_fan_mode(data) {
-        this.publish(this.config.fan_mode_state_topic, data, "更新风速模式")
+        this.publish(this.config.fan_mode_state_topic, data, "Update fan mode")
     }
 
     // 亮度
     publish_brightness(data) {
-        this.publish(this.config.brightness_state_topic, data, "更新亮度")
+        this.publish(this.config.brightness_state_topic, data, "Update brightness")
     }
 
     // 电量
     publish_battery_level(data) {
-        this.publish(this.config.battery_level_topic, data, "更新电量")
+        this.publish(this.config.battery_level_topic, data, "Update battery level")
     }
 
     publish_charging(data) {
-        this.publish(this.config.charging_topic, data, "更新充电状态")
+        this.publish(this.config.charging_topic, data, "Update charging status")
     }
 
     publish_cleaning(data) {
-        this.publish(this.config.cleaning_topic, data, "更新清扫状态")
+        this.publish(this.config.cleaning_topic, data, "Update cleaning status")
     }
 
     publish_docked(data) {
-        this.publish(this.config.docked_topic, data, "更新停靠状态")
+        this.publish(this.config.docked_topic, data, "Update docking status")
     }
 
     publish_error(data) {
-        this.publish(this.config.error_topic, data, "更新错误状态")
+        this.publish(this.config.error_topic, data, "Update error status")
     }
 
     publish_fan_speed(data) {
-        this.publish(this.config.fan_speed_topic, data, "更新风速")
+        this.publish(this.config.fan_speed_topic, data, "Update fan speed")
     }
 
     // 订阅
