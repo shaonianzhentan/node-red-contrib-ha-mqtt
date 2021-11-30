@@ -26,6 +26,7 @@ module.exports = function (RED) {
             })
 
             ha.discovery({
+                device_class: cfg.device_class,
                 unit_of_measurement: cfg.unit_of_measurement
             })
         } else {
