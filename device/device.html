@@ -10,9 +10,8 @@
         },
         oneditprepare: function () {
             $("#node-config-input-identifiers").typedInput({
-                type:"str",
-                types:["str","json"],
-                typeField: "#node-config-input-identifiers-type"
+                type:"json",
+                types:["json"]
             })
         }
     });
@@ -26,6 +25,5 @@
     <div class="form-row">
         <label for="node-config-input-identifiers"><i class="fa fa-bookmark"></i> Identifiers</label>
         <input type="text" id="node-config-input-identifiers">
-        <input type="hidden" id="node-config-input-identifiers-type">
     </div>
 </script>
