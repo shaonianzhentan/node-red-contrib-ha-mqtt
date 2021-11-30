@@ -12,21 +12,20 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
                 try {
-                    // 更新状态
-                    if (payload) {
+                    if (typeof payload !== 'undefined') {
                         ha.publish_state(payload)
                     }
-                    // 更新属性
-                    if (attributes) {
+                    if (typeof attributes !== 'undefined') {
                         ha.publish_attributes(attributes)
                     }
+
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
 
             ha.discovery({
-                device_class: cfg.device_class,
+                device_class: cfg.device_class === "" ? null : cfg.device_class,
                 unit_of_measurement: cfg.unit_of_measurement
             })
         } else {
