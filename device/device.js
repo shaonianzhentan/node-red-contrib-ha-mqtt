@@ -4,5 +4,5 @@ module.exports = function(RED) {
         this.name = n.name;
         this.identifiers = n.identifiers;
     }
-    RED.nodes.registerType("ha_device", HaDeviceNode);
+    RED.nodes.registerType("ha-device", HaDeviceNode);
 }

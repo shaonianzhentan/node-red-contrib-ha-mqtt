@@ -10,6 +10,7 @@
   ],
   "node-red": {
     "nodes": {
+      "device": "device/device.js",
       "discovery": "discovery/discovery.js",
       "alarm_control_panel": "alarm_control_panel/alarm_control_panel.js",
       "binary_sensor": "binary_sensor/binary_sensor.js",
@@ -26,8 +27,7 @@
       "scene": "scene/scene.js",
       "number": "number/number.js",
       "fan": "fan/fan.js",
-      "tag": "tag/tag.js",
-      "device": "device/device.js"
+      "tag": "tag/tag.js"
     }
   },
   "scripts": {
