@@ -10,22 +10,27 @@ module.exports = function (RED) {
             const node = this
             node.on('input', function (msg) {
                 try {
-                    // 更新状态
-                    ha.publish_state(cfg.name)
+                    ha.publish(ha.config.state_topic, cfg.name, RED._(`${HomeAssistant.pkName}/common:publish.state`))
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
             const { state_topic } = ha.config
-            ha.discovery({
-                name: null,
-                unique_id: null,
-                state_topic: null,
-                json_attr_t: null,
-                topic: state_topic
-            })
+
+            try {
+                ha.discovery({
+                    name: null,
+                    unique_id: null,
+                    state_topic: null,
+                    json_attr_t: null,
+                    topic: state_topic
+                })
+                this.status({ fill: "green", shape: "ring", text: `${HomeAssistant.pkName}/common:publish.config` });
+            } catch (ex) {
+                this.status({ fill: "red", shape: "ring", text: `${ex}` });
+            }
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
         }
     })
 }

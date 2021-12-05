@@ -1,0 +1,27 @@
+{
+    "error": {
+        "mqttNotConfigured": "MQTT Not Configured"
+    },
+    "publish": {
+        "config": "Publish Configuration",
+        "state": "Publish State",
+        "attributes": "Publish Attributes",
+        "current_temperature": "Publish Current Temperature",
+        "temperature": "Publish Temperature",
+        "target_humidity": "Publish Target Humidity",
+        "effect": "Publish Effect",
+        "oscillation": "Publish Oscillation",
+        "percentage": "Publish Percentage",
+        "mode": "Publish Mode",
+        "preset_mode": "Publish Preset Mode",
+        "swing_mode": "Publish Swing Mode",
+        "fan_mode": "Publish Fan Mode",
+        "brightness": "Publish Brightness",
+        "battery_level": "Publish Battery Level",
+        "charging": "Publish Charging",
+        "cleaning": "Publish Cleaning",
+        "docked": "Publish Docked",
+        "error": "Publish Error",
+        "fan_speed": "Publish Fan Speed"
+    }
+}

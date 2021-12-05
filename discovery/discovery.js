@@ -7,10 +7,10 @@ module.exports = function (RED) {
             const node = this
             node.on('input', function (msg) {
                 node.server.client.publish('homeassistant/status', 'online')
-                this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} Auto Discover Sent` });
+                this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} ${RED._("autoDiscoverySent")}` });
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
         }
     })
 }

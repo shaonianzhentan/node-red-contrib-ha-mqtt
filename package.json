@@ -10,6 +10,7 @@
   ],
   "node-red": {
     "nodes": {
+      "common": "common.js",
       "discovery": "discovery/discovery.js",
       "alarm_control_panel": "alarm_control_panel/alarm_control_panel.js",
       "binary_sensor": "binary_sensor/binary_sensor.js",

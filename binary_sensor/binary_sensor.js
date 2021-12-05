@@ -12,19 +12,23 @@ module.exports = function (RED) {
                 const { payload, attributes } = msg
                 try {
                     if (payload) {
-                        ha.publish_state(payload)
+                        ha.publish(ha.config.state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.state`))
                     }
                     if (attributes) {
-                        ha.publish_attributes(attributes)
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`${HomeAssistant.pkName}/common:publish.attributes`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
-
-            ha.discovery({ device_class: "motion" })
+            try {
+                ha.discovery({ device_class: "motion" })
+                this.status({ fill: "green", shape: "ring", text: `${HomeAssistant.pkName}/common:publish.config` });
+            } catch (ex) {
+                this.status({ fill: "red", shape: "ring", text: `${ex}` });
+            }
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
         }
     })
 }

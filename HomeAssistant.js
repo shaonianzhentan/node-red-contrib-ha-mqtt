@@ -9,8 +9,9 @@ function object_id(name) {
 }
 
 const DiscoveryDevice = {}
-
 module.exports = class {
+    static pkName = pk.name
+
     constructor(node, cfg) {
         node.config = cfg.config
         this.node = node
@@ -64,15 +65,10 @@ module.exports = class {
 
     discovery(config) {
         DiscoveryDevice[this.config.unique_id] = () => {
-            try {
-                if (this.node.config) {
-                    config = Object.assign(config, JSON.parse(this.node.config))
-                }
-                // console.log(config)
-                this.publish_config(config)
-            } catch (ex) {
-                this.node.status({ fill: "red", shape: "ring", text: `Auto discovery failed: ${ex}` });
+            if (this.node.config) {
+                config = Object.assign(config, JSON.parse(this.node.config))
             }
+            this.publish_config(config)           
         }
         this.subscribe('homeassistant/status', (payload) => {
             if (payload === 'online') {
@@ -105,83 +101,6 @@ module.exports = class {
             }
         })
         this.publish(discovery_topic, mergeConfig)
-        this.node.status({ fill: "green", shape: "ring", text: `Update configuration：${name}` });
-    }
-
-    publish_state(data) {
-        this.publish(this.config.state_topic, data, "Update state")
-    }
-
-    publish_attributes(data) {
-        this.publish(this.config.json_attr_t, data, "Update attribute")
-    }
-
-    publish_current_temperature(data) {
-        this.publish(this.config.current_temperature_topic, data, "Update the current temperature")
-    }
-
-    publish_temperature(data) {
-        this.publish(this.config.temperature_state_topic, data, "Update temperature")
-    }
-
-    publish_target_humidity(data) {
-        this.publish(this.config.target_humidity_state_topic, data, "Update the target humidity")
-    }
-
-    publish_effect(data) {
-        this.publish(this.config.effect_state_topic, data, "Update effects")
-    }
-
-    publish_oscillation(data) {
-        this.publish(this.config.oscillation_state_topic, data, "Update oscillation")
-    }
-
-    publish_percentage(data) {
-        this.publish(this.config.percentage_state_topic, data, "Update percentage")
-    }
-
-    publish_mode(data) {
-        this.publish(this.config.mode_state_topic, data, "Update mode")
-    }
-
-    publish_preset_mode(data) {
-        this.publish(this.config.preset_mode_state_topic, data, "Update preset mode")
-    }
-
-    publish_swing_mode(data) {
-        this.publish(this.config.swing_mode_state_topic, data, "Update swing mode")
-    }
-
-    publish_fan_mode(data) {
-        this.publish(this.config.fan_mode_state_topic, data, "Update fan mode")
-    }
-
-    publish_brightness(data) {
-        this.publish(this.config.brightness_state_topic, data, "Update brightness")
-    }
-
-    publish_battery_level(data) {
-        this.publish(this.config.battery_level_topic, data, "Update battery level")
-    }
-
-    publish_charging(data) {
-        this.publish(this.config.charging_topic, data, "Update charging status")
-    }
-
-    publish_cleaning(data) {
-        this.publish(this.config.cleaning_topic, data, "Update cleaning status")
-    }
-
-    publish_docked(data) {
-        this.publish(this.config.docked_topic, data, "Update docking status")
-    }
-
-    publish_error(data) {
-        this.publish(this.config.error_topic, data, "Update error status")
-    }
-
-    publish_fan_speed(data) {
-        this.publish(this.config.fan_speed_topic, data, "Update fan speed")
     }
 
     subscribe(topic, callback) {

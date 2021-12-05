@@ -12,17 +12,16 @@ module.exports = function (RED) {
                 const { payload, attributes, mode, temperature } = msg
                 try {
                     if (payload) {
-                        // ha.publish_state(payload)
-                        ha.publish_current_temperature(payload)
+                        ha.publish(ha.config.current_temperature_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.current_temperature`))
                     }
                     if (attributes) {
-                        ha.publish_attributes(attributes)
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`${HomeAssistant.pkName}/common:publish.attributes`))
                     }
                     if (mode) {
-                        ha.publish_mode(mode)
+                        ha.publish(ha.config.mode_state_topic, mode, RED._(`${HomeAssistant.pkName}/common:publish.mode`))
                     }
                     if (temperature) {
-                        ha.publish_temperature(temperature)
+                        ha.publish(ha.config.temperature_state_topic, temperature, RED._(`${HomeAssistant.pkName}/common:publish.temperature`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
@@ -36,38 +35,42 @@ module.exports = function (RED) {
 
             ha.subscribe(temperature_command_topic, (payload) => {
                 ha.send_payload(payload, 1, 4)
-                ha.publish_temperature(payload)
+                ha.publish(ha.config.temperature_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.temperature`))
             })
             ha.subscribe(mode_command_topic, (payload) => {
                 ha.send_payload(payload, 2, 4)
-                ha.publish_mode(payload)
+                ha.publish(ha.config.mode_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.mode`))
             })
             ha.subscribe(swing_mode_command_topic, (payload) => {
                 ha.send_payload(payload, 3, 4)
-                ha.publish_swing_mode(payload)
+                ha.publish(ha.config.swing_mode_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.swing_mode`))
             })
             ha.subscribe(fan_mode_command_topic, (payload) => {
                 ha.send_payload(payload, 4, 4)
-                ha.publish_fan_mode(payload)
+                ha.publish(ha.config.fan_mode_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.fan_mode`))
             })
-
-            ha.discovery({
-                state_topic: null,
-                power_command_topic,
-                mode_state_topic,
-                temperature_state_topic,
-                current_temperature_topic,
-                precision: 1,
-                temperature_command_topic,
-                mode_command_topic,
-                fan_mode_command_topic,
-                swing_mode_command_topic,
-                swing_modes: ["on", "off"],
-                modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
-                fan_modes: ["auto", "low", "medium", "high"]
-            })
+            try {
+                ha.discovery({
+                    state_topic: null,
+                    power_command_topic,
+                    mode_state_topic,
+                    temperature_state_topic,
+                    current_temperature_topic,
+                    precision: 1,
+                    temperature_command_topic,
+                    mode_command_topic,
+                    fan_mode_command_topic,
+                    swing_mode_command_topic,
+                    swing_modes: ["on", "off"],
+                    modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
+                    fan_modes: ["auto", "low", "medium", "high"]
+                })
+                this.status({ fill: "green", shape: "ring", text: `${HomeAssistant.pkName}/common:publish.config` });
+            } catch (ex) {
+                this.status({ fill: "red", shape: "ring", text: `${ex}` });
+            }
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
         }
     })
 }
