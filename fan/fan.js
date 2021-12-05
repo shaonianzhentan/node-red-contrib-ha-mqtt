@@ -66,7 +66,7 @@ module.exports = function (RED) {
                 speed_range_max: 10
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
         }
     })
 }

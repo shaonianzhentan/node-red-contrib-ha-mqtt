@@ -4,17 +4,17 @@
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"> Entity name</label>
-        <input type="text" id="node-input-name" placeholder="Entity name">
+        <label for="node-input-name"> 实体名称</label>
+        <input type="text" id="node-input-name" placeholder="实体名称">
     </div>
     <div class="form-row">
-        <label for="node-input-config"> Configuration</label>        
-        <input type="text" id="node-input-config" placeholder="Configuration">
+        <label for="node-input-config"> 配置</label>        
+        <input type="text" id="node-input-config" placeholder="配置">
     </div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-binary_sensor', {
-        category: 'Home Assistant',
+        category: '家庭助理',
         color: '#C0DEED',
         icon: "font-awesome/fa-circle-o",
         paletteLabel: 'binary_sensor',
@@ -25,7 +25,7 @@
         },
         inputs: 1,
         outputs: 0,
-        inputLabels: "equipment status",
+        inputLabels: "设备状态",
         label: function () {
             return this.name || "binary_sensor";
         },
@@ -36,12 +36,12 @@
 
 </script>
 <script type="text/html" data-help-name="ha-mqtt-binary_sensor">
-    <p>Binary sensor</p>
-    <h3>enter</h3>
+    <p>二进制传感器</p>
+    <h3>输入</h3>
         <dl class="message-properties">
             <dt>payload <span class="property-type">string</span></dt>
             <dt>attributes <span class="property-type">object</span></dt>
         </dl>
-    <h3>Detail</h3>
-    <p>Generate a binary_sensor entity in Home Assistant</p>
+    <h3>详情</h3>
+    <p>在HomeAssistant中生成binary_sensor实体</p>
  </script>

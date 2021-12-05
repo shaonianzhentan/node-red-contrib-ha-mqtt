@@ -78,7 +78,7 @@ module.exports = function (RED) {
                 ],
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
         }
     })
 }
