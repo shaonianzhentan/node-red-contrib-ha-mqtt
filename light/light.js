@@ -52,7 +52,7 @@ module.exports = function (RED) {
                 payload_off: "OFF",
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

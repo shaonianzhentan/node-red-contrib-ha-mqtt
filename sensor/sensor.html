@@ -4,27 +4,37 @@
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"> 实体名称</label>
-        <input type="text" id="node-input-name" placeholder="实体名称">
+        <label for="node-input-device"> HA Device</label>
+        <select id="node-input-device"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-unit_of_measurement"> 计量单位</label>
+        <label for="node-input-name"> Entity name</label>
+        <input type="text" id="node-input-name" placeholder="Entity name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-device_class"> Device class</label>
+        <input type="text" id="node-input-device_class">
+    </div>
+    <div class="form-row">
+        <label for="node-input-unit_of_measurement"> unit of measurement</label>
         <input type="text" id="node-input-unit_of_measurement" placeholder="%">
     </div>
     <div class="form-row">
-        <label for="node-input-config"> 配置</label>        
-        <input type="text" id="node-input-config" placeholder="配置">
+        <label for="node-input-config"> Configuration</label>        
+        <input type="text" id="node-input-config" placeholder="Configuration">
     </div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-sensor', {
-        category: '家庭助理',
+        category: 'Home Assistant',
         color: '#C0DEED',
         icon: "font-awesome/fa-thermometer-three-quarters",
         paletteLabel: 'sensor',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
+            device: { value: "", type: "ha-device" },
             name: { value: "", required: true },
+            device_class: { value: null },
             unit_of_measurement: { value: "" },
             config: { value: "" }
         },
@@ -35,6 +45,44 @@
         },
         oneditprepare: function () {
             $("#node-input-config").typedInput({ type: "json", types: ["json"] })
+
+            $("#node-input-device_class").typedInput({
+                types: [
+                    {
+                        value: "device_class",
+                        options: [
+                            { value: null, label: "None"},
+                            { value: "aqi", label: "aqi"},
+                            { value: "battery", label: "battery"},
+                            { value: "carbon_dioxide", label: "carbon_dioxide"},
+                            { value: "carbon_monoxide", label: "carbon_monoxide"},
+                            { value: "current", label: "current"},
+                            { value: "date", label: "date"},
+                            { value: "energy", label: "energy"},
+                            { value: "gas", label: "gas"},
+                            { value: "humidity", label: "humidity"},
+                            { value: "illuminance", label: "illuminance"},
+                            { value: "monetary", label: "monetary"},
+                            { value: "nitrogen_dioxide", label: "nitrogen_dioxide"},
+                            { value: "nitrogen_monoxide", label: "nitrogen_monoxide"},
+                            { value: "nitrous_oxide", label: "nitrous_oxide"},
+                            { value: "ozone", label: "ozone"},
+                            { value: "pm1", label: "pm1"},
+                            { value: "pm10", label: "pm10"},
+                            { value: "pm25", label: "pm25"},
+                            { value: "power_factor", label: "power_factor"},
+                            { value: "power", label: "power"},
+                            { value: "pressure", label: "pressure"},
+                            { value: "signal_strength", label: "signal_strength"},
+                            { value: "sulphur_dioxide", label: "sulphur_dioxide"},
+                            { value: "temperature", label: "temperature"},
+                            { value: "timestamp", label: "timestamp"},
+                            { value: "volatile_organic_compounds", label: "volatile_organic_compounds"},
+                            { value: "voltage", label: "voltage"}
+                        ]
+                    }
+                ]
+            })
         }
     });
 </script>
