@@ -3,21 +3,21 @@
         <label for="node-input-server">MQTT</label>
         <select id="node-input-server"></select>
     </div>
-    <div class="form-tips"> Transmit <b>online</b> to <b>homeassistant/status</b> subscribe node to automatically discover all related devices under MQTT</div>
+    <div class="form-tips"> 通过发送<b>online</b>给<b>homeassistant/status</b>订阅节点，会自动发现当前MQTT下所有相关设备</div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-discovery', {
-        category: 'Home Assistant',
+        category: '家庭助理',
         color: '#C0DEED',
         icon: "font-awesome/fa-search",
-        paletteLabel: 'Automatically discover',
+        paletteLabel: '自动发现',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true }
         },
         inputs: 1,
         outputs: 0,
         label: function () {
-            return "HomeAssistant discovery equipment";
+            return "HomeAssistant发现设备";
         }
     });
 </script>

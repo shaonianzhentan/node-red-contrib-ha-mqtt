@@ -4,17 +4,17 @@
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"> Entity name</label>
-        <input type="text" id="node-input-name" placeholder="Entity name">
+        <label for="node-input-name"> 实体名称</label>
+        <input type="text" id="node-input-name" placeholder="实体名称">
     </div>
     <div class="form-row">
-        <label for="node-input-config"> Configuration</label>
-        <input type="text" id="node-input-config" placeholder="Configuration">
+        <label for="node-input-config"> 配置</label>
+        <input type="text" id="node-input-config" placeholder="配置">
     </div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-climate', {
-        category: 'Home Assistant',
+        category: '家庭助理',
         color: '#C0DEED',
         icon: "font-awesome/fa-snowflake-o",
         paletteLabel: 'climate',
@@ -25,8 +25,8 @@
         },
         inputs: 1,
         outputs: 4,
-        inputLabels: "equipment status",
-        outputLabels: ["temperature", "model", "swing", "Wind speed"],
+        inputLabels: "设备状态",
+        outputLabels: ["温度", "模式", "摆动", "风速"],
         label: function () {
             return this.name || "climate";
         },

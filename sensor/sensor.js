@@ -6,30 +6,29 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(cfg.server);
         if (this.server) {
             this.server.register(this)
-            cfg.device = RED.nodes.getNode(cfg.device);
             const ha = new HomeAssistant(this, cfg)
             const node = this
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
                 try {
-                    if (typeof payload !== 'undefined') {
+                    // 更新状态
+                    if (payload) {
                         ha.publish_state(payload)
                     }
-                    if (typeof attributes !== 'undefined') {
+                    // 更新属性
+                    if (attributes) {
                         ha.publish_attributes(attributes)
                     }
-
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
 
             ha.discovery({
-                device_class: cfg.device_class === "" ? null : cfg.device_class,
                 unit_of_measurement: cfg.unit_of_measurement
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
         }
     })
 }

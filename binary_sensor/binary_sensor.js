@@ -26,7 +26,7 @@ module.exports = function (RED) {
 
             ha.discovery({ device_class: "motion" })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
         }
     })
 }

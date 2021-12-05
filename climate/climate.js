@@ -71,7 +71,7 @@ module.exports = function (RED) {
                 fan_modes: ["auto", "low", "medium", "high"]
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
+            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
         }
     })
 }
