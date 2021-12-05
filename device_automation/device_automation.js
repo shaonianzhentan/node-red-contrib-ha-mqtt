@@ -6,7 +6,6 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(cfg.server);
         if (this.server) {
             this.server.register(this)
-            // 格式化名称值，保证name值唯一
             const subtype = cfg.name
             cfg.name = `${subtype}${cfg.action}`
             const ha = new HomeAssistant(this, cfg)
@@ -15,7 +14,6 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload } = msg
                 try {
-                    // 更新状态
                     if (payload) {
                         ha.publish_state(name)
                     }
@@ -34,7 +32,7 @@ module.exports = function (RED) {
                 subtype
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

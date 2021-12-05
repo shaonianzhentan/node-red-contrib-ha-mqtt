@@ -11,11 +11,9 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
                 try {
-                    // 更新状态
                     if (payload) {
                         ha.publish_state(payload)
                     }
-                    // 更新属性
                     if (attributes) {
                         ha.publish_attributes(attributes)
                     }
@@ -23,10 +21,8 @@ module.exports = function (RED) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
-            // 订阅主题
             ha.subscribe(ha.config.command_topic, (payload) => {
                 node.send({ payload })
-                // 改变状态
                 ha.publish_state(payload)
             })
             ha.discovery({
@@ -34,7 +30,7 @@ module.exports = function (RED) {
                 options: []
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

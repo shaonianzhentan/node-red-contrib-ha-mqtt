@@ -11,11 +11,9 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, battery_level, charging, cleaning, docked, error, fan_speed } = msg
                 try {
-                    // 更新状态
                     if (payload) {
                         ha.publish_state(payload)
                     }
-                    // 更新属性
                     if (attributes) {
                         ha.publish_attributes(attributes)
                     }
@@ -49,7 +47,6 @@ module.exports = function (RED) {
                 error_topic,
                 fan_speed_topic,
                 set_fan_speed_topic, } = ha.config
-            // 订阅主题
             ha.subscribe(command_topic, (payload) => {
                 ha.send_payload(payload, 1, 3)
                 ha.publish_state(payload)
@@ -78,7 +75,7 @@ module.exports = function (RED) {
                 ],
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }

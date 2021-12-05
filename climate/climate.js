@@ -11,12 +11,10 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, mode, temperature } = msg
                 try {
-                    // 更新状态
                     if (payload) {
                         // ha.publish_state(payload)
                         ha.publish_current_temperature(payload)
                     }
-                    // 更新属性
                     if (attributes) {
                         ha.publish_attributes(attributes)
                     }
@@ -36,7 +34,6 @@ module.exports = function (RED) {
                 temperature_state_topic,
                 temperature_command_topic } = ha.config
 
-            // 订阅主题
             ha.subscribe(temperature_command_topic, (payload) => {
                 ha.send_payload(payload, 1, 4)
                 ha.publish_temperature(payload)
@@ -60,7 +57,6 @@ module.exports = function (RED) {
                 mode_state_topic,
                 temperature_state_topic,
                 current_temperature_topic,
-                // 精度
                 precision: 1,
                 temperature_command_topic,
                 mode_command_topic,
@@ -71,7 +67,7 @@ module.exports = function (RED) {
                 fan_modes: ["auto", "low", "medium", "high"]
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: "MQTT Unconfigured" });
         }
     })
 }
