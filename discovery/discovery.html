@@ -7,10 +7,10 @@
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-discovery', {
-        category: this._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
+        category: RED._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
         icon: "font-awesome/fa-search",
-        paletteLabel: this._("autoDiscovery"),
+        paletteLabel: RED._("node-red-contrib-ha-mqtt/discovery:autoDiscovery"),
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true }
         },

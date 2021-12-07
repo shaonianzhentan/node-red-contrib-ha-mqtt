@@ -13,10 +13,8 @@
     </div>
 </script>
 <script type="text/javascript">
-    console.log("test" + this._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"))
-    
     RED.nodes.registerType('ha-mqtt-binary_sensor', {
-        category: this._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
+        category: RED._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
         icon: "font-awesome/fa-circle-o",
         paletteLabel: 'binary_sensor',
