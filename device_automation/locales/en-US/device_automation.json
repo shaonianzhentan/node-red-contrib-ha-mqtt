@@ -1,6 +1,6 @@
 {   
     "label": {
-        "type": " Type"
+        "type": "Type"
     },
     "placeholder": {
         "type": "e.g. button_short_press"
