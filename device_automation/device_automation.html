@@ -4,17 +4,17 @@
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"> Entity name</label>
-        <input type="text" id="node-input-name" placeholder="Entity name">
+        <label for="node-input-name" data-i18n="node-red-contrib-ha-mqtt/common:label.entityName"></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.entityName">
     </div>
     <div class="form-row">
-        <label for="node-input-action"> Type</label>
-        <input type="text" id="node-input-action" placeholder="button_short_press">
+        <label for="node-input-action" data-i18n="label.type"></label>
+        <input type="text" id="node-input-action" placeholder="[placeholder]placeholder.type">
     </div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-device_automation', {
-        category: 'Home Assistant',
+        category: this._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
         icon: "font-awesome/fa-link",
         paletteLabel: 'device_automation',

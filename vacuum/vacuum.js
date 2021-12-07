@@ -12,28 +12,28 @@ module.exports = function (RED) {
                 const { payload, attributes, battery_level, charging, cleaning, docked, error, fan_speed } = msg
                 try {
                     if (payload) {
-                        ha.publish(ha.config.state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.state`))
+                        ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
                     if (attributes) {
-                        ha.publish(ha.config.json_attr_t, attributes, RED._(`${HomeAssistant.pkName}/common:publish.attributes`))
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
                     }
                     if (battery_level) {
-                        ha.publish(ha.config.battery_level_topic, battery_level, RED._(`${HomeAssistant.pkName}/common:publish.battery_level`))
+                        ha.publish(ha.config.battery_level_topic, battery_level, RED._(`node-red-contrib-ha-mqtt/common:publish.battery_level`))
                     }
                     if (charging) {
-                        ha.publish(ha.config.charging_topic, charging, RED._(`${HomeAssistant.pkName}/common:publish.charging`))
+                        ha.publish(ha.config.charging_topic, charging, RED._(`node-red-contrib-ha-mqtt/common:publish.charging`))
                     }
                     if (cleaning) {
-                        ha.publish(ha.config.cleaning_topic, cleaning, RED._(`${HomeAssistant.pkName}/common:publish.cleaning`))
+                        ha.publish(ha.config.cleaning_topic, cleaning, RED._(`node-red-contrib-ha-mqtt/common:publish.cleaning`))
                     }
                     if (docked) {
-                        ha.publish(ha.config.docked_topic, docked, RED._(`${HomeAssistant.pkName}/common:publish.docked`))
+                        ha.publish(ha.config.docked_topic, docked, RED._(`node-red-contrib-ha-mqtt/common:publish.docked`))
                     }
                     if (error) {
-                        ha.publish(ha.config.error_topic, error, RED._(`${HomeAssistant.pkName}/common:publish.error`))
+                        ha.publish(ha.config.error_topic, error, RED._(`node-red-contrib-ha-mqtt/common:publish.error`))
                     }
                     if (fan_speed) {
-                        ha.publish(ha.config.fan_speed_topic, fan_speed, RED._(`${HomeAssistant.pkName}/common:publish.fan_speed`))
+                        ha.publish(ha.config.fan_speed_topic, fan_speed, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_speed`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
@@ -49,11 +49,11 @@ module.exports = function (RED) {
                 set_fan_speed_topic, } = ha.config
             ha.subscribe(command_topic, (payload) => {
                 ha.send_payload(payload, 1, 3)
-                ha.publish(ha.config.state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.state`))
+                ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
             })
             ha.subscribe(set_fan_speed_topic, (payload) => {
                 ha.send_payload(payload, 2, 3)
-                ha.publish(ha.config.fan_speed_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.fan_speed`))
+                ha.publish(ha.config.fan_speed_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_speed`))
             })
             ha.subscribe(send_command_topic, (payload) => {
                 ha.send_payload(payload, 3, 3)
@@ -76,12 +76,12 @@ module.exports = function (RED) {
                         "battery", "status", "locate", "clean_spot", "fan_speed", "send_command"
                     ],
                 })
-                this.status({ fill: "green", shape: "ring", text: `${HomeAssistant.pkName}/common:publish.config` });
+                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
         }
     })
 }

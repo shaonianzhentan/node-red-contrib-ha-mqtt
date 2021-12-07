@@ -12,16 +12,16 @@ module.exports = function (RED) {
                 const { payload, attributes, mode, temperature } = msg
                 try {
                     if (payload) {
-                        ha.publish(ha.config.current_temperature_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.current_temperature`))
+                        ha.publish(ha.config.current_temperature_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.current_temperature`))
                     }
                     if (attributes) {
-                        ha.publish(ha.config.json_attr_t, attributes, RED._(`${HomeAssistant.pkName}/common:publish.attributes`))
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
                     }
                     if (mode) {
-                        ha.publish(ha.config.mode_state_topic, mode, RED._(`${HomeAssistant.pkName}/common:publish.mode`))
+                        ha.publish(ha.config.mode_state_topic, mode, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
                     }
                     if (temperature) {
-                        ha.publish(ha.config.temperature_state_topic, temperature, RED._(`${HomeAssistant.pkName}/common:publish.temperature`))
+                        ha.publish(ha.config.temperature_state_topic, temperature, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
@@ -35,19 +35,19 @@ module.exports = function (RED) {
 
             ha.subscribe(temperature_command_topic, (payload) => {
                 ha.send_payload(payload, 1, 4)
-                ha.publish(ha.config.temperature_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.temperature`))
+                ha.publish(ha.config.temperature_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
             })
             ha.subscribe(mode_command_topic, (payload) => {
                 ha.send_payload(payload, 2, 4)
-                ha.publish(ha.config.mode_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.mode`))
+                ha.publish(ha.config.mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
             })
             ha.subscribe(swing_mode_command_topic, (payload) => {
                 ha.send_payload(payload, 3, 4)
-                ha.publish(ha.config.swing_mode_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.swing_mode`))
+                ha.publish(ha.config.swing_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.swing_mode`))
             })
             ha.subscribe(fan_mode_command_topic, (payload) => {
                 ha.send_payload(payload, 4, 4)
-                ha.publish(ha.config.fan_mode_state_topic, payload, RED._(`${HomeAssistant.pkName}/common:publish.fan_mode`))
+                ha.publish(ha.config.fan_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_mode`))
             })
             try {
                 ha.discovery({
@@ -65,12 +65,12 @@ module.exports = function (RED) {
                     modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
                     fan_modes: ["auto", "low", "medium", "high"]
                 })
-                this.status({ fill: "green", shape: "ring", text: `${HomeAssistant.pkName}/common:publish.config` });
+                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
         }
     })
 }

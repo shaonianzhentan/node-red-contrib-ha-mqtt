@@ -10,8 +10,6 @@ function object_id(name) {
 
 const DiscoveryDevice = {}
 module.exports = class {
-    static pkName = pk.name
-
     constructor(node, cfg) {
         node.config = cfg.config
         this.node = node

@@ -10,7 +10,7 @@ module.exports = function (RED) {
                 this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} ${RED._("autoDiscoverySent")}` });
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: `${HomeAssistant.pkName}/common:error.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
         }
     })
 }

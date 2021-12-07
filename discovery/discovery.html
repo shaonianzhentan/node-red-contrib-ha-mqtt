@@ -1,23 +1,23 @@
 <script type="text/html" data-template-name="ha-mqtt-discovery">
     <div class="form-row">
-        <label for="node-input-server">MQTT</label>
+        <label for="node-input-server" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttServer"></label>
         <select id="node-input-server"></select>
     </div>
-    <div class="form-tips"> Transmits <b>online</b> to <b>homeassistant/status</b> subscribe node to automatically discover all related devices under MQTT</div>
+    <div class="form-tips"><span data-i18n="[html]tip"></span></div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-discovery', {
-        category: 'Home Assistant',
+        category: this._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
         icon: "font-awesome/fa-search",
-        paletteLabel: 'Automatically discover',
+        paletteLabel: this._("autoDiscovery"),
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true }
         },
         inputs: 1,
         outputs: 0,
         label: function () {
-            return "Home Assistant Auto Discover";
+            return this._("autoDiscovery");
         }
     });
 </script>

@@ -1,5 +1,11 @@
 {
-    "error": {
+    "homeAssistantCategory": "Home Assistant",
+    "label": {
+        "mqttServer": " MQTT Server",
+        "entityName": " Entity Name",
+        "config": " Configuration"
+    },
+    "errors": {
         "mqttNotConfigured": "MQTT Not Configured"
     },
     "publish": {
