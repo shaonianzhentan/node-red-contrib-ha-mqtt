@@ -5,6 +5,21 @@
         "entityName": "Entity Name",
         "config": "Configuration"
     },
+    "ioLabels": {
+        "state": "State",
+        "temperature": "Temperature", 
+        "mode": "Mode", 
+        "swingMode": "Swing Mode", 
+        "fanMode": "Fan Mode",
+        "oscillation": "Oscillation",
+        "percentage": "Percentage", 
+        "presetMode": "Preset Mode",
+        "humidity": "Humidity",
+        "brightness": "Brightness",
+        "effect": "Effect",
+        "fanSpeed": "Fan Speed",
+        "command": "Command"
+    },
     "errors": {
         "mqttNotConfigured": "MQTT Not Configured"
     },

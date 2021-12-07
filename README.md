@@ -1,27 +1,32 @@
 # ha-mqtt
 Generate MQTT entities in Home Assistant
 
+[README.md in Chinese](README.zh.md)
+
 Reference document: https://www.home-assistant.io/docs/mqtt/discovery/
 
+## Supported languages
+- ✔️ English (en-US)
+- ✔️ Chinese (zh)
 ## Supported components
-- [x] alarm_control_panel
-- [x] binary_sensor
-- [x] camera
-- [x] climate
-- [x] cover
-- [x] device_tracker
-- [x] device_automation
-- [x] fan
-- [x] humidifier
-- [x] light
-- [x] lock
-- [x] number
-- [x] scene
-- [x] select
-- [x] sensor
-- [x] switch
-- [x] tag
-- [x] vacuum
+- ✔️ alarm_control_panel
+- ✔️ binary_sensor
+- ✔️ camera
+- ✔️ climate
+- ✔️ cover
+- ✔️ device_tracker
+- ✔️ device_automation
+- ✔️ fan
+- ✔️ humidifier
+- ✔️ light
+- ✔️ lock
+- ✔️ number
+- ✔️ scene
+- ✔️ select
+- ✔️ sensor
+- ✔️ switch
+- ✔️ tag
+- ✔️ vacuum
 
 Auto-discovery
 ```yaml

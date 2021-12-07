@@ -30,8 +30,12 @@
         },
         inputs: 1,
         outputs: 3,
-        inputLabels: "equipment status",
-        outputLabels: ["state", "brightness", "effect"],
+        inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
+        outputLabels: [
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.brightness"),
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.effect")
+        ],
         label: function () {
             return this.name || "light";
         },

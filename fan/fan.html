@@ -25,8 +25,13 @@
         },
         inputs: 1,
         outputs: 4,
-        inputLabels: "equipment status",
-        outputLabels: ["state", "oscillation", "percentage", "preset mode"],
+        inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
+        outputLabels: [
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"), 
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.oscillation"), 
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.percentage"),  
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.presetMode")
+        ],
         label: function () {
             return this.name || "fan";
         },

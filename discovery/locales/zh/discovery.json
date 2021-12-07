@@ -1,0 +1,5 @@
+{
+    "autoDiscovery": "自动发现",
+    "autoDiscoverySent": "发现设备",
+    "tip": "通过发送<b>online</b>给<b>homeassistant/status</b>订阅节点，会自动发现当前MQTT下所有相关设备"
+}
