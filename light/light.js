@@ -12,47 +12,51 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, effect, brightness } = msg
                 try {
-                    // 更新状态
                     if (payload) {
-                        ha.publish_state(payload)
+                        ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
-                    // 更新属性
                     if (attributes) {
-                        ha.publish_attributes(attributes)
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
                     }
                     if (effect) {
-                        ha.publish_effect(effect)
+                        ha.publish(ha.config.effect_state_topic, effect, RED._(`node-red-contrib-ha-mqtt/common:publish.effect`))
                     }
                     if (brightness) {
-                        ha.publish_brightness(brightness)
+                        ha.publish(ha.config.brightness_state_topic, brightness, RED._(`node-red-contrib-ha-mqtt/common:publish.brightness`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
                 }
             })
-            // 订阅主题
             ha.subscribe(command_topic, (payload) => {
-                node.send([payload, null, null])
-                ha.publish_state(payload)
+                ha.send_payload(payload, 1, 3)
+                ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
             })
             ha.subscribe(brightness_command_topic, (payload) => {
-                node.send([null, payload, null])
+                ha.send_payload(payload, 2, 3)
+                ha.publish(ha.config.brightness_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.brightness`))
             })
             ha.subscribe(effect_command_topic, (payload) => {
-                node.send([null, null, payload])
+                ha.send_payload(payload, 3, 3)
+                ha.publish(ha.config.effect_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.effect`))
             })
 
-            ha.discovery({
-                command_topic,
-                effect_state_topic,
-                effect_command_topic,
-                brightness_state_topic,
-                brightness_command_topic,
-                payload_on: "ON",
-                payload_off: "OFF",
-            })
+            try {
+                ha.discovery({
+                    command_topic,
+                    effect_state_topic,
+                    effect_command_topic,
+                    brightness_state_topic,
+                    brightness_command_topic,
+                    payload_on: "ON",
+                    payload_off: "OFF",
+                })
+                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+            } catch (ex) {
+                this.status({ fill: "red", shape: "ring", text: `${ex}` });
+            }
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
         }
     })
 }

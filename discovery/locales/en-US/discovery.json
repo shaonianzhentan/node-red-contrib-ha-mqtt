@@ -1,0 +1,5 @@
+{
+    "autoDiscovery": "Auto Discovery",
+    "autoDiscoverySent": "Auto Discovery Sent",
+    "tip": "Transmits <b>online</b> to <b>homeassistant/status</b> subscribe node to automatically discover all related devices under MQTT"
+}

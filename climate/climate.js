@@ -11,20 +11,17 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, mode, temperature } = msg
                 try {
-                    // 更新状态
                     if (payload) {
-                        // ha.publish_state(payload)
-                        ha.publish_current_temperature(payload)
+                        ha.publish(ha.config.current_temperature_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.current_temperature`))
                     }
-                    // 更新属性
                     if (attributes) {
-                        ha.publish_attributes(attributes)
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
                     }
                     if (mode) {
-                        ha.publish_mode(mode)
+                        ha.publish(ha.config.mode_state_topic, mode, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
                     }
                     if (temperature) {
-                        ha.publish_temperature(temperature)
+                        ha.publish(ha.config.temperature_state_topic, temperature, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
@@ -36,42 +33,44 @@ module.exports = function (RED) {
                 temperature_state_topic,
                 temperature_command_topic } = ha.config
 
-            // 订阅主题
             ha.subscribe(temperature_command_topic, (payload) => {
                 ha.send_payload(payload, 1, 4)
-                ha.publish_temperature(payload)
+                ha.publish(ha.config.temperature_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
             })
             ha.subscribe(mode_command_topic, (payload) => {
                 ha.send_payload(payload, 2, 4)
-                ha.publish_mode(payload)
+                ha.publish(ha.config.mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
             })
             ha.subscribe(swing_mode_command_topic, (payload) => {
                 ha.send_payload(payload, 3, 4)
-                ha.publish_swing_mode(payload)
+                ha.publish(ha.config.swing_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.swing_mode`))
             })
             ha.subscribe(fan_mode_command_topic, (payload) => {
                 ha.send_payload(payload, 4, 4)
-                ha.publish_fan_mode(payload)
+                ha.publish(ha.config.fan_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_mode`))
             })
-
-            ha.discovery({
-                state_topic: null,
-                power_command_topic,
-                mode_state_topic,
-                temperature_state_topic,
-                current_temperature_topic,
-                // 精度
-                precision: 1,
-                temperature_command_topic,
-                mode_command_topic,
-                fan_mode_command_topic,
-                swing_mode_command_topic,
-                swing_modes: ["on", "off"],
-                modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
-                fan_modes: ["auto", "low", "medium", "high"]
-            })
+            try {
+                ha.discovery({
+                    state_topic: null,
+                    power_command_topic,
+                    mode_state_topic,
+                    temperature_state_topic,
+                    current_temperature_topic,
+                    precision: 1,
+                    temperature_command_topic,
+                    mode_command_topic,
+                    fan_mode_command_topic,
+                    swing_mode_command_topic,
+                    swing_modes: ["on", "off"],
+                    modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
+                    fan_modes: ["auto", "low", "medium", "high"]
+                })
+                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+            } catch (ex) {
+                this.status({ fill: "red", shape: "ring", text: `${ex}` });
+            }
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
         }
     })
 }

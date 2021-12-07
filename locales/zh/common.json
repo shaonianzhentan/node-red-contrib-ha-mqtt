@@ -1,0 +1,48 @@
+{
+    "homeAssistantCategory": "家庭助理",
+    "label": {
+        "mqttServer": "MQTT",
+        "entityName": "实体名称",
+        "config": "配置"
+    },
+    "ioLabels": {
+        "state": "开关",
+        "temperature": "温度", 
+        "mode": "模式", 
+        "swingMode": "摆动", 
+        "fanMode": "风速模式",
+        "oscillation": "摆动",
+        "percentage": "百分比", 
+        "presetMode": "预设模式",
+        "humidity": "湿度",
+        "brightness": "亮度",
+        "effect": "效果",
+        "fanSpeed": "风速",
+        "command": "命令"
+    },
+    "errors": {
+        "mqttNotConfigured": "未配置MQTT"
+    },
+    "publish": {
+        "config": "更新配置",
+        "state": "更新状态",
+        "attributes": "更新属性",
+        "current_temperature": "更新当前温度",
+        "temperature": "更新温度",
+        "target_humidity": "更新目标湿度",
+        "effect": "更新特效",
+        "oscillation": "更新摆动",
+        "percentage": "更新百分比",
+        "mode": "更新模式",
+        "preset_mode": "更新预设模式",
+        "swing_mode": "更新摆动模式",
+        "fan_mode": "更新风速模式",
+        "brightness": "更新亮度",
+        "battery_level": "更新电量",
+        "charging": "更新充电状态",
+        "cleaning": "更新清扫状态",
+        "docked": "更新停靠状态",
+        "error": "更新错误状态",
+        "fan_speed": "更新风速"
+    }
+}

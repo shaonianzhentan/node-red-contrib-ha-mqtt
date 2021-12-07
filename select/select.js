@@ -11,30 +11,32 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
                 try {
-                    // 更新状态
                     if (payload) {
-                        ha.publish_state(payload)
+                        ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
-                    // 更新属性
                     if (attributes) {
-                        ha.publish_attributes(attributes)
+                        ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
-            // 订阅主题
             ha.subscribe(ha.config.command_topic, (payload) => {
                 node.send({ payload })
-                // 改变状态
-                ha.publish_state(payload)
+                ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
             })
-            ha.discovery({
-                command_topic: ha.config.command_topic,
-                options: []
-            })
+
+            try {
+                ha.discovery({
+                    command_topic: ha.config.command_topic,
+                    options: []
+                })
+                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+            } catch (ex) {
+                this.status({ fill: "red", shape: "ring", text: `${ex}` });
+            }
         } else {
-            this.status({ fill: "red", shape: "ring", text: "未配置MQT" });
+            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
         }
     })
 }

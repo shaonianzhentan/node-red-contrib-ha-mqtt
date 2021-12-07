@@ -1,0 +1,48 @@
+{
+    "homeAssistantCategory": "Home Assistant",
+    "label": {
+        "mqttServer": "MQTT Server",
+        "entityName": "Entity Name",
+        "config": "Configuration"
+    },
+    "ioLabels": {
+        "state": "State",
+        "temperature": "Temperature", 
+        "mode": "Mode", 
+        "swingMode": "Swing Mode", 
+        "fanMode": "Fan Mode",
+        "oscillation": "Oscillation",
+        "percentage": "Percentage", 
+        "presetMode": "Preset Mode",
+        "humidity": "Humidity",
+        "brightness": "Brightness",
+        "effect": "Effect",
+        "fanSpeed": "Fan Speed",
+        "command": "Command"
+    },
+    "errors": {
+        "mqttNotConfigured": "MQTT Not Configured"
+    },
+    "publish": {
+        "config": "Publish Configuration",
+        "state": "Publish State",
+        "attributes": "Publish Attributes",
+        "current_temperature": "Publish Current Temperature",
+        "temperature": "Publish Temperature",
+        "target_humidity": "Publish Target Humidity",
+        "effect": "Publish Effect",
+        "oscillation": "Publish Oscillation",
+        "percentage": "Publish Percentage",
+        "mode": "Publish Mode",
+        "preset_mode": "Publish Preset Mode",
+        "swing_mode": "Publish Swing Mode",
+        "fan_mode": "Publish Fan Mode",
+        "brightness": "Publish Brightness",
+        "battery_level": "Publish Battery Level",
+        "charging": "Publish Charging",
+        "cleaning": "Publish Cleaning",
+        "docked": "Publish Docked",
+        "error": "Publish Error",
+        "fan_speed": "Publish Fan Speed"
+    }
+}

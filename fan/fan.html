@@ -1,20 +1,20 @@
 <script type="text/html" data-template-name="ha-mqtt-fan">
     <div class="form-row">
-        <label for="node-input-server"> MQTT</label>
+        <label for="node-input-server" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttServer"></label>
         <select id="node-input-server"></select>
     </div>
     <div class="form-row">
-        <label for="node-input-name"> 实体名称</label>
-        <input type="text" id="node-input-name" placeholder="实体名称">
+        <label for="node-input-name" data-i18n="node-red-contrib-ha-mqtt/common:label.entityName"></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.entityName">
     </div>
     <div class="form-row">
-        <label for="node-input-config"> 配置</label>
-        <input type="text" id="node-input-config" placeholder="配置">
+        <label for="node-input-config" data-i18n="node-red-contrib-ha-mqtt/common:label.config"></label>
+        <input type="text" id="node-input-config" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.config">
     </div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-fan', {
-        category: '家庭助理',
+        category: RED._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
         icon: "font-awesome/fa-arrows",
         paletteLabel: 'fan',
@@ -25,8 +25,13 @@
         },
         inputs: 1,
         outputs: 4,
-        inputLabels: "设备状态",
-        outputLabels: ["开关", "摆动", "百分比", "预设模式"],
+        inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
+        outputLabels: [
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"), 
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.oscillation"), 
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.percentage"),  
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.presetMode")
+        ],
         label: function () {
             return this.name || "fan";
         },
