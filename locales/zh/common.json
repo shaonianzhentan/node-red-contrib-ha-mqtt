@@ -3,6 +3,7 @@
     "label": {
         "mqttServer": "MQTT",
         "entityName": "实体名称",
+        "deviceName": "设备名称",
         "config": "配置"
     },
     "ioLabels": {
