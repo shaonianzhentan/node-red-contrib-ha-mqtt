@@ -18,14 +18,20 @@ module.exports = function (RED) {
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
-            })            
+            })
             ha.subscribe(command_topic, (payload) => {
                 node.send({ payload })
             })
             try {
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
                 ha.discovery({
                     state_topic: null,
-                    command_topic
+                    command_topic,
+                    device
                 })
                 this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {

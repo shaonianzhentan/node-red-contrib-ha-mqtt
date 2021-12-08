@@ -1,15 +1,17 @@
-const HomeAssistant = require('../HomeAssistant')
-
 module.exports = function (RED) {
     RED.nodes.registerType('ha-mqtt-device', function (cfg) {
         RED.nodes.createNode(this, cfg);
-        const { name } = cfg
+        let { name } = cfg
+        name = name.trim()
+        if (!name) {
+            name = 'Home Assistant'
+        }
         this.device_info = {
             name,
-            identifiers: ['635147515-shaonianzhentan', name],
+            identifiers: ['shaonianzhentan', 'ha-mqtt', name],
             manufacturer: "shaonianzhentan",
             model: 'HA-MQTT',
-            sw_version: pk.version
+            sw_version: '1.2.1'
         }
     })
 }
