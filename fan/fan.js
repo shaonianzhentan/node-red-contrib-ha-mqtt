@@ -51,7 +51,13 @@ module.exports = function (RED) {
             })
 
             try {
-                ha.discovery({
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
+                ha.discovery({                    
+                    device,
                     command_topic,
                     oscillation_state_topic,
                     oscillation_command_topic,

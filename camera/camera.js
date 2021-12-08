@@ -24,7 +24,13 @@ module.exports = function (RED) {
             const { state_topic } = ha.config
 
             try {
-                ha.discovery({
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
+                ha.discovery({                    
+                    device,
                     state_topic: null,
                     topic: state_topic
                 })

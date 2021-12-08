@@ -28,10 +28,10 @@ module.exports = function (RED) {
                     const deviceNode = RED.nodes.getNode(cfg.device);
                     device = deviceNode.device_info
                 }
-                ha.discovery({
+                ha.discovery({                    
+                    device,
                     state_topic: null,
-                    command_topic,
-                    device
+                    command_topic
                 })
                 this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {

@@ -8,6 +8,10 @@
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.entityName">
     </div>
     <div class="form-row">
+        <label for="node-input-device" data-i18n="node-red-contrib-ha-mqtt/common:label.deviceName"></label>
+        <select type="text" id="node-input-device" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.deviceName"></select>
+    </div>
+    <div class="form-row">
         <label for="node-input-action" data-i18n="label.type"></label>
         <input type="text" id="node-input-action" data-i18n="[placeholder]placeholder.type">
     </div>
@@ -21,6 +25,7 @@
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
             name: { value: "", required: true },
+            device: { value: "", type: "ha-mqtt-device" },
             action: { value: "", required: true }
         },
         inputs: 1,

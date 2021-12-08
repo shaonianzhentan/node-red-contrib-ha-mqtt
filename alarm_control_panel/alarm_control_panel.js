@@ -26,7 +26,13 @@ module.exports = function (RED) {
                 ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
             })
             try {
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
                 ha.discovery({
+                    device,
                     command_topic: ha.config.command_topic,
                     payload_disarm: 'DISARM',
                     payload_arm_home: 'ARM_HOME',

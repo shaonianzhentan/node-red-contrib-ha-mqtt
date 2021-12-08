@@ -24,7 +24,13 @@ module.exports = function (RED) {
             const { command_topic, position_topic, tilt_command_topic, tilt_status_topic } = ha.config
             
             try {
-                ha.discovery({
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
+                ha.discovery({                    
+                    device,
                     command_topic,
                     position_topic,
                     tilt_command_topic,

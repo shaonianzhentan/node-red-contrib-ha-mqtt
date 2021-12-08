@@ -60,7 +60,13 @@ module.exports = function (RED) {
             })
 
             try {
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
                 ha.discovery({
+                    device,
                     command_topic,
                     send_command_topic,
                     battery_level_topic,

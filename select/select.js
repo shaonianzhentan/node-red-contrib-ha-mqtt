@@ -27,7 +27,13 @@ module.exports = function (RED) {
             })
 
             try {
-                ha.discovery({
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
+                ha.discovery({                    
+                    device,
                     command_topic: ha.config.command_topic,
                     options: []
                 })

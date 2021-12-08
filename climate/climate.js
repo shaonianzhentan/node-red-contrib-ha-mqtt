@@ -50,7 +50,13 @@ module.exports = function (RED) {
                 ha.publish(ha.config.fan_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_mode`))
             })
             try {
-                ha.discovery({
+                let device = null
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    device = deviceNode.device_info
+                }
+                ha.discovery({                    
+                    device,
                     state_topic: null,
                     power_command_topic,
                     mode_state_topic,
