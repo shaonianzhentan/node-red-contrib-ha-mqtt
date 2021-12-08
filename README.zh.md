@@ -1,6 +1,14 @@
 # ha-mqtt
 在HomeAssistant生成MQTT实体
 
+[![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://flows.nodered.org/node/node-red-contrib-ha-mqtt)
+[![home-assistant](https://img.shields.io/badge/Home-Assistant-%23049cdb)](https://www.home-assistant.io/)
+[![NPM version](https://img.shields.io/npm/v/node-red-contrib-ha-mqtt.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-ha-mqtt)
+![license](https://img.shields.io/github/license/shaonianzhentan/node-red-contrib-ha-mqtt)
+
+
+[English](README.md) | 简体中文
+
 参考文档：https://www.home-assistant.io/docs/mqtt/discovery/
 
 ## 支持组件

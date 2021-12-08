@@ -1,7 +1,12 @@
 # ha-mqtt
 Generate MQTT entities in Home Assistant
 
-[README.md in Chinese](README.zh.md)
+[![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://flows.nodered.org/node/node-red-contrib-ha-mqtt)
+[![home-assistant](https://img.shields.io/badge/Home-Assistant-%23049cdb)](https://www.home-assistant.io/)
+[![NPM version](https://img.shields.io/npm/v/node-red-contrib-ha-mqtt.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-ha-mqtt)
+![license](https://img.shields.io/github/license/shaonianzhentan/node-red-contrib-ha-mqtt)
+
+English | [简体中文](README.zh.md)
 
 Reference document: https://www.home-assistant.io/docs/mqtt/discovery/
 
