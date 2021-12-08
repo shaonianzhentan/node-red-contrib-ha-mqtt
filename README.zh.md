@@ -6,6 +6,7 @@
 ## 支持组件
 - [x] alarm_control_panel - 警报面板
 - [x] binary_sensor - 二元传感器
+- [x] button - 按钮
 - [x] camera - 摄像头
 - [x] climate - 空调
 - [x] cover - 窗帘

@@ -11,6 +11,7 @@ Reference document: https://www.home-assistant.io/docs/mqtt/discovery/
 ## Supported components
 - ✔️ alarm_control_panel
 - ✔️ binary_sensor
+- ✔️ button
 - ✔️ camera
 - ✔️ climate
 - ✔️ cover
