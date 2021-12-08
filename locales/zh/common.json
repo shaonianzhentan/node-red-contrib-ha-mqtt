@@ -7,7 +7,7 @@
         "config": "配置"
     },
     "ioLabels": {
-        "state": "开关",
+        "state": "状态",
         "temperature": "温度", 
         "mode": "模式", 
         "swingMode": "摆动", 
