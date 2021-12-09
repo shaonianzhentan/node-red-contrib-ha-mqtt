@@ -23,16 +23,16 @@ module.exports = function (RED) {
             })
 
             try {
-                let device = null
+                const discoveryConfig = {
+                    unit_of_measurement: cfg.unit_of_measurement
+                }
                 if (cfg.device) {
                     const deviceNode = RED.nodes.getNode(cfg.device);
-                    device = deviceNode.device_info
+                    discoveryConfig['device'] = deviceNode.device_info
                 }
-                ha.discovery({                    
-                    device,
-                    unit_of_measurement: cfg.unit_of_measurement
+                ha.discovery(discoveryConfig, () => {
+                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
-                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }

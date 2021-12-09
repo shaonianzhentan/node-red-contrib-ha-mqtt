@@ -50,13 +50,7 @@ module.exports = function (RED) {
                 ha.publish(ha.config.fan_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_mode`))
             })
             try {
-                let device = null
-                if (cfg.device) {
-                    const deviceNode = RED.nodes.getNode(cfg.device);
-                    device = deviceNode.device_info
-                }
-                ha.discovery({                    
-                    device,
+                const discoveryConfig = {
                     state_topic: null,
                     power_command_topic,
                     mode_state_topic,
@@ -70,8 +64,14 @@ module.exports = function (RED) {
                     swing_modes: ["on", "off"],
                     modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
                     fan_modes: ["auto", "low", "medium", "high"]
+                }
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    discoveryConfig['device'] = deviceNode.device_info
+                }
+                ha.discovery(discoveryConfig, () => {
+                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
-                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }

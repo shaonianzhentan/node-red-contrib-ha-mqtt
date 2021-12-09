@@ -24,13 +24,7 @@ module.exports = function (RED) {
             const { command_topic, position_topic, tilt_command_topic, tilt_status_topic } = ha.config
             
             try {
-                let device = null
-                if (cfg.device) {
-                    const deviceNode = RED.nodes.getNode(cfg.device);
-                    device = deviceNode.device_info
-                }
-                ha.discovery({                    
-                    device,
+                const discoveryConfig = {
                     command_topic,
                     position_topic,
                     tilt_command_topic,
@@ -39,8 +33,14 @@ module.exports = function (RED) {
                     tilt_max: 180,
                     tilt_closed_value: 70,
                     tilt_opened_value: 180,
+                }
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    discoveryConfig['device'] = deviceNode.device_info
+                }
+                ha.discovery(discoveryConfig, () => {
+                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
-                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }

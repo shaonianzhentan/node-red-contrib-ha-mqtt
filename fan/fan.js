@@ -51,13 +51,7 @@ module.exports = function (RED) {
             })
 
             try {
-                let device = null
-                if (cfg.device) {
-                    const deviceNode = RED.nodes.getNode(cfg.device);
-                    device = deviceNode.device_info
-                }
-                ha.discovery({                    
-                    device,
+                const discoveryConfig = {
                     command_topic,
                     oscillation_state_topic,
                     oscillation_command_topic,
@@ -68,8 +62,14 @@ module.exports = function (RED) {
                     preset_modes: ["auto", "smart", "whoosh", "eco", "breeze"],
                     speed_range_min: 1,
                     speed_range_max: 10
+                }
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    discoveryConfig['device'] = deviceNode.device_info
+                }
+                ha.discovery(discoveryConfig, () => {
+                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
-                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
