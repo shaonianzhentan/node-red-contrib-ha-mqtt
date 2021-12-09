@@ -1,0 +1,26 @@
+<script type="text/html" data-template-name="ha-mqtt-device">
+    <div class="form-row">
+        <label for="node-config-input-name" data-i18n="node-red-contrib-ha-mqtt/common:label.deviceName"></label>
+        <input type="text" id="node-config-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.deviceName">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-config" data-i18n="node-red-contrib-ha-mqtt/common:label.config"></label>        
+        <input type="text" id="node-config-input-config" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.config">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ha-mqtt-device', {
+        category: 'config',
+        defaults: {
+            name: { value: "", required: true },
+            config: { value: "" }
+        },
+        label: function () {
+            return this.name.trim();
+        },
+        oneditprepare: function () {
+            $("#node-config-input-config").typedInput({ type: "json", types: ["json"] })
+        }
+    });
+</script>

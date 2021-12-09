@@ -43,7 +43,7 @@ module.exports = function (RED) {
             })
 
             try {
-                ha.discovery({
+                const discoveryConfig = {
                     command_topic,
                     target_humidity_command_topic,
                     target_humidity_state_topic,
@@ -53,8 +53,14 @@ module.exports = function (RED) {
                     modes: ["normal", "eco", "away", "boost", "comfort", "home", "sleep", "auto", "baby"],
                     min_humidity: 30,
                     max_humidity: 80
+                }
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    discoveryConfig['device'] = deviceNode.device_info
+                }
+                ha.discovery(discoveryConfig, () => {
+                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
-                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }

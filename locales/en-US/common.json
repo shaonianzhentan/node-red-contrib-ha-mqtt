@@ -3,6 +3,7 @@
     "label": {
         "mqttServer": "MQTT Server",
         "entityName": "Entity Name",
+        "deviceName": "Device Name",
         "config": "Configuration"
     },
     "ioLabels": {

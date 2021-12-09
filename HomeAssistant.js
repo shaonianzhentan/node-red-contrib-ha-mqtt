@@ -61,12 +61,17 @@ module.exports = class {
         }
     }
 
-    discovery(config) {
+    static get version() {
+        return pk.version
+    }
+
+    discovery(config, callback) {
         DiscoveryDevice[this.config.unique_id] = () => {
             if (this.node.config) {
                 config = Object.assign(config, JSON.parse(this.node.config))
             }
-            this.publish_config(config)           
+            this.publish_config(config)
+            callback()
         }
         this.subscribe('homeassistant/status', (payload) => {
             if (payload === 'online') {

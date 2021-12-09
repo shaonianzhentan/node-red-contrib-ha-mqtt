@@ -3,10 +3,11 @@
     "label": {
         "mqttServer": "MQTT",
         "entityName": "实体名称",
+        "deviceName": "设备名称",
         "config": "配置"
     },
     "ioLabels": {
-        "state": "开关",
+        "state": "状态",
         "temperature": "温度", 
         "mode": "模式", 
         "swingMode": "摆动", 

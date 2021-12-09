@@ -42,7 +42,7 @@ module.exports = function (RED) {
             })
 
             try {
-                ha.discovery({
+                const discoveryConfig = {
                     command_topic,
                     effect_state_topic,
                     effect_command_topic,
@@ -50,8 +50,14 @@ module.exports = function (RED) {
                     brightness_command_topic,
                     payload_on: "ON",
                     payload_off: "OFF",
+                }
+                if (cfg.device) {
+                    const deviceNode = RED.nodes.getNode(cfg.device);
+                    discoveryConfig['device'] = deviceNode.device_info
+                }
+                ha.discovery(discoveryConfig, () => {
+                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
-                this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
