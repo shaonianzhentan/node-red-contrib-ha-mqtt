@@ -30,6 +30,7 @@
         },
         inputs: 1,
         outputs: 0,
+        inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
         label: function () {
             const { name, action } = this
             if (!name) return "device_automation"
