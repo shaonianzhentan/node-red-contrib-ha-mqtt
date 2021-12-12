@@ -44,3 +44,6 @@ payload: online
 | |Alipay|WeChat|
 |---|---|---|
 Milk tea | <img src="https://github.com/shaonianzhentan/ha-docs/raw/master/docs/img/alipay.png" align="left" height="160" width="160" alt="Alipay" title="alipay"> | <img src="https://github.com/shaonianzhentan/ha-docs/raw/master/docs/img/wechat.png" align="left" height="160" width="160" alt="WeChat Pay" title="WeChat">
+
+#### Follow my wechat subscription number
+<img src="https://github.com/shaonianzhentan/ha-docs/raw/master/docs/img/wechat-channel.png" align="left" height="160" alt="HomeAssistant家庭助理" title="HomeAssistant家庭助理"> 
