@@ -80,6 +80,8 @@ module.exports = class {
                 }
             }
         })
+        // publish config
+        DiscoveryDevice[this.config.unique_id]()
     }
 
     publish_config(data) {
