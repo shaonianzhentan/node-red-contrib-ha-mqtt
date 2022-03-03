@@ -92,8 +92,9 @@ module.exports = class {
             state_topic,
             json_attr_t,
             device: {
+                configuration_url: 'https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt',
                 name: 'Home Assistant',
-                identifiers: ['635147515-shaonianzhentan'],
+                identifiers: 'ha-mqtt-Home Assistant',
                 manufacturer: "shaonianzhentan",
                 model: 'HA-MQTT',
                 sw_version: pk.version
