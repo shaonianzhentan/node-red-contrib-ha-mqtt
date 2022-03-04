@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Generate MQTT entities in HomeAssistant",
   "keywords": [
     "node-red",
@@ -9,6 +9,7 @@
     "home-assistant"
   ],
   "node-red": {
+    "version": ">=1.3.7",
     "nodes": {
       "common": "common.js",
       "device": "device/device.js",
@@ -31,6 +32,9 @@
       "fan": "fan/fan.js",
       "tag": "tag/tag.js"
     }
+  },
+  "engines": {
+    "node": ">=12"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
