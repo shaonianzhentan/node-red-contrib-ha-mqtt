@@ -33,6 +33,7 @@
 - [x] select - 选择器
 - [x] sensor - 传感器
 - [x] switch - 开关
+- [x] siren - 警报器
 - [x] tag - 标签
 - [x] vacuum - 扫地机器人
 
