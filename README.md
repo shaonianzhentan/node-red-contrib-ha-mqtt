@@ -35,6 +35,7 @@ Reference document: https://www.home-assistant.io/docs/mqtt/discovery/
 - ✔️ select
 - ✔️ sensor
 - ✔️ switch
+- ✔️ siren
 - ✔️ tag
 - ✔️ vacuum
 
