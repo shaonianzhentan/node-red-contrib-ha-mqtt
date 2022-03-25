@@ -1,4 +1,4 @@
-<script type="text/html" data-template-name="ha-mqtt-button">
+<script type="text/html" data-template-name="ha-mqtt-siren">
     <div class="form-row">
         <label for="node-input-server" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttServer"></label>
         <select id="node-input-server"></select>
@@ -17,25 +17,25 @@
     </div>
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('ha-mqtt-button', {
+    RED.nodes.registerType('ha-mqtt-siren', {
         category: RED._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
-        icon: "font-awesome/fa-hand-pointer-o",
-        paletteLabel: 'Button',
+        icon: "font-awesome/fa-bullhorn",
+        paletteLabel: 'Siren',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
-            device: { value: "", type: "ha-mqtt-device" , required: true},
+            device: { value: "", type: "ha-mqtt-device", required: true },
             name: { value: "", required: true },
             config: { value: "" }
         },
         inputs: 1,
         outputs: 1,
+        inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
         label: function () {
-            return this.name || "button";
+            return this.name || "siren";
         },
         oneditprepare: function () {
             $("#node-input-config").typedInput({ type: "json", types: ["json"] })
         }
     });
-
 </script>
