@@ -1,0 +1,244 @@
+[
+    {
+        "id": "cac11d34a5cd4b76",
+        "type": "tab",
+        "label": "流程 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ee04e2ab2082d3ef",
+        "type": "ha-mqtt-cover",
+        "z": "cac11d34a5cd4b76",
+        "server": "8672849eb803c6e3",
+        "device": "02c940ba547f5196",
+        "name": "窗帘",
+        "config": "{\"device_class\":\"curtain\"}",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "faf295c1b68cab86",
+                "e060b799d96d5034"
+            ],
+            [
+                "faf295c1b68cab86"
+            ],
+            [
+                "faf295c1b68cab86"
+            ]
+        ]
+    },
+    {
+        "id": "ac8cc3c0de66701b",
+        "type": "inject",
+        "z": "cac11d34a5cd4b76",
+        "name": "Set Entity Info",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "attributes",
+                "v": "{\"key\":\"value\"}",
+                "vt": "json"
+            },
+            {
+                "p": "position",
+                "v": "50",
+                "vt": "str"
+            },
+            {
+                "p": "tilt",
+                "v": "50",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "open",
+        "payloadType": "str",
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "ee04e2ab2082d3ef"
+            ]
+        ]
+    },
+    {
+        "id": "faf295c1b68cab86",
+        "type": "debug",
+        "z": "cac11d34a5cd4b76",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1543a9296b8efe63",
+        "type": "delay",
+        "z": "cac11d34a5cd4b76",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "ee04e2ab2082d3ef"
+            ]
+        ]
+    },
+    {
+        "id": "e060b799d96d5034",
+        "type": "switch",
+        "z": "cac11d34a5cd4b76",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "open",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "close",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "beba41a38d53e256"
+            ],
+            [
+                "5e7e902bf56ba6dd"
+            ],
+            [
+                "ea01788887d7b784"
+            ]
+        ]
+    },
+    {
+        "id": "beba41a38d53e256",
+        "type": "function",
+        "z": "cac11d34a5cd4b76",
+        "name": "open",
+        "func": "return {\n    payload: 'open',\n    position: 100\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 180,
+        "wires": [
+            [
+                "1543a9296b8efe63"
+            ]
+        ]
+    },
+    {
+        "id": "5e7e902bf56ba6dd",
+        "type": "function",
+        "z": "cac11d34a5cd4b76",
+        "name": "closed",
+        "func": "return {\n    payload: 'closed',\n    position: 0\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 220,
+        "wires": [
+            [
+                "1543a9296b8efe63"
+            ]
+        ]
+    },
+    {
+        "id": "ea01788887d7b784",
+        "type": "function",
+        "z": "cac11d34a5cd4b76",
+        "name": "stopped",
+        "func": "return {\n    payload: 'stopped',\n    position: 50,\n    reset: '中止正在等待的延时'\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "1543a9296b8efe63"
+            ]
+        ]
+    },
+    {
+        "id": "8672849eb803c6e3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "02c940ba547f5196",
+        "type": "ha-mqtt-device",
+        "name": "测试设备",
+        "config": ""
+    }
+]

@@ -13,10 +13,10 @@
         "z": "9ed2093df2fd23bf",
         "server": "8672849eb803c6e3",
         "device": "02c940ba547f5196",
-        "name": "测试",
+        "name": "警报器",
         "config": "",
-        "x": 410,
-        "y": 280,
+        "x": 330,
+        "y": 220,
         "wires": [
             [
                 "bb7651bd07231413"
@@ -35,8 +35,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 280,
+        "x": 510,
+        "y": 220,
         "wires": []
     },
     {
@@ -61,8 +61,8 @@
         "topic": "",
         "payload": "ON",
         "payloadType": "str",
-        "x": 230,
-        "y": 280,
+        "x": 150,
+        "y": 220,
         "wires": [
             [
                 "b08aa9d2d22b2169"
@@ -72,8 +72,8 @@
     {
         "id": "8672849eb803c6e3",
         "type": "mqtt-broker",
-        "name": "MQTT",
-        "broker": "192.168.1.117",
+        "name": "",
+        "broker": "localhost",
         "port": "1883",
         "clientid": "",
         "autoConnect": true,
@@ -98,7 +98,7 @@
     {
         "id": "02c940ba547f5196",
         "type": "ha-mqtt-device",
-        "name": "测试",
+        "name": "测试设备",
         "config": ""
     }
 ]

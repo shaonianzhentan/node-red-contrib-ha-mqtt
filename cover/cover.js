@@ -7,36 +7,56 @@ module.exports = function (RED) {
         if (this.server) {
             this.server.register(this)
             const ha = new HomeAssistant(this, cfg)
+            const { command_topic, state_topic, set_position_topic, position_topic, tilt_command_topic, tilt_status_topic } = ha.config
             const node = this
             node.on('input', function (msg) {
-                const { payload, attributes } = msg
+                const { payload, attributes, position, tilt } = msg
                 try {
                     if (payload) {
-                        ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
+                        ha.publish(state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
                     if (attributes) {
                         ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
+                    }
+                    if (typeof position === 'number') {
+                        ha.publish(position_topic, position, RED._(`node-red-contrib-ha-mqtt/common:publish.position`))
+                    }
+                    if (typeof tilt === 'number') {
+                        ha.publish(tilt_status_topic, tilt, RED._(`node-red-contrib-ha-mqtt/common:publish.tilt`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
                 }
             })
-            const { command_topic, position_topic, tilt_command_topic, tilt_status_topic } = ha.config
-            
+            ha.subscribe(command_topic, (payload) => {
+                ha.send_payload(payload.toLocaleLowerCase(), 1, 3)
+                if (payload === 'CLOSE') payload = 'closing'
+                else if (payload === 'OPEN') payload = 'opening'
+                else if (payload === 'STOP') payload = 'stopped'
+                ha.publish(state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
+            })
+            ha.subscribe(set_position_topic, (payload) => {
+                ha.send_payload(payload, 2, 3)
+                ha.publish(position_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.position`))
+            })
+            ha.subscribe(tilt_command_topic, (payload) => {
+                ha.send_payload(payload, 3, 3)
+                ha.publish(tilt_status_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.tilt`))
+            })
+
             try {
+                const deviceNode = RED.nodes.getNode(cfg.device);
                 const discoveryConfig = {
                     command_topic,
+                    set_position_topic,
                     position_topic,
                     tilt_command_topic,
                     tilt_status_topic,
                     tilt_min: 0,
-                    tilt_max: 180,
-                    tilt_closed_value: 70,
-                    tilt_opened_value: 180,
-                }
-                if (cfg.device) {
-                    const deviceNode = RED.nodes.getNode(cfg.device);
-                    discoveryConfig['device'] = deviceNode.device_info
+                    tilt_max: 100,
+                    tilt_closed_value: 0,
+                    tilt_opened_value: 100,
+                    device: deviceNode.device_info
                 }
                 ha.discovery(discoveryConfig, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
