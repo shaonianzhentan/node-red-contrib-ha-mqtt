@@ -8,24 +8,19 @@ module.exports = function (RED) {
             this.server.register(this)
             const ha = new HomeAssistant(this, cfg)
             const node = this
-            node.on('input', function (msg) {
-                const { payload } = msg
-                try {
-                    if (payload) {
-                        ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
-                    }
-                } catch (ex) {
-                    node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
-                }
-            })
+            const { command_topic } = ha.config
 
+            ha.subscribe(command_topic, (payload) => {
+                node.send({ payload })
+            })
+            
             try {
-                const discoveryConfig = {}
-                if (cfg.device) {
-                    const deviceNode = RED.nodes.getNode(cfg.device);
-                    discoveryConfig['device'] = deviceNode.device_info
-                }
-                ha.discovery(discoveryConfig, () => {
+                const deviceNode = RED.nodes.getNode(cfg.device);
+                ha.discovery({
+                    command_topic,
+                    payload_on: "ON",
+                    device: deviceNode.device_info
+                }, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })
             } catch (ex) {

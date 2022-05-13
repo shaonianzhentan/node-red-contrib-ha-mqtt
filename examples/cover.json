@@ -1,39 +1,39 @@
 [
     {
-        "id": "cac11d34a5cd4b76",
+        "id": "5d908f40e89d2e7d",
         "type": "tab",
-        "label": "流程 3",
+        "label": "Cover",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "ee04e2ab2082d3ef",
+        "id": "0a1fccc3303f1515",
         "type": "ha-mqtt-cover",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "server": "8672849eb803c6e3",
         "device": "02c940ba547f5196",
         "name": "窗帘",
         "config": "{\"device_class\":\"curtain\"}",
-        "x": 390,
-        "y": 380,
+        "x": 450,
+        "y": 420,
         "wires": [
             [
-                "faf295c1b68cab86",
-                "e060b799d96d5034"
+                "1e068ca2c9e1e990",
+                "22a9f9de9243b5be"
             ],
             [
-                "faf295c1b68cab86"
+                "1e068ca2c9e1e990"
             ],
             [
-                "faf295c1b68cab86"
+                "1e068ca2c9e1e990"
             ]
         ]
     },
     {
-        "id": "ac8cc3c0de66701b",
+        "id": "d4c4d1efa72e32a9",
         "type": "inject",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "Set Entity Info",
         "props": [
             {
@@ -62,18 +62,18 @@
         "topic": "",
         "payload": "open",
         "payloadType": "str",
-        "x": 190,
-        "y": 380,
+        "x": 250,
+        "y": 420,
         "wires": [
             [
-                "ee04e2ab2082d3ef"
+                "0a1fccc3303f1515"
             ]
         ]
     },
     {
-        "id": "faf295c1b68cab86",
+        "id": "1e068ca2c9e1e990",
         "type": "debug",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -82,14 +82,14 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 610,
-        "y": 380,
+        "x": 670,
+        "y": 420,
         "wires": []
     },
     {
-        "id": "1543a9296b8efe63",
+        "id": "8585b37803ca3b6a",
         "type": "delay",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "",
         "pauseType": "delay",
         "timeout": "5",
@@ -103,18 +103,18 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 140,
-        "y": 40,
+        "x": 240,
+        "y": 120,
         "wires": [
             [
-                "ee04e2ab2082d3ef"
+                "0a1fccc3303f1515"
             ]
         ]
     },
     {
-        "id": "e060b799d96d5034",
+        "id": "22a9f9de9243b5be",
         "type": "switch",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -138,24 +138,24 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 410,
-        "y": 220,
+        "x": 470,
+        "y": 260,
         "wires": [
             [
-                "beba41a38d53e256"
+                "faa2bb54a7ee88ef"
             ],
             [
-                "5e7e902bf56ba6dd"
+                "a31ba751987a80a1"
             ],
             [
-                "ea01788887d7b784"
+                "89180822e4e7fccd"
             ]
         ]
     },
     {
-        "id": "beba41a38d53e256",
+        "id": "faa2bb54a7ee88ef",
         "type": "function",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "open",
         "func": "return {\n    payload: 'open',\n    position: 100\n};",
         "outputs": 1,
@@ -163,18 +163,18 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 180,
+        "x": 650,
+        "y": 220,
         "wires": [
             [
-                "1543a9296b8efe63"
+                "8585b37803ca3b6a"
             ]
         ]
     },
     {
-        "id": "5e7e902bf56ba6dd",
+        "id": "a31ba751987a80a1",
         "type": "function",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "closed",
         "func": "return {\n    payload: 'closed',\n    position: 0\n};",
         "outputs": 1,
@@ -182,18 +182,18 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 220,
+        "x": 650,
+        "y": 260,
         "wires": [
             [
-                "1543a9296b8efe63"
+                "8585b37803ca3b6a"
             ]
         ]
     },
     {
-        "id": "ea01788887d7b784",
+        "id": "89180822e4e7fccd",
         "type": "function",
-        "z": "cac11d34a5cd4b76",
+        "z": "5d908f40e89d2e7d",
         "name": "stopped",
         "func": "return {\n    payload: 'stopped',\n    position: 50,\n    reset: '中止正在等待的延时'\n};",
         "outputs": 1,
@@ -201,11 +201,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 260,
+        "x": 660,
+        "y": 300,
         "wires": [
             [
-                "1543a9296b8efe63"
+                "8585b37803ca3b6a"
             ]
         ]
     },
