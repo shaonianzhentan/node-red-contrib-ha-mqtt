@@ -6,7 +6,8 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(cfg.server);
         if (this.server) {
             this.server.register(this)
-            const ha = new HomeAssistant(this, cfg)
+            const deviceNode = RED.nodes.getNode(cfg.device);
+            const ha = new HomeAssistant(this, cfg, deviceNode.device_info)
             const node = this
             node.on('input', function (msg) {
                 const { payload, attributes, mode, target_humidity } = msg
@@ -53,10 +54,6 @@ module.exports = function (RED) {
                     modes: ["normal", "eco", "away", "boost", "comfort", "home", "sleep", "auto", "baby"],
                     min_humidity: 30,
                     max_humidity: 80
-                }
-                if (cfg.device) {
-                    const deviceNode = RED.nodes.getNode(cfg.device);
-                    discoveryConfig['device'] = deviceNode.device_info
                 }
                 ha.discovery(discoveryConfig, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });

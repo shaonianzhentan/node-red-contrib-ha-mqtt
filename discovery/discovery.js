@@ -6,7 +6,7 @@ module.exports = function (RED) {
             this.server.register(this)
             const node = this
             node.on('input', function (msg) {
-                node.server.client.publish('homeassistant/status', 'online')
+                node.server.client.publish('homeassistant/status', msg.status || 'online')
                 this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} ${RED._("autoDiscoverySent")}` });
             })
         } else {

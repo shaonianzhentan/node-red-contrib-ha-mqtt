@@ -10,7 +10,8 @@ function object_id(name) {
 
 const DiscoveryDevice = {}
 module.exports = class {
-    constructor(node, cfg) {
+    constructor(node, cfg, device_info) {
+        this.device_info = device_info
         node.config = cfg.config
         this.node = node
         const { name } = cfg
@@ -50,7 +51,7 @@ module.exports = class {
             preset_mode_state_topic: `${topic}preset_mode/state`,
             preset_mode_command_topic: `${topic}preset_mode/set`,
             tilt_state_topic: `${topic}tilt/state`,
-            tilt_status_topic: `${topic}tilt/status`,            
+            tilt_status_topic: `${topic}tilt/status`,
             tilt_command_topic: `${topic}tilt/set`,
             battery_level_topic: `${topic}battery_level/state`,
             charging_topic: `${topic}charging/state`,
@@ -93,14 +94,7 @@ module.exports = class {
             unique_id,
             state_topic,
             json_attr_t,
-            device: {
-                configuration_url: 'https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt',
-                name: 'Home Assistant',
-                identifiers: 'ha-mqtt-Home Assistant',
-                manufacturer: "shaonianzhentan",
-                model: 'HA-MQTT',
-                sw_version: pk.version
-            }
+            device: this.device_info
         }, data)
         // Delete the property of NULL
         Object.keys(mergeConfig).forEach(key => {
