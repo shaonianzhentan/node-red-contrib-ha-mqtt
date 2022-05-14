@@ -1,0 +1,114 @@
+[
+    {
+        "id": "d4d555b1b09086d2",
+        "type": "tab",
+        "label": "Device Tracker",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "675fdde55d350f6f",
+        "type": "ha-mqtt-device_tracker",
+        "z": "d4d555b1b09086d2",
+        "server": "8672849eb803c6e3",
+        "device": "02c940ba547f5196",
+        "name": "设备检测",
+        "config": "{\"source_type\":\"gps\"}",
+        "x": 420,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "78388587dcc9a3c2",
+        "type": "inject",
+        "z": "d4d555b1b09086d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "attributes",
+                "v": "{ \"key\": \"value\" }",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "home",
+        "payloadType": "str",
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "675fdde55d350f6f"
+            ]
+        ]
+    },
+    {
+        "id": "c8b3033f2fae50f1",
+        "type": "inject",
+        "z": "d4d555b1b09086d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "attributes",
+                "v": "{ \"key\": \"test\" }",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "not_home",
+        "payloadType": "str",
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "675fdde55d350f6f"
+            ]
+        ]
+    },
+    {
+        "id": "8672849eb803c6e3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "02c940ba547f5196",
+        "type": "ha-mqtt-device",
+        "name": "测试设备",
+        "config": ""
+    }
+]

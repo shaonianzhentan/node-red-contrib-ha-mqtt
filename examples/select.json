@@ -1,0 +1,104 @@
+[
+    {
+        "id": "843a2634a6c06fad",
+        "type": "tab",
+        "label": "Select",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "01b6fb4e2d6ebde0",
+        "type": "ha-mqtt-select",
+        "z": "843a2634a6c06fad",
+        "server": "8672849eb803c6e3",
+        "device": "02c940ba547f5196",
+        "name": "选择器",
+        "config": "{\"options\":[\"one\",\"two\",\"three\"]}",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "655e7fb261b13034"
+            ]
+        ]
+    },
+    {
+        "id": "655e7fb261b13034",
+        "type": "debug",
+        "z": "843a2634a6c06fad",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d0e3deefdf8cdba5",
+        "type": "inject",
+        "z": "843a2634a6c06fad",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "attributes",
+                "v": "{\"key\":\"value\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "one",
+        "payloadType": "str",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "01b6fb4e2d6ebde0"
+            ]
+        ]
+    },
+    {
+        "id": "8672849eb803c6e3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "02c940ba547f5196",
+        "type": "ha-mqtt-device",
+        "name": "测试设备",
+        "config": ""
+    }
+]
