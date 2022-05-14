@@ -1,0 +1,120 @@
+[
+    {
+        "id": "8830641e75c47a6a",
+        "type": "tab",
+        "label": "Light",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2401554c9c2c7677",
+        "type": "ha-mqtt-light",
+        "z": "8830641e75c47a6a",
+        "server": "8672849eb803c6e3",
+        "device": "02c940ba547f5196",
+        "name": "灯",
+        "config": "{\"effect_list\":[\"flash\",\"scan\",\"测试\"]}",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "12209f9456a1c17b"
+            ],
+            [
+                "12209f9456a1c17b"
+            ],
+            [
+                "12209f9456a1c17b"
+            ]
+        ]
+    },
+    {
+        "id": "822bc53ee624be26",
+        "type": "inject",
+        "z": "8830641e75c47a6a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "attributes",
+                "v": "{ \"key\": \"value\" }",
+                "vt": "str"
+            },
+            {
+                "p": "brightness",
+                "v": "100",
+                "vt": "str"
+            },
+            {
+                "p": "effect",
+                "v": "flash",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "2401554c9c2c7677"
+            ]
+        ]
+    },
+    {
+        "id": "12209f9456a1c17b",
+        "type": "debug",
+        "z": "8830641e75c47a6a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "8672849eb803c6e3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "02c940ba547f5196",
+        "type": "ha-mqtt-device",
+        "name": "测试设备",
+        "config": ""
+    }
+]
