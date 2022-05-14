@@ -1,3 +1,5 @@
+const HomeAssistant = require('../HomeAssistant')
+
 module.exports = function (RED) {
     RED.nodes.registerType('ha-mqtt-discovery', function (cfg) {
         RED.nodes.createNode(this, cfg);
@@ -6,7 +8,7 @@ module.exports = function (RED) {
             this.server.register(this)
             const node = this
             node.on('input', function (msg) {
-                node.server.client.publish('homeassistant/status', msg.status || 'online')
+                HomeAssistant.AutoDiscovery(RED.nodes)
                 this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} ${RED._("autoDiscoverySent")}` });
             })
         } else {

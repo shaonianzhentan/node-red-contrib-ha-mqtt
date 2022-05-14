@@ -9,7 +9,7 @@ function object_id(name) {
 }
 
 const DiscoveryDevice = {}
-module.exports = class {
+module.exports = class HomeAssistant {
     constructor(node, cfg, device_info) {
         this.device_info = device_info
         node.config = cfg.config
@@ -68,8 +68,20 @@ module.exports = class {
         return pk.version
     }
 
+    static AutoDiscovery(nodes) {
+        for (const node_id in DiscoveryDevice) {
+            // delete empty nodes
+            if (nodes && nodes.getNode(node_id) == null) {
+                delete DiscoveryDevice[node_id]
+                continue
+            }
+            DiscoveryDevice[node_id]()
+        }
+    }
+
     discovery(config, callback) {
-        DiscoveryDevice[this.config.unique_id] = () => {
+        const node_id = this.node.id
+        DiscoveryDevice[node_id] = () => {
             if (this.node.config) {
                 config = Object.assign(config, JSON.parse(this.node.config))
             }
@@ -78,13 +90,11 @@ module.exports = class {
         }
         this.subscribe('homeassistant/status', (payload) => {
             if (payload === 'online') {
-                for (const key in DiscoveryDevice) {
-                    DiscoveryDevice[key]()
-                }
+                HomeAssistant.AutoDiscovery()
             }
         })
         // publish config
-        DiscoveryDevice[this.config.unique_id]()
+        DiscoveryDevice[node_id]()
     }
 
     publish_config(data) {
