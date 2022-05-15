@@ -61,8 +61,10 @@ module.exports = function (RED) {
                     preset_mode_state_topic,
                     preset_mode_command_topic,
                     preset_modes: ["auto", "smart", "whoosh", "eco", "breeze"],
-                    speed_range_min: 1,
-                    speed_range_max: 10
+                    payload_oscillation_on: "ON",
+                    payload_oscillation_off: "OFF",
+                    speed_range_min: 0,
+                    speed_range_max: 100
                 }
                 ha.discovery(discoveryConfig, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });

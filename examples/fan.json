@@ -1,0 +1,153 @@
+[
+    {
+        "id": "5d477157ccf10c1c",
+        "type": "tab",
+        "label": "Fan",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "eabda534149a30fb",
+        "type": "ha-mqtt-fan",
+        "z": "5d477157ccf10c1c",
+        "server": "8672849eb803c6e3",
+        "device": "02c940ba547f5196",
+        "name": "风扇",
+        "config": "{\"preset_modes\":[\"自动\",\"智能\",\"测试\"],\"speed_range_min\":1,\"speed_range_max\":100}",
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "d931b1854698eade"
+            ],
+            [
+                "d931b1854698eade"
+            ],
+            [
+                "d931b1854698eade"
+            ],
+            [
+                "d931b1854698eade"
+            ]
+        ]
+    },
+    {
+        "id": "95bc4b8c218696e3",
+        "type": "inject",
+        "z": "5d477157ccf10c1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "attributes",
+                "v": "{\"key\":\"value\"}",
+                "vt": "json"
+            },
+            {
+                "p": "oscillation",
+                "v": "ON",
+                "vt": "str"
+            },
+            {
+                "p": "percentage",
+                "v": "20",
+                "vt": "num"
+            },
+            {
+                "p": "preset_mode",
+                "v": "自动",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "eabda534149a30fb"
+            ]
+        ]
+    },
+    {
+        "id": "d931b1854698eade",
+        "type": "debug",
+        "z": "5d477157ccf10c1c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "db91698e7e216a15",
+        "type": "inject",
+        "z": "5d477157ccf10c1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "eabda534149a30fb"
+            ]
+        ]
+    },
+    {
+        "id": "8672849eb803c6e3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "02c940ba547f5196",
+        "type": "ha-mqtt-device",
+        "name": "测试设备",
+        "config": ""
+    }
+]
