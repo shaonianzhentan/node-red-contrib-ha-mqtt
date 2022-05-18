@@ -34,10 +34,10 @@
         outputs: 4,
         inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
         outputLabels: [
-            RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
             RED._("node-red-contrib-ha-mqtt/common:ioLabels.temperature"), 
-            RED._("node-red-contrib-ha-mqtt/common:ioLabels.mode"), 
-            RED._("node-red-contrib-ha-mqtt/common:ioLabels.swingMode")
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.mode"),
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.swingMode"),
+            RED._("node-red-contrib-ha-mqtt/common:ioLabels.fanMode")
         ],
         label: function () {
             return this.name || "climate";
