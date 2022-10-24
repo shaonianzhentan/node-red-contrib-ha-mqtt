@@ -146,4 +146,8 @@ module.exports = class HomeAssistant {
             this.node.status({ fill: "green", shape: "ring", text: `${msg}：${payload}` });
         }
     }
+
+    isEmpty(value) {
+        return value !== 0 && !value
+    }
 }
