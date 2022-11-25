@@ -1,0 +1,104 @@
+[
+  {
+    "id": "48eba92fd8813134",
+    "type": "tab",
+    "label": "Binary Sensor",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "9debedd7c05d5b7e",
+    "type": "ha-mqtt-binary_sensor",
+    "z": "48eba92fd8813134",
+    "server": "8672849eb803c6e3",
+    "device": "02c940ba547f5196",
+    "name": "二进制传感器",
+    "config": "",
+    "x": 560,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "e2a3718043e8e552",
+    "type": "inject",
+    "z": "48eba92fd8813134",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "ON",
+    "payloadType": "str",
+    "x": 310,
+    "y": 140,
+    "wires": [
+      [
+        "9debedd7c05d5b7e"
+      ]
+    ]
+  },
+  {
+    "id": "947a299630511983",
+    "type": "inject",
+    "z": "48eba92fd8813134",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "OFF",
+    "payloadType": "str",
+    "x": 310,
+    "y": 220,
+    "wires": [
+      [
+        "9debedd7c05d5b7e"
+      ]
+    ]
+  },
+  {
+    "id": "8672849eb803c6e3",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "sessionExpiry": ""
+  },
+  {
+    "id": "02c940ba547f5196",
+    "type": "ha-mqtt-device",
+    "name": "测试设备",
+    "config": ""
+  }
+]

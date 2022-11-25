@@ -29,11 +29,7 @@ module.exports = function (RED) {
             })
             try {
                 ha.discovery({
-                    command_topic: ha.config.command_topic,
-                    payload_disarm: 'DISARM',
-                    payload_arm_home: 'ARM_HOME',
-                    payload_arm_away: 'ARM_AWAY',
-                    payload_arm_night: 'ARM_NIGHT'
+                    command_topic: ha.config.command_topic
                 }, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
                 })

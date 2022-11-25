@@ -1,0 +1,153 @@
+[
+  {
+    "id": "e9c523be306a9512",
+    "type": "tab",
+    "label": "Device Automation",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "bcdf90787dc96580",
+    "type": "ha-mqtt-device_automation",
+    "z": "e9c523be306a9512",
+    "server": "8672849eb803c6e3",
+    "device": "02c940ba547f5196",
+    "name": "键盘",
+    "action": "click",
+    "x": 540,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "1dfef1143735ec20",
+    "type": "inject",
+    "z": "e9c523be306a9512",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "click",
+    "payloadType": "str",
+    "x": 270,
+    "y": 140,
+    "wires": [
+      [
+        "bcdf90787dc96580"
+      ]
+    ]
+  },
+  {
+    "id": "c6943bb540316b18",
+    "type": "ha-mqtt-device_automation",
+    "z": "e9c523be306a9512",
+    "server": "8672849eb803c6e3",
+    "device": "02c940ba547f5196",
+    "name": "键盘",
+    "action": "double_click",
+    "x": 570,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "837eda4def88c68a",
+    "type": "ha-mqtt-device_automation",
+    "z": "e9c523be306a9512",
+    "server": "8672849eb803c6e3",
+    "device": "02c940ba547f5196",
+    "name": "键盘",
+    "action": "triple_click",
+    "x": 560,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "9067e7fd320d889f",
+    "type": "inject",
+    "z": "e9c523be306a9512",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "double_click",
+    "payloadType": "str",
+    "x": 290,
+    "y": 200,
+    "wires": [
+      [
+        "c6943bb540316b18"
+      ]
+    ]
+  },
+  {
+    "id": "9d7844bcb7869199",
+    "type": "inject",
+    "z": "e9c523be306a9512",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "triple_click",
+    "payloadType": "str",
+    "x": 280,
+    "y": 260,
+    "wires": [
+      [
+        "837eda4def88c68a"
+      ]
+    ]
+  },
+  {
+    "id": "8672849eb803c6e3",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "sessionExpiry": ""
+  },
+  {
+    "id": "02c940ba547f5196",
+    "type": "ha-mqtt-device",
+    "name": "测试设备",
+    "config": ""
+  }
+]
