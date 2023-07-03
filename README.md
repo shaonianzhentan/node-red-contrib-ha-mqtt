@@ -12,7 +12,7 @@ Generate MQTT entities in Home Assistant
 
 English | [简体中文](README.zh.md)
 
-Reference document: https://www.home-assistant.io/docs/mqtt/discovery/
+Reference document: https://www.home-assistant.io/integrations/mqtt#mqtt-discovery
 
 ## Supported languages
 - ✔️ English (en-US)

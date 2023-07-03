@@ -13,7 +13,7 @@
 
 [English](README.md) | 简体中文
 
-参考文档：https://www.home-assistant.io/docs/mqtt/discovery/
+参考文档：https://www.home-assistant.io/integrations/mqtt#mqtt-discovery
 
 ## 支持组件
 - [x] alarm_control_panel - 警报面板

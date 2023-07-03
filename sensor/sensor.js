@@ -24,8 +24,9 @@ module.exports = function (RED) {
             })
 
             try {
-                const discoveryConfig = {
-                    unit_of_measurement: cfg.unit_of_measurement
+                const discoveryConfig = {}
+                if(cfg.unit_of_measurement){
+                    discoveryConfig.unit_of_measurement = cfg.unit_of_measurement
                 }
                 ha.discovery(discoveryConfig, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
