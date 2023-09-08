@@ -16,26 +16,33 @@
 参考文档：https://www.home-assistant.io/integrations/mqtt#mqtt-discovery
 
 ## 支持组件
-- [x] alarm_control_panel - 警报面板
-- [x] binary_sensor - 二元传感器
-- [x] button - 按钮
-- [x] camera - 摄像头
-- [x] climate - 空调
-- [x] cover - 窗帘
-- [x] device_tracker - 设备检测
-- [x] device_automation - 设备自动化
-- [x] fan - 风扇
-- [x] humidifier - 加湿器
-- [x] light - 灯
-- [x] lock - 锁
-- [x] number - 数字
-- [x] scene - 场景
-- [x] select - 选择器
-- [x] sensor - 传感器
-- [x] switch - 开关
-- [x] siren - 警报器
-- [x] tag - 标签
-- [x] vacuum - 扫地机器人
+- ✔️  [alarm_control_panel - 警报面板](https://www.home-assistant.io/integrations/alarm_control_panel.mqtt/)
+- ✔️  [binary_sensor - 二元传感器](https://www.home-assistant.io/integrations/binary_sensor.mqtt/)
+- ✔️  [button - 按钮](https://www.home-assistant.io/integrations/button.mqtt/)
+- ✔️  [camera - 摄像头](https://www.home-assistant.io/integrations/camera.mqtt/)
+- ✔️  [climate - 空调](https://www.home-assistant.io/integrations/climate.mqtt/)
+- ✔️  [cover - 窗帘](https://www.home-assistant.io/integrations/cover.mqtt/)
+- ✔️  [device_tracker - 设备检测](https://www.home-assistant.io/integrations/device_tracker.mqtt/)
+- ✔️  [device_automation - 设备自动化](https://www.home-assistant.io/integrations/device_trigger.mqtt/)
+- ❌ [event - 事件](https://www.home-assistant.io/integrations/event.mqtt/)
+- ✔️  [fan - 风扇](https://www.home-assistant.io/integrations/fan.mqtt/)
+- ✔️  [humidifier - 加湿器](https://www.home-assistant.io/integrations/humidifier.mqtt/)
+- ❌ [image - 图像](https://www.home-assistant.io/integrations/image.mqtt/)
+- ❌ [lawn_mower - 割草机](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
+- ✔️  [light - 灯](https://www.home-assistant.io/integrations/light.mqtt/)
+- ✔️  [lock - 锁](https://www.home-assistant.io/integrations/lock.mqtt/)
+- ✔️  [number - 数字](https://www.home-assistant.io/integrations/number.mqtt/)
+- ✔️  [scene - 场景](https://www.home-assistant.io/integrations/scene.mqtt/)
+- ✔️  [select - 选择器](https://www.home-assistant.io/integrations/select.mqtt/)
+- ✔️  [sensor - 传感器](https://www.home-assistant.io/integrations/sensor.mqtt/)
+- ✔️  [switch - 开关](https://www.home-assistant.io/integrations/switch.mqtt/)
+- ✔️  [siren - 警报器](https://www.home-assistant.io/integrations/siren.mqtt/)
+- ❌ [udpate - 更新](https://www.home-assistant.io/integrations/update.mqtt/)
+- ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
+- ❌ [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
+- ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
+- ❌ [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
+
 
 自动发现
 ```yaml
