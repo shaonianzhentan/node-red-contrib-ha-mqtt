@@ -41,7 +41,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [sensor](https://www.home-assistant.io/integrations/sensor.mqtt/)
 - ✔️  [switch](https://www.home-assistant.io/integrations/switch.mqtt/)
 - ✔️  [siren](https://www.home-assistant.io/integrations/siren.mqtt/)
-- ❌  [update](https://www.home-assistant.io/integrations/update.mqtt/)
+- ✔️  [update](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum](https://www.home-assistant.io/integrations/vacuum.mqtt/)

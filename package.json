@@ -35,6 +35,7 @@
       "switch": "switch/switch.js",
       "tag": "tag/tag.js",
       "text": "text/text.js",
+      "update": "update/update.js",
       "vacuum": "vacuum/vacuum.js"
     }
   },

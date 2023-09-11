@@ -39,7 +39,7 @@
 - ✔️  [sensor - 传感器](https://www.home-assistant.io/integrations/sensor.mqtt/)
 - ✔️  [switch - 开关](https://www.home-assistant.io/integrations/switch.mqtt/)
 - ✔️  [siren - 警报器](https://www.home-assistant.io/integrations/siren.mqtt/)
-- ❌  [update - 更新](https://www.home-assistant.io/integrations/update.mqtt/)
+- ✔️  [update - 更新](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
