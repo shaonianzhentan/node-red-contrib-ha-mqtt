@@ -14,6 +14,8 @@ English | [简体中文](README.zh.md)
 
 Reference document: https://www.home-assistant.io/integrations/mqtt#mqtt-discovery
 
+Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
+
 ## Supported languages
 - ✔️ English (en-US)
 - ✔️ Chinese (zh)
@@ -26,11 +28,11 @@ Reference document: https://www.home-assistant.io/integrations/mqtt#mqtt-discove
 - ✔️  [cover](https://www.home-assistant.io/integrations/cover.mqtt/)
 - ✔️  [device_tracker](https://www.home-assistant.io/integrations/device_tracker.mqtt/)
 - ✔️  [device_automation](https://www.home-assistant.io/integrations/device_trigger.mqtt/)
-- ❌ [event](https://www.home-assistant.io/integrations/event.mqtt/)
+- ❌  [event](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier](https://www.home-assistant.io/integrations/humidifier.mqtt/)
-- ❌ [image](https://www.home-assistant.io/integrations/image.mqtt/)
-- ❌ [lawn_mower](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
+- ❌  [image](https://www.home-assistant.io/integrations/image.mqtt/)
+- ❌  [lawn_mower](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock](https://www.home-assistant.io/integrations/lock.mqtt/)
 - ✔️  [number](https://www.home-assistant.io/integrations/number.mqtt/)
@@ -39,11 +41,11 @@ Reference document: https://www.home-assistant.io/integrations/mqtt#mqtt-discove
 - ✔️  [sensor](https://www.home-assistant.io/integrations/sensor.mqtt/)
 - ✔️  [switch](https://www.home-assistant.io/integrations/switch.mqtt/)
 - ✔️  [siren](https://www.home-assistant.io/integrations/siren.mqtt/)
-- ❌ [udpate](https://www.home-assistant.io/integrations/update.mqtt/)
+- ❌  [update](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag](https://www.home-assistant.io/integrations/tag.mqtt/)
-- ❌ [text](https://www.home-assistant.io/integrations/text.mqtt/)
+- ❌  [text](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum](https://www.home-assistant.io/integrations/vacuum.mqtt/)
-- ❌ [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
+- ❌  [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
 Auto-discovery
 ```yaml
