@@ -32,7 +32,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [fan](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier](https://www.home-assistant.io/integrations/humidifier.mqtt/)
 - ✔️  [image](https://www.home-assistant.io/integrations/image.mqtt/)
-- ❌  [lawn_mower](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
+- ✔️  [lawn_mower](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock](https://www.home-assistant.io/integrations/lock.mqtt/)
 - ✔️  [number](https://www.home-assistant.io/integrations/number.mqtt/)

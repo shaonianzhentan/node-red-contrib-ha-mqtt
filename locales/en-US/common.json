@@ -8,6 +8,9 @@
     },
     "ioLabels": {
         "state": "State",
+        "start": "Start",
+        "pause": "Pause",
+        "dock": "Dock",
         "temperature": "Temperature", 
         "mode": "Mode", 
         "tilt": "Tilt",

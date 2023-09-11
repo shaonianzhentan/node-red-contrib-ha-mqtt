@@ -30,7 +30,7 @@
 - ✔️  [fan - 风扇](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier - 加湿器](https://www.home-assistant.io/integrations/humidifier.mqtt/)
 - ✔️  [image - 图像](https://www.home-assistant.io/integrations/image.mqtt/)
-- ❌  [lawn_mower - 割草机](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
+- ✔️  [lawn_mower - 割草机](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light - 灯](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock - 锁](https://www.home-assistant.io/integrations/lock.mqtt/)
 - ✔️  [number - 数字](https://www.home-assistant.io/integrations/number.mqtt/)

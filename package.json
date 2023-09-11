@@ -26,6 +26,7 @@
       "fan": "fan/fan.js",
       "humidifier": "humidifier/humidifier.js",
       "image": "image/image.js",
+      "lawn_mower": "lawn_mower/lawn_mower.js",
       "light": "light/light.js",
       "lock": "lock/lock.js",
       "number": "number/number.js",
