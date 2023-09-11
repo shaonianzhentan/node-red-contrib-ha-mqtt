@@ -31,7 +31,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ❌  [event](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier](https://www.home-assistant.io/integrations/humidifier.mqtt/)
-- ❌  [image](https://www.home-assistant.io/integrations/image.mqtt/)
+- ✔️  [image](https://www.home-assistant.io/integrations/image.mqtt/)
 - ❌  [lawn_mower](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock](https://www.home-assistant.io/integrations/lock.mqtt/)
@@ -43,7 +43,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [siren](https://www.home-assistant.io/integrations/siren.mqtt/)
 - ❌  [update](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag](https://www.home-assistant.io/integrations/tag.mqtt/)
-- ❌  [text](https://www.home-assistant.io/integrations/text.mqtt/)
+- ✔️  [text](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum](https://www.home-assistant.io/integrations/vacuum.mqtt/)
 - ❌  [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 

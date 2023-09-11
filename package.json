@@ -34,6 +34,7 @@
       "siren": "siren/siren.js",
       "switch": "switch/switch.js",
       "tag": "tag/tag.js",
+      "text": "text/text.js",
       "vacuum": "vacuum/vacuum.js"
     }
   },

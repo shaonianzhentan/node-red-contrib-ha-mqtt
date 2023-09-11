@@ -29,7 +29,7 @@
 - ❌  [event - 事件](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan - 风扇](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier - 加湿器](https://www.home-assistant.io/integrations/humidifier.mqtt/)
-- ❌  [image - 图像](https://www.home-assistant.io/integrations/image.mqtt/)
+- ✔️  [image - 图像](https://www.home-assistant.io/integrations/image.mqtt/)
 - ❌  [lawn_mower - 割草机](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light - 灯](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock - 锁](https://www.home-assistant.io/integrations/lock.mqtt/)
@@ -41,7 +41,7 @@
 - ✔️  [siren - 警报器](https://www.home-assistant.io/integrations/siren.mqtt/)
 - ❌  [update - 更新](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
-- ❌  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
+- ✔️  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
 - ❌  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
