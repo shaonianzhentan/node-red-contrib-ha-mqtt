@@ -8,6 +8,9 @@
     },
     "ioLabels": {
         "state": "状态",
+        "start": "开始",
+        "pause": "暂停",
+        "dock": "停靠",
         "temperature": "温度", 
         "mode": "模式", 
         "tilt": "倾斜",

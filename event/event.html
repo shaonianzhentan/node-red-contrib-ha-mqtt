@@ -1,0 +1,49 @@
+<script type="text/html" data-template-name="ha-mqtt-event">
+    <div class="form-row">
+        <label for="node-input-server" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttServer"></label>
+        <select id="node-input-server"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-device" data-i18n="node-red-contrib-ha-mqtt/common:label.deviceName"></label>
+        <select type="text" id="node-input-device" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.deviceName"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name" data-i18n="node-red-contrib-ha-mqtt/common:label.entityName"></label> 
+        <input type="text" id="node-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.entityName">
+    </div>
+    <div class="form-row">
+      <label for="node-input-types" data-i18n="label.type"></label>
+      <input type="text" id="node-input-types" data-i18n="[placeholder]placeholder.type">
+  </div>
+    <div class="form-row">
+        <a href="https://www.home-assistant.io/integrations/event.mqtt/" target="_blank" style="color:blue;">
+            <label for="node-input-config" data-i18n="node-red-contrib-ha-mqtt/common:label.config"></label>   
+        </a>         
+        <input type="text" id="node-input-config" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.config">
+    </div>
+</script>
+<script type="text/javascript">
+  RED.nodes.registerType('ha-mqtt-event', {
+    category: RED._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
+    color: '#C0DEED',
+    icon: "font-awesome/fa-info",
+    paletteLabel: 'Event',
+    defaults: {
+      server: { value: "", type: "mqtt-broker", required: true },
+      device: { value: "", type: "ha-mqtt-device", required: true },
+      name: { value: "", required: true },
+      types: { value: "", required: true },
+      config: { value: "" }
+    },
+    inputs: 1,
+    outputs: 0,
+    inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
+    label: function () {
+      return this.name || "event";
+    },
+    oneditprepare: function () {
+      $("#node-input-config").typedInput({ type: "json", types: ["json"] })
+    }
+  });
+
+</script>

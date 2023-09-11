@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "Generate MQTT entities in HomeAssistant",
   "keywords": [
     "node-red",
@@ -22,8 +22,11 @@
       "cover": "cover/cover.js",
       "device_automation": "device_automation/device_automation.js",
       "device_tracker": "device_tracker/device_tracker.js",
+      "event": "event/event.js",
       "fan": "fan/fan.js",
       "humidifier": "humidifier/humidifier.js",
+      "image": "image/image.js",
+      "lawn_mower": "lawn_mower/lawn_mower.js",
       "light": "light/light.js",
       "lock": "lock/lock.js",
       "number": "number/number.js",
@@ -33,6 +36,8 @@
       "siren": "siren/siren.js",
       "switch": "switch/switch.js",
       "tag": "tag/tag.js",
+      "text": "text/text.js",
+      "update": "update/update.js",
       "vacuum": "vacuum/vacuum.js"
     }
   },
