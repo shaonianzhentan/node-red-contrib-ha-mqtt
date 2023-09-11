@@ -28,7 +28,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [cover](https://www.home-assistant.io/integrations/cover.mqtt/)
 - ✔️  [device_tracker](https://www.home-assistant.io/integrations/device_tracker.mqtt/)
 - ✔️  [device_automation](https://www.home-assistant.io/integrations/device_trigger.mqtt/)
-- ❌  [event](https://www.home-assistant.io/integrations/event.mqtt/)
+- ✔️  [event](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier](https://www.home-assistant.io/integrations/humidifier.mqtt/)
 - ✔️  [image](https://www.home-assistant.io/integrations/image.mqtt/)

@@ -1,0 +1,8 @@
+{   
+    "label": {
+        "type": "Event Types"
+    },
+    "placeholder": {
+        "type": "single,double,long_press"
+    }
+}

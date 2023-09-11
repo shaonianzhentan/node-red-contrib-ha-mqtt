@@ -22,6 +22,7 @@
       "cover": "cover/cover.js",
       "device_automation": "device_automation/device_automation.js",
       "device_tracker": "device_tracker/device_tracker.js",
+      "event": "event/event.js",
       "fan": "fan/fan.js",
       "humidifier": "humidifier/humidifier.js",
       "image": "image/image.js",

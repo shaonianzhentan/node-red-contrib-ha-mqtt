@@ -26,7 +26,7 @@
 - ✔️  [cover - 窗帘](https://www.home-assistant.io/integrations/cover.mqtt/)
 - ✔️  [device_tracker - 设备检测](https://www.home-assistant.io/integrations/device_tracker.mqtt/)
 - ✔️  [device_automation - 设备自动化](https://www.home-assistant.io/integrations/device_trigger.mqtt/)
-- ❌  [event - 事件](https://www.home-assistant.io/integrations/event.mqtt/)
+- ✔️  [event - 事件](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan - 风扇](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier - 加湿器](https://www.home-assistant.io/integrations/humidifier.mqtt/)
 - ✔️  [image - 图像](https://www.home-assistant.io/integrations/image.mqtt/)
