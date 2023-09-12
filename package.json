@@ -58,6 +58,7 @@
   },
   "homepage": "https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt#readme",
   "dependencies": {
+    "gcoord": "^1.0.5",
     "node-pinyin": "^0.2.3"
   }
 }
