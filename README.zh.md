@@ -43,7 +43,7 @@
 - ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
-- ❌  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
+- ✔️  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
 
 自动发现

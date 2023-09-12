@@ -38,7 +38,8 @@
       "tag": "tag/tag.js",
       "text": "text/text.js",
       "update": "update/update.js",
-      "vacuum": "vacuum/vacuum.js"
+      "vacuum": "vacuum/vacuum.js",
+      "water_heater": "water_heater/water_heater.js"
     }
   },
   "engines": {
