@@ -43,7 +43,7 @@
 - ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
-- ❌  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
+- ✔️  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
 
 自动发现
@@ -59,3 +59,8 @@ payload: online
 
 ## 关注我的微信订阅号，了解更多HomeAssistant相关知识
 <img src="https://cdn.jsdelivr.net/gh/shaonianzhentan/ha-docs@master/docs/img/wechat-channel.png" height="160" alt="HomeAssistant家庭助理" title="HomeAssistant家庭助理"> 
+
+## 引用项目
+
+- https://github.com/toobug/pinyin
+- https://github.com/hujiulong/gcoord

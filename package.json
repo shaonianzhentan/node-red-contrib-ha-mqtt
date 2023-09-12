@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Generate MQTT entities in HomeAssistant",
   "keywords": [
     "node-red",
@@ -38,7 +38,8 @@
       "tag": "tag/tag.js",
       "text": "text/text.js",
       "update": "update/update.js",
-      "vacuum": "vacuum/vacuum.js"
+      "vacuum": "vacuum/vacuum.js",
+      "water_heater": "water_heater/water_heater.js"
     }
   },
   "engines": {
@@ -58,6 +59,7 @@
   },
   "homepage": "https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt#readme",
   "dependencies": {
+    "gcoord": "^1.0.5",
     "node-pinyin": "^0.2.3"
   }
 }

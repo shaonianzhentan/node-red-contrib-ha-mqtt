@@ -45,7 +45,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [tag](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum](https://www.home-assistant.io/integrations/vacuum.mqtt/)
-- ❌  [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
+- ✔️  [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
 Auto-discovery
 ```yaml
@@ -56,3 +56,8 @@ payload: online
 ## If this project is helpful to you, please donate a cup of <del style="font-size: 14px;">coffee</del> milk tea 😘
 
 <a href="https://paypal.me/shaonianzhentan"><img src="https://raw.githubusercontent.com/shaonianzhentan/image/main/picture/paypal.me.png" height="300" alt="https://paypal.me/shaonianzhentan" title="https://paypal.me/shaonianzhentan"></a>
+
+## Reference Projects
+
+- https://github.com/toobug/pinyin
+- https://github.com/hujiulong/gcoord
