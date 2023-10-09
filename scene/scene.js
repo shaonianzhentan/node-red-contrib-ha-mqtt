@@ -7,7 +7,7 @@ module.exports = function (RED) {
         if (this.server) {
             this.server.register(this)
             const deviceNode = RED.nodes.getNode(cfg.device);
-            const ha = new HomeAssistant(this, cfg, deviceNode.device_info)
+            const ha = new HomeAssistant(this, cfg, deviceNode)
             const node = this
             const { command_topic } = ha.config
 

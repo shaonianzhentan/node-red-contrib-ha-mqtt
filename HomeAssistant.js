@@ -10,7 +10,8 @@ function object_id(name) {
 
 const DiscoveryDevice = {}
 module.exports = class HomeAssistant {
-  constructor(node, cfg, device_info) {
+  constructor(node, cfg, { device_info, retain }) {
+    this.retain = retain === true
     this.device_info = device_info
     node.config = cfg.config
     this.node = node
@@ -144,7 +145,8 @@ module.exports = class HomeAssistant {
         payload = String(payload)
         break;
     }
-    this.node.server.client.publish(topic, payload)
+
+    this.node.server.client.publish(topic, payload, { retain: this.retain })
     if (msg) {
       this.node.status({ fill: "green", shape: "ring", text: `${msg}：${payload}` });
     }
