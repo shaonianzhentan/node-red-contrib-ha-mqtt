@@ -9,7 +9,7 @@ module.exports = function (RED) {
             const subtype = cfg.name
             cfg.name = `${subtype}${cfg.action}`
             const deviceNode = RED.nodes.getNode(cfg.device);
-            const ha = new HomeAssistant(this, cfg, deviceNode.device_info)
+            const ha = new HomeAssistant(this, cfg, deviceNode)
             const node = this
             const { name, state_topic } = ha.config
             node.on('input', function (msg) {

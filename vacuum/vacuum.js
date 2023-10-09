@@ -7,10 +7,10 @@ module.exports = function (RED) {
         if (this.server) {
             this.server.register(this)
             const deviceNode = RED.nodes.getNode(cfg.device);
-            const ha = new HomeAssistant(this, cfg, deviceNode.device_info)
+            const ha = new HomeAssistant(this, cfg, deviceNode)
             const node = this
             node.on('input', function (msg) {
-                const { payload, attributes, battery_level, charging, cleaning, docked, error, fan_speed } = msg
+                const { payload, attributes } = msg
                 try {
                     if (payload) {
                         ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
@@ -18,36 +18,11 @@ module.exports = function (RED) {
                     if (attributes) {
                         ha.publish(ha.config.json_attr_t, attributes, RED._(`node-red-contrib-ha-mqtt/common:publish.attributes`))
                     }
-                    // if (battery_level) {
-                    //     ha.publish(ha.config.battery_level_topic, battery_level, RED._(`node-red-contrib-ha-mqtt/common:publish.battery_level`))
-                    // }
-                    // if (charging) {
-                    //     ha.publish(ha.config.charging_topic, charging, RED._(`node-red-contrib-ha-mqtt/common:publish.charging`))
-                    // }
-                    // if (cleaning) {
-                    //     ha.publish(ha.config.cleaning_topic, cleaning, RED._(`node-red-contrib-ha-mqtt/common:publish.cleaning`))
-                    // }
-                    // if (docked) {
-                    //     ha.publish(ha.config.docked_topic, docked, RED._(`node-red-contrib-ha-mqtt/common:publish.docked`))
-                    // }
-                    // if (error) {
-                    //     ha.publish(ha.config.error_topic, error, RED._(`node-red-contrib-ha-mqtt/common:publish.error`))
-                    // }
-                    // if (fan_speed) {
-                    //     ha.publish(ha.config.fan_speed_topic, fan_speed, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_speed`))
-                    // }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
                 }
             })
-            const { command_topic, send_command_topic,
-                // battery_level_topic,
-                // charging_topic,
-                // cleaning_topic,
-                // docked_topic,
-                // error_topic,
-                // fan_speed_topic,
-                set_fan_speed_topic, } = ha.config
+            const { command_topic, send_command_topic, set_fan_speed_topic, } = ha.config
             ha.subscribe(command_topic, (payload) => {
                 ha.send_payload(payload, 1, 3)
                 ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
@@ -64,12 +39,6 @@ module.exports = function (RED) {
                 const discoveryConfig = {
                     command_topic,
                     send_command_topic,
-                    // battery_level_topic,
-                    // charging_topic,
-                    // cleaning_topic,
-                    // docked_topic,
-                    // error_topic,
-                    // fan_speed_topic,
                     set_fan_speed_topic,
                     fan_speed_list: ["min", "medium", "high", "max"],
                     supported_features: [
