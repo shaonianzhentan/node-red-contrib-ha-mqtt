@@ -19,7 +19,7 @@ module.exports = function (RED) {
             } = ha.config
 
             node.on('input', function (msg) {
-                const { payload, attributes, mode, temperature } = msg
+                const { payload, attributes, mode, temperature, fan_state, swing_state } = msg
                 try {
                     if (payload) {
                         ha.publish(current_temperature_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.current_temperature`))
@@ -32,6 +32,12 @@ module.exports = function (RED) {
                     }
                     if (temperature) {
                         ha.publish(temperature_state_topic, temperature, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
+                    }
+					if (fan_state) {
+                        ha.publish(fan_mode_state_topic, fan_state, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_state`))
+                    }
+					if (swing_state) {
+                        ha.publish(swing_mode_state_topic, swing_state, RED._(`node-red-contrib-ha-mqtt/common:publish.swing_state`))
                     }
                 } catch (ex) {
                     node.status({ fill: "red", shape: "ring", text: ex });
@@ -64,7 +70,9 @@ module.exports = function (RED) {
                     temperature_command_topic,
                     mode_command_topic,
                     fan_mode_command_topic,
+					fan_mode_state_topic,
                     swing_mode_command_topic,
+					swing_mode_state_topic,
                     swing_modes: ["on", "off"],
                     modes: ["auto", "off", "cool", "heat", "dry", "fan_only"],
                     fan_modes: ["auto", "low", "medium", "high"]
