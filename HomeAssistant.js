@@ -38,6 +38,7 @@ module.exports = class HomeAssistant {
       brightness_state_topic: `${topic}brightness/state`,
       brightness_command_topic: `${topic}brightness/set`,
       current_temperature_topic: `${topic}current_temperature`,
+      current_humidity_topic: `${topic}current_humidity`,
       target_humidity_state_topic: `${topic}target_humidity/state`,
       target_humidity_command_topic: `${topic}target_humidity/set`,
       temperature_state_topic: `${topic}temperature/state`,
