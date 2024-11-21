@@ -1,23 +1,25 @@
 <script type="text/html" data-help-name="ha-mqtt-climate">
-    <p>空调</p>
-    <h3>输入</h3>
-    <dl class="message-properties">
-        <dt>payload <span class="property-type">number</span></dt>
-        <dt>attributes <span class="property-type">object</span></dt>
-        <dt>mode <span class="property-type">string</span></dt>
-        <dt>temperature <span class="property-type">number</span></dt>
-        <dt>current_humidity <span class="property-type">number</span></dt>
-        <dt>target_humidity <span class="property-type">number</span></dt>
-        <dt>swing_mode <span class="property-type">string</span></dt>
-        <dt>fan_mode <span class="property-type">string</span></dt>
-    </dl>
-    <h3>详情</h3>
-    <dl class="message-properties">
+  <p>空调</p>
+  <h3>输入</h3>
+  <dl class="message-properties">
       <dt>payload <span class="property-type">number</span></dt>
-      <dt>mode <span class="property-type">auto, off, cool, heat, dry, fan_only</span></dt>
-      <dt>swingMode <span class="property-type">on, off</span></dt>
-      <dt>fanMode <span class="property-type">auto, low, medium, high</span></dt>
+      <dt>attributes <span class="property-type">object</span></dt>
+      <dt>mode <span class="property-type">string</span></dt>
+      <dt>temperature <span class="property-type">number</span></dt>
+      <dt>current_humidity <span class="property-type">number</span></dt>
       <dt>target_humidity <span class="property-type">number</span></dt>
-    </dl>
-    <p>在HomeAssistant中生成climate实体</p>
- </script>
+      <dt>swing_mode <span class="property-type">string</span></dt>
+      <dt>fan_mode <span class="property-type">string</span></dt>
+      <dt>preset_mode <span class="property-type">string</span></dt>
+  </dl>
+  <h3>详情</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">number</span></dt>
+    <dt>mode <span class="property-type">auto, off, cool, heat, dry, fan_only</span></dt>
+    <dt>swing_mode <span class="property-type">on, off</span></dt>
+    <dt>fan_mode <span class="property-type">auto, low, medium, high</span></dt>
+    <dt>target_humidity <span class="property-type">number</span></dt>
+    <dt>preset_mode <span class="property-type">eco, away, boost, comfort, home, sleep, activity</span></dt>
+  </dl>
+  <p>在HomeAssistant中生成climate实体</p>
+</script>

@@ -16,11 +16,12 @@ module.exports = function (RED) {
         swing_mode_command_topic, swing_mode_state_topic,
         temperature_command_topic, temperature_state_topic,
         current_temperature_topic, current_humidity_topic,
-        target_humidity_state_topic, target_humidity_command_topic
+        target_humidity_state_topic, target_humidity_command_topic,
+        preset_mode_command_topic, preset_mode_state_topic
       } = ha.config
 
       node.on('input', function (msg) {
-        const { payload, attributes, mode, temperature, current_humidity, target_humidity, swing_mode, fan_mode } = msg
+        const { payload, attributes, mode, temperature, current_humidity, target_humidity, swing_mode, fan_mode, preset_mode } = msg
         try {
           if (payload) {
             ha.publish(current_temperature_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.current_temperature`))
@@ -46,32 +47,40 @@ module.exports = function (RED) {
           if (fan_mode) {
             ha.publish(fan_mode_state_topic, fan_mode, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_mode`))
           }
+          if (preset_mode) {
+            ha.publish(preset_mode_state_topic, preset_mode, RED._(`node-red-contrib-ha-mqtt/common:publish.preset_mode`))
+          }
         } catch (ex) {
           node.status({ fill: "red", shape: "ring", text: ex });
         }
       })
       ha.subscribe(temperature_command_topic, (payload) => {
-        ha.send_payload(payload, 1, 5)
+        ha.send_payload(payload, 1, 6)
         ha.publish(temperature_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
       })
       ha.subscribe(mode_command_topic, (payload) => {
-        ha.send_payload(payload, 2, 5)
+        ha.send_payload(payload, 2, 6)
         ha.publish(mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
       })
       ha.subscribe(swing_mode_command_topic, (payload) => {
-        ha.send_payload(payload, 3, 5)
+        ha.send_payload(payload, 3, 6)
         ha.publish(swing_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.swing_mode`))
       })
       ha.subscribe(fan_mode_command_topic, (payload) => {
-        ha.send_payload(payload, 4, 5)
+        ha.send_payload(payload, 4, 6)
         ha.publish(fan_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_mode`))
       })
       ha.subscribe(target_humidity_command_topic, (payload) => {
-        ha.send_payload(payload, 5, 5)
+        ha.send_payload(payload, 5, 6)
         ha.publish(target_humidity_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.target_humidity`))
       })
+      ha.subscribe(preset_mode_command_topic, (payload) => {
+        ha.send_payload(payload, 6, 6)
+        ha.publish(preset_mode_state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.preset_mode`))
+      })
+
       try {
-        ha.discovery({
+        const discoveryConfig = {
           state_topic: null,
           current_temperature_topic,
           current_humidity_topic,
@@ -90,7 +99,19 @@ module.exports = function (RED) {
           fan_mode_command_topic,
           fan_mode_state_topic,
           fan_modes: ["auto", "low", "medium", "high"]
-        }, () => {
+        }
+        // Enable Preset Mode
+        if (cfg.preset_mode) {
+          Object.assign(discoveryConfig, {
+            preset_mode_command_topic,
+            preset_mode_state_topic,
+            preset_modes: [
+              'eco', 'away', 'boost', 'comfort', 'home', 'sleep', 'activity'
+            ]
+          })
+        }
+
+        ha.discovery(discoveryConfig, () => {
           this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
         })
       } catch (ex) {
