@@ -34,6 +34,7 @@
 - ✔️  [light - 灯](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock - 锁](https://www.home-assistant.io/integrations/lock.mqtt/)
 - ✔️  [number - 数字](https://www.home-assistant.io/integrations/number.mqtt/)
+- ✔️  [notify - 通知](https://www.home-assistant.io/integrations/notify.mqtt/)
 - ✔️  [scene - 场景](https://www.home-assistant.io/integrations/scene.mqtt/)
 - ✔️  [select - 选择器](https://www.home-assistant.io/integrations/select.mqtt/)
 - ✔️  [sensor - 传感器](https://www.home-assistant.io/integrations/sensor.mqtt/)
@@ -43,6 +44,7 @@
 - ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
+- ➖  [valve](https://www.home-assistant.io/integrations/valve.mqtt/)
 - ✔️  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
 

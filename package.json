@@ -30,6 +30,7 @@
       "light": "light/light.js",
       "lock": "lock/lock.js",
       "number": "number/number.js",
+      "notify": "notify/notify.js",
       "scene": "scene/scene.js",
       "select": "select/select.js",
       "sensor": "sensor/sensor.js",
