@@ -1,4 +1,4 @@
-<script type="text/html" data-template-name="ha-mqtt-notify">
+<script type="text/html" data-template-name="ha-mqtt-valve">
     <div class="form-row">
         <label for="node-input-server" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttServer"></label>
         <select id="node-input-server"></select>
@@ -12,18 +12,18 @@
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.entityName">
     </div>
     <div class="form-row">
-        <a href="https://www.home-assistant.io/integrations/notify.mqtt/" target="_blank" style="color:blue;">
+        <a href="https://www.home-assistant.io/integrations/valve.mqtt/" target="_blank" style="color:blue;">
             <label for="node-input-config" data-i18n="node-red-contrib-ha-mqtt/common:label.config"></label>   
         </a>         
         <input type="text" id="node-input-config" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.config">
     </div>
 </script>
 <script type="text/javascript">
-    RED.nodes.registerType('ha-mqtt-notify', {
+    RED.nodes.registerType('ha-mqtt-valve', {
         category: RED._("node-red-contrib-ha-mqtt/common:homeAssistantCategory"),
         color: '#C0DEED',
-        icon: "font-awesome/fa-messages",
-        paletteLabel: 'Notify',
+        icon: "font-awesome/fa-arrows-h",
+        paletteLabel: 'Valve',
         defaults: {
             server: { value: "", type: "mqtt-broker", required: true },
             device: { value: "", type: "ha-mqtt-device" , required: true},
@@ -34,7 +34,7 @@
         outputs: 1,
         inputLabels: RED._("node-red-contrib-ha-mqtt/common:ioLabels.state"),
         label: function () {
-            return this.name || "notify";
+            return this.name || "valve";
         },
         oneditprepare: function () {
             $("#node-input-config").typedInput({ type: "json", types: ["json"] })

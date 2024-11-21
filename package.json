@@ -40,6 +40,7 @@
       "text": "text/text.js",
       "update": "update/update.js",
       "vacuum": "vacuum/vacuum.js",
+      "valve": "valve/valve.js",
       "water_heater": "water_heater/water_heater.js"
     }
   },
