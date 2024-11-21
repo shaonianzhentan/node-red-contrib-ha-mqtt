@@ -46,7 +46,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [tag](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text](https://www.home-assistant.io/integrations/text.mqtt/)
 - ✔️  [vacuum](https://www.home-assistant.io/integrations/vacuum.mqtt/)
-- ➖  [valve](https://www.home-assistant.io/integrations/valve.mqtt/)
+- ✔️  [valve](https://www.home-assistant.io/integrations/valve.mqtt/)
 - ✔️  [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
 
 Auto-discovery
