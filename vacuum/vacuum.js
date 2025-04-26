@@ -25,11 +25,9 @@ module.exports = function (RED) {
             const { command_topic, send_command_topic, set_fan_speed_topic, } = ha.config
             ha.subscribe(command_topic, (payload) => {
                 ha.send_payload(payload, 1, 3)
-                ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
             })
             ha.subscribe(set_fan_speed_topic, (payload) => {
                 ha.send_payload(payload, 2, 3)
-                ha.publish(ha.config.fan_speed_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.fan_speed`))
             })
             ha.subscribe(send_command_topic, (payload) => {
                 ha.send_payload(payload, 3, 3)
@@ -37,14 +35,13 @@ module.exports = function (RED) {
 
             try {
                 const discoveryConfig = {
+                    state_topic: ha.config.state_topic,
+                    json_attr_t: ha.config.json_attr_t,
                     command_topic,
                     send_command_topic,
                     set_fan_speed_topic,
                     fan_speed_list: ["min", "medium", "high", "max"],
-                    supported_features: [
-                        "turn_on", "turn_off", "pause", "stop", "return_home",
-                        "battery", "status", "locate", "clean_spot", "fan_speed", "send_command"
-                    ],
+                    supported_features: ['battery', 'clean_spot', 'fan_speed', 'locate', 'pause', 'return_home', 'send_command', 'start', 'status', 'stop']
                 }
                 ha.discovery(discoveryConfig, () => {
                     this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
