@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "Generate MQTT entities in HomeAssistant",
   "keywords": [
     "node-red",
@@ -65,6 +65,6 @@
     "node-pinyin": "^0.2.3"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   }
 }
