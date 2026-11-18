@@ -11,10 +11,17 @@
         <dt>sw_version <span class="property-type">string</span></dt>
         <dt>via_device <span class="property-type">string</span></dt>
     </dl>
+    <h3>Home Assistant version</h3>
+    <p>
+        Select the HA version running on your system. Discovery configs for platforms introduced in later
+        versions are skipped and the affected node shows a yellow status. Legacy binary sensor device class
+        values are remapped to their current names from 2022.9 onward. The default <b>Latest</b> applies no
+        platform gating and uses current HA behavior. Select an older version to keep legacy values untouched.
+    </p>
     <h3>Details</h3>
     <p>
         <a href="https://www.home-assistant.io/integrations/binary_sensor.mqtt/" target="_blank">
-            See the official homeassistant documentation
+            See the official Home Assistant documentation
         </a>        
     </p>
  </script>

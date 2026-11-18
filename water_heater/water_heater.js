@@ -19,7 +19,7 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, mode, temperature } = msg
                 try {
-                    if (payload) {
+                    if (!ha.isEmpty(payload)) {
                         ha.publish(current_temperature_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.current_temperature`))
                     }
                     if (attributes) {
@@ -28,7 +28,7 @@ module.exports = function (RED) {
                     if (mode) {
                         ha.publish(mode_state_topic, mode, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
                     }
-                    if (temperature) {
+                    if (!ha.isEmpty(temperature)) {
                         ha.publish(temperature_state_topic, temperature, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
                     }
                 } catch (ex) {
@@ -58,13 +58,13 @@ module.exports = function (RED) {
 
                     current_temperature_topic
                 }, () => {
-                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+                    this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
                 })
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }

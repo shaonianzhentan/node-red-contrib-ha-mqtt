@@ -1,0 +1,21 @@
+{
+    "haVersion": "Home Assistant version",
+    "tip": "Only discovery configs supported by the selected version are published. Default: latest (no restriction).",
+    "latest": "Latest (all platforms)",
+    "v2026_7": "2026.7+ - infrared",
+    "v2026_5": "2026.5+ - date / time / datetime",
+    "v2024_5": "2024.5+ - notify",
+    "v2024_1": "2024.1+ - valve",
+    "v2023_9": "2023.9+ - lawn mower",
+    "v2023_8": "2023.8+ - event",
+    "v2023_7": "2023.7+ - image / water heater",
+    "v2022_12": "2022.12+ - text",
+    "v2022_3": "2022.3+ - siren",
+    "v2021_12": "2021.12+ - button",
+    "v2021_11": "2021.11+ - update",
+    "v2021_8": "2021.8+ - humidifier",
+    "v2021_7": "2021.7+ - select",
+    "v2021_2": "2021.2+ - number",
+    "v2020_12": "2020.12+ - scene",
+    "legacy": "Older than 2020.12"
+}

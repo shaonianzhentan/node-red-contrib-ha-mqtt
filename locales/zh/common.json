@@ -1,10 +1,11 @@
 {
     "homeAssistantCategory": "家庭助理",
     "label": {
-        "mqttServer": "MQTT",
+        "mqttServer": "MQTT 服务器",
         "entityName": "实体名称",
         "deviceName": "设备名称",
         "config": "配置",
+        "retain": "保留",
         "retainMessage": "保留数据即时更新"
     },
     "ioLabels": {

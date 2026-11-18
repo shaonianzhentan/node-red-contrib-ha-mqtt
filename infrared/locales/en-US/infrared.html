@@ -1,0 +1,16 @@
+<script type="text/html" data-help-name="ha-mqtt-infrared">
+    <p>Infrared</p>
+    <h3>Schema</h3>
+    <ul>
+        <li><b>Emitter</b>: Home Assistant publishes the IR signal to the command topic; the node output carries <code>{timings, modulation, repeat_count}</code>.</li>
+        <li><b>Receiver</b>: feed received signals into the node input as <code>{"timings": [9000, -4500, 562], "modulation": 38000}</code>.</li>
+    </ul>
+    <h3>Input / Output</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">object</span></dt>
+        <dd>IR signal. <code>timings</code> (array of integers) is required; <code>modulation</code> is optional.</dd>
+        <dt>attributes <span class="property-type">object</span></dt>
+    </dl>
+    <h3>Details</h3>
+    <p>Generates an infrared entity in Home Assistant (MQTT infrared platform, introduced in HA 2026.7).</p>
+ </script>

@@ -15,7 +15,7 @@ module.exports = function (RED) {
       node.on('input', function (msg) {
         const { payload, attributes } = msg
         try {
-          if (payload) {
+          if (!ha.isEmpty(payload)) {
             ha.publish(state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
           }
           if (attributes) {
@@ -51,13 +51,13 @@ module.exports = function (RED) {
           start_mowing_command_topic
         }
         ha.discovery(discoveryConfig, () => {
-          this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+          this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
         })
       } catch (ex) {
         this.status({ fill: "red", shape: "ring", text: `${ex}` });
       }
     } else {
-      this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+      this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
     }
   })
 }

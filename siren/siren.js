@@ -12,7 +12,7 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes } = msg
                 try {
-                    if (payload) {
+                    if (!ha.isEmpty(payload)) {
                         ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
                     if (attributes) {
@@ -23,7 +23,16 @@ module.exports = function (RED) {
                 }
             })
             ha.subscribe(ha.config.command_topic, (payload) => {
-                const obj = JSON.parse(payload)
+                let obj
+                try {
+                    obj = JSON.parse(payload)
+                } catch (ex) {
+                    // A user command_template of "{{ value }}" sends plain ON/OFF.
+                    obj = { state: payload }
+                }
+                if (!obj || typeof obj !== 'object') {
+                    obj = { state: payload }
+                }
                 node.send({ payload: obj })
                 ha.publish(ha.config.state_topic, obj.state, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
             })
@@ -37,13 +46,13 @@ module.exports = function (RED) {
                     state_off: "OFF"
                 }
                 ha.discovery(discoveryConfig, () => {
-                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+                    this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
                 })
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }

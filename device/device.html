@@ -4,15 +4,38 @@
         <input type="text" id="node-config-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.deviceName">
     </div>
     <div class="form-row">
+        <label for="node-config-input-haVersion" data-i18n="node-red-contrib-ha-mqtt/device:haVersion"></label>
+        <select id="node-config-input-haVersion">
+            <option value="latest" data-i18n="node-red-contrib-ha-mqtt/device:latest"></option>
+            <option value="2026.7" data-i18n="node-red-contrib-ha-mqtt/device:v2026_7"></option>
+            <option value="2026.5" data-i18n="node-red-contrib-ha-mqtt/device:v2026_5"></option>
+            <option value="2024.5" data-i18n="node-red-contrib-ha-mqtt/device:v2024_5"></option>
+            <option value="2024.1" data-i18n="node-red-contrib-ha-mqtt/device:v2024_1"></option>
+            <option value="2023.9" data-i18n="node-red-contrib-ha-mqtt/device:v2023_9"></option>
+            <option value="2023.8" data-i18n="node-red-contrib-ha-mqtt/device:v2023_8"></option>
+            <option value="2023.7" data-i18n="node-red-contrib-ha-mqtt/device:v2023_7"></option>
+            <option value="2022.12" data-i18n="node-red-contrib-ha-mqtt/device:v2022_12"></option>
+            <option value="2022.3" data-i18n="node-red-contrib-ha-mqtt/device:v2022_3"></option>
+            <option value="2021.12" data-i18n="node-red-contrib-ha-mqtt/device:v2021_12"></option>
+            <option value="2021.11" data-i18n="node-red-contrib-ha-mqtt/device:v2021_11"></option>
+            <option value="2021.8" data-i18n="node-red-contrib-ha-mqtt/device:v2021_8"></option>
+            <option value="2021.7" data-i18n="node-red-contrib-ha-mqtt/device:v2021_7"></option>
+            <option value="2021.2" data-i18n="node-red-contrib-ha-mqtt/device:v2021_2"></option>
+            <option value="2020.12" data-i18n="node-red-contrib-ha-mqtt/device:v2020_12"></option>
+            <option value="0.118" data-i18n="node-red-contrib-ha-mqtt/device:legacy"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <span data-i18n="node-red-contrib-ha-mqtt/device:tip"></span>
+    </div>
+    <div class="form-row">
         <a href="https://developers.home-assistant.io/docs/device_registry_index/" target="_blank" style="color:blue;">
             <label for="node-input-config" data-i18n="node-red-contrib-ha-mqtt/common:label.config"></label>   
         </a>
         <input type="text" id="node-config-input-config" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.config">
     </div>    
     <div class="form-row">
-      <label for="node-config-input-retain">
-        retain
-      </label>
+      <label for="node-config-input-retain" data-i18n="node-red-contrib-ha-mqtt/common:label.retain"></label>
       <label style="width: 70%;">
         <input type="checkbox" id="node-config-input-retain" style="display:inline-block; width:22px; vertical-align:top;" autocomplete="off"/>
         <span data-i18n="node-red-contrib-ha-mqtt/common:label.retainMessage" style="user-select: none;"></span>
@@ -26,7 +49,8 @@
     defaults: {
       name: { value: "", required: true },
       config: { value: "" },
-      retain: { value: false }
+      retain: { value: false },
+      haVersion: { value: "latest" }
     },
     label: function () {
       return this.name.trim();

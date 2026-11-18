@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ha-mqtt",
-  "version": "1.2.17",
+  "version": "1.4.0",
   "description": "Generate MQTT entities in HomeAssistant",
   "keywords": [
     "node-red",
@@ -11,7 +11,6 @@
   "node-red": {
     "version": ">=1.3.7",
     "nodes": {
-      "common": "common.js",
       "device": "device/device.js",
       "discovery": "discovery/discovery.js",
       "alarm_control_panel": "alarm_control_panel/alarm_control_panel.js",
@@ -20,12 +19,15 @@
       "camera": "camera/camera.js",
       "climate": "climate/climate.js",
       "cover": "cover/cover.js",
+      "date": "date/date.js",
+      "datetime": "datetime/datetime.js",
       "device_automation": "device_automation/device_automation.js",
       "device_tracker": "device_tracker/device_tracker.js",
       "event": "event/event.js",
       "fan": "fan/fan.js",
       "humidifier": "humidifier/humidifier.js",
       "image": "image/image.js",
+      "infrared": "infrared/infrared.js",
       "lawn_mower": "lawn_mower/lawn_mower.js",
       "light": "light/light.js",
       "lock": "lock/lock.js",
@@ -38,6 +40,7 @@
       "switch": "switch/switch.js",
       "tag": "tag/tag.js",
       "text": "text/text.js",
+      "time": "time/time.js",
       "update": "update/update.js",
       "vacuum": "vacuum/vacuum.js",
       "valve": "valve/valve.js",
@@ -48,7 +51,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/smoke.js"
   },
   "repository": {
     "type": "git",

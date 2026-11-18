@@ -12,7 +12,7 @@ module.exports = function (RED) {
       node.on('input', function (msg) {
         const { payload, attributes } = msg
         try {
-          if (payload) {
+          if (!ha.isEmpty(payload)) {
             ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
           }
           if (attributes) {
@@ -22,7 +22,7 @@ module.exports = function (RED) {
           node.status({ fill: "red", shape: "ring", text: JSON.stringify(ex) });
         }
       })
-      const { state_topic, content_type } = ha.config
+      const { state_topic } = ha.config
 
       try {
         const discoveryConfig = {
@@ -31,23 +31,21 @@ module.exports = function (RED) {
         }
 
         // 非URL链接
-        if(cfg.config){
-          const { content_type } = JSON.parse(cfg.config)
-          if(content_type){
-            discoveryConfig.url_topic = null
-            discoveryConfig.image_topic = state_topic
-            discoveryConfig.content_type = content_type
-          }          
+        const customConfig = ha.customConfig()
+        if (customConfig.content_type) {
+          discoveryConfig.url_topic = null
+          discoveryConfig.image_topic = state_topic
+          discoveryConfig.content_type = customConfig.content_type
         }
 
         ha.discovery(discoveryConfig, () => {
-          this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+          this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
         })
       } catch (ex) {
         this.status({ fill: "red", shape: "ring", text: `${ex}` });
       }
     } else {
-      this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+      this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
     }
   })
 }

@@ -5,6 +5,7 @@
         "entityName": "Entity Name",
         "deviceName": "Device Name",
         "config": "Configuration",
+        "retain": "Retain",
         "retainMessage": "Retain data for immediate updates"
     },
     "ioLabels": {

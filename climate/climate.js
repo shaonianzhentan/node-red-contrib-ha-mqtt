@@ -11,7 +11,7 @@ module.exports = function (RED) {
       const node = this
 
       const {
-        json_attr_t, mode_state_topic, mode_command_topic, power_command_topic,
+        json_attr_t, mode_state_topic, mode_command_topic,
         fan_mode_command_topic, fan_mode_state_topic,
         swing_mode_command_topic, swing_mode_state_topic,
         temperature_command_topic, temperature_state_topic,
@@ -23,7 +23,7 @@ module.exports = function (RED) {
       node.on('input', function (msg) {
         const { payload, attributes, mode, temperature, current_humidity, target_humidity, swing_mode, fan_mode, preset_mode } = msg
         try {
-          if (payload) {
+          if (!ha.isEmpty(payload)) {
             ha.publish(current_temperature_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.current_temperature`))
           }
           if (attributes) {
@@ -32,13 +32,13 @@ module.exports = function (RED) {
           if (mode) {
             ha.publish(mode_state_topic, mode, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
           }
-          if (temperature) {
+          if (!ha.isEmpty(temperature)) {
             ha.publish(temperature_state_topic, temperature, RED._(`node-red-contrib-ha-mqtt/common:publish.temperature`))
           }
-          if (current_humidity) {
+          if (!ha.isEmpty(current_humidity)) {
             ha.publish(current_humidity_topic, current_humidity, RED._(`node-red-contrib-ha-mqtt/common:publish.current_humidity`))
           }
-          if (target_humidity) {
+          if (!ha.isEmpty(target_humidity)) {
             ha.publish(target_humidity_state_topic, target_humidity, RED._(`node-red-contrib-ha-mqtt/common:publish.target_humidity`))
           }
           if (swing_mode) {
@@ -84,7 +84,6 @@ module.exports = function (RED) {
           state_topic: null,
           current_temperature_topic,
           current_humidity_topic,
-          power_command_topic,
           temperature_command_topic,
           temperature_state_topic,
           precision: 1,
@@ -112,13 +111,13 @@ module.exports = function (RED) {
         }
 
         ha.discovery(discoveryConfig, () => {
-          this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+          this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
         })
       } catch (ex) {
         this.status({ fill: "red", shape: "ring", text: `${ex}` });
       }
     } else {
-      this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+      this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
     }
   })
 }

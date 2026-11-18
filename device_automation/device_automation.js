@@ -15,7 +15,7 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload } = msg
                 try {
-                    if (payload) {
+                    if (!ha.isEmpty(payload)) {
                         ha.publish(ha.config.state_topic, name, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
                 } catch (ex) {
@@ -29,19 +29,22 @@ module.exports = function (RED) {
                     unique_id: null,
                     state_topic: null,
                     json_attr_t: null,
+                    availability_topic: null,
+                    payload_available: null,
+                    payload_not_available: null,
                     automation_type: 'trigger',
                     topic: state_topic,
                     type: cfg.action,
                     subtype
                 }
                 ha.discovery(discoveryConfig, () => {
-                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+                    this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
                 })
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }

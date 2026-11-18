@@ -26,12 +26,15 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [camera](https://www.home-assistant.io/integrations/camera.mqtt/)
 - ✔️  [climate](https://www.home-assistant.io/integrations/climate.mqtt/)
 - ✔️  [cover](https://www.home-assistant.io/integrations/cover.mqtt/)
+- ✔️  [date](https://www.home-assistant.io/integrations/date.mqtt/) (HA 2026.5+)
+- ✔️  [datetime](https://www.home-assistant.io/integrations/datetime.mqtt/) (HA 2026.5+)
 - ✔️  [device_tracker](https://www.home-assistant.io/integrations/device_tracker.mqtt/)
 - ✔️  [device_automation](https://www.home-assistant.io/integrations/device_trigger.mqtt/)
 - ✔️  [event](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier](https://www.home-assistant.io/integrations/humidifier.mqtt/)
 - ✔️  [image](https://www.home-assistant.io/integrations/image.mqtt/)
+- ✔️  [infrared](https://www.home-assistant.io/integrations/infrared.mqtt/) (HA 2026.7+)
 - ✔️  [lawn_mower](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock](https://www.home-assistant.io/integrations/lock.mqtt/)
@@ -45,6 +48,7 @@ Example：https://github.com/shaonianzhentan/node-red-contrib-ha-mqtt/wiki
 - ✔️  [update](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text](https://www.home-assistant.io/integrations/text.mqtt/)
+- ✔️  [time](https://www.home-assistant.io/integrations/time.mqtt/) (HA 2026.5+)
 - ✔️  [vacuum](https://www.home-assistant.io/integrations/vacuum.mqtt/)
 - ✔️  [valve](https://www.home-assistant.io/integrations/valve.mqtt/)
 - ✔️  [water_heater](https://www.home-assistant.io/integrations/water_heater.mqtt/)
@@ -54,6 +58,18 @@ Auto-discovery
 topic: homeassistant/status
 payload: online
 ```
+
+## Home Assistant compatibility
+Discovery payloads follow the current HA MQTT discovery schema, including the `origin` block and per-entity availability (`online` / `offline`). `date`, `time` and `datetime` require HA 2026.5 or newer; `infrared` requires HA 2026.7 or newer. Availability can be disabled for a single entity by setting `"availability_topic": null` in its Configuration field.
+
+### HA version selector
+The device config node has a **Home Assistant version** dropdown. It defaults to **Latest**, which enables all platforms and uses current HA behavior (including remapping legacy binary sensor device classes). If you run an older HA, select the matching version:
+
+- Discovery configs for platforms introduced in later HA versions are skipped; the affected node shows a yellow status instead of publishing a config HA cannot understand.
+- Discovery attributes that only exist in newer HA versions are removed, including from hand-written JSON in the entity Configuration field.
+- Legacy `binary_sensor` device class values (`cool`, `warm`, `carbon_monoxide`) are remapped to `cold`, `heat`, `gas` from HA 2022.9 onward; older versions keep the original value.
+
+This is a manual setting. After upgrading HA, update the selection to enable newly supported platforms.
 
 ## If this project is helpful to you, please donate a cup of <del style="font-size: 14px;">coffee</del> milk tea 😘
 

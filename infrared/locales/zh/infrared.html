@@ -1,0 +1,16 @@
+<script type="text/html" data-help-name="ha-mqtt-infrared">
+    <p>红外</p>
+    <h3>模式</h3>
+    <ul>
+        <li><b>发射器</b>：Home Assistant 将红外信号发布到命令主题，节点输出携带 <code>{timings, modulation, repeat_count}</code>。</li>
+        <li><b>接收器</b>：将收到的信号从节点输入传入，格式为 <code>{"timings": [9000, -4500, 562], "modulation": 38000}</code>。</li>
+    </ul>
+    <h3>输入 / 输出</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">object</span></dt>
+        <dd>红外信号，<code>timings</code>（整数数组）必填，<code>modulation</code> 可选。</dd>
+        <dt>attributes <span class="property-type">object</span></dt>
+    </dl>
+    <h3>详情</h3>
+    <p>在 Home Assistant 中生成 infrared 实体（MQTT 红外平台，HA 2026.7 新增）。</p>
+ </script>

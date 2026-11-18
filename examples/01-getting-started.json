@@ -1,0 +1,243 @@
+[
+  {
+    "id": "ex_tab_1",
+    "type": "tab",
+    "label": "HA MQTT 入门示例",
+    "disabled": false,
+    "info": "使用前请编辑 mqtt-broker 配置节点（填写你的 Home Assistant MQTT 服务地址）和 ha-mqtt-device 配置节点（填写设备名称/配置）。各节点的字段含义见仓库 README。",
+    "env": []
+  },
+  {
+    "id": "ha_mqtt_broker",
+    "type": "mqtt-broker",
+    "name": "Home Assistant MQTT",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ha_mqtt_device",
+    "type": "ha-mqtt-device",
+    "name": "示例设备",
+    "config": "",
+    "retain": false,
+    "haVersion": "latest"
+  },
+  {
+    "id": "g1n1_c",
+    "type": "comment",
+    "z": "ex_tab_1",
+    "name": "灯光 (ha-mqtt-light)",
+    "info": "向 Home Assistant 注册一个灯光实体。用 inject 下发状态/命令，右侧三个输出依次为状态、亮度、色温。",
+    "x": 100,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "g1n1_in",
+    "type": "inject",
+    "z": "ex_tab_1",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 140,
+    "wires": [
+      [
+        "g1n1_node"
+      ]
+    ]
+  },
+  {
+    "id": "g1n1_node",
+    "type": "ha-mqtt-light",
+    "z": "ex_tab_1",
+    "name": "灯光",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 140,
+    "wires": [
+      [
+        "g1n1_dbg"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g1n1_dbg",
+    "type": "debug",
+    "z": "ex_tab_1",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "g1n2_c",
+    "type": "comment",
+    "z": "ex_tab_1",
+    "name": "传感器 (ha-mqtt-sensor)",
+    "info": "向 Home Assistant 注册一个传感器实体。用 inject 下发测量值；该节点无输出端口。",
+    "x": 100,
+    "y": 250,
+    "wires": []
+  },
+  {
+    "id": "g1n2_in",
+    "type": "inject",
+    "z": "ex_tab_1",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 290,
+    "wires": [
+      [
+        "g1n2_node"
+      ]
+    ]
+  },
+  {
+    "id": "g1n2_node",
+    "type": "ha-mqtt-sensor",
+    "z": "ex_tab_1",
+    "name": "传感器",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "unit_of_measurement": "",
+    "x": 400,
+    "y": 290,
+    "wires": []
+  },
+  {
+    "id": "g1n3_c",
+    "type": "comment",
+    "z": "ex_tab_1",
+    "name": "开关 (ha-mqtt-switch)",
+    "info": "向 Home Assistant 注册一个开关实体。用 inject 下发开/关状态，右侧输出为当前状态。",
+    "x": 100,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "g1n3_in",
+    "type": "inject",
+    "z": "ex_tab_1",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 440,
+    "wires": [
+      [
+        "g1n3_node"
+      ]
+    ]
+  },
+  {
+    "id": "g1n3_node",
+    "type": "ha-mqtt-switch",
+    "z": "ex_tab_1",
+    "name": "开关",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 440,
+    "wires": [
+      [
+        "g1n3_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g1n3_dbg",
+    "type": "debug",
+    "z": "ex_tab_1",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 440,
+    "wires": []
+  }
+]
