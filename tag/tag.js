@@ -24,16 +24,19 @@ module.exports = function (RED) {
                     unique_id: null,
                     state_topic: null,
                     json_attr_t: null,
+                    availability_topic: null,
+                    payload_available: null,
+                    payload_not_available: null,
                     topic: state_topic
                 }
                 ha.discovery(discoveryConfig, () => {
-                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+                    this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
                 })
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }

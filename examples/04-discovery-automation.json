@@ -1,0 +1,239 @@
+[
+  {
+    "id": "ex_tab_4",
+    "type": "tab",
+    "label": "HA MQTT 发现与自动化示例",
+    "disabled": false,
+    "info": "使用前请编辑 mqtt-broker 配置节点（填写你的 Home Assistant MQTT 服务地址）和 ha-mqtt-device 配置节点（填写设备名称/配置）。各节点的字段含义见仓库 README。",
+    "env": []
+  },
+  {
+    "id": "ha_mqtt_broker",
+    "type": "mqtt-broker",
+    "name": "Home Assistant MQTT",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ha_mqtt_device",
+    "type": "ha-mqtt-device",
+    "name": "示例设备",
+    "config": "",
+    "retain": false,
+    "haVersion": "latest"
+  },
+  {
+    "id": "g4n1_c",
+    "type": "comment",
+    "z": "ex_tab_4",
+    "name": "设备发现 (ha-mqtt-discovery)",
+    "info": "向 Home Assistant 发送 MQTT 发现配置。该节点只有一个 server 属性，无需绑定设备配置节点。无输出端口。",
+    "x": 100,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "g4n1_in",
+    "type": "inject",
+    "z": "ex_tab_4",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 140,
+    "wires": [
+      [
+        "g4n1_node"
+      ]
+    ]
+  },
+  {
+    "id": "g4n1_node",
+    "type": "ha-mqtt-discovery",
+    "z": "ex_tab_4",
+    "server": "ha_mqtt_broker",
+    "x": 400,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "g4n2_c",
+    "type": "comment",
+    "z": "ex_tab_4",
+    "name": "设备自动化 (ha-mqtt-device_automation)",
+    "info": "设备自动化触发器。请在节点属性的 action 中填写动作标识。无输出端口。",
+    "x": 100,
+    "y": 250,
+    "wires": []
+  },
+  {
+    "id": "g4n2_in",
+    "type": "inject",
+    "z": "ex_tab_4",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 290,
+    "wires": [
+      [
+        "g4n2_node"
+      ]
+    ]
+  },
+  {
+    "id": "g4n2_node",
+    "type": "ha-mqtt-device_automation",
+    "z": "ex_tab_4",
+    "name": "设备自动化",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "action": "",
+    "x": 400,
+    "y": 290,
+    "wires": []
+  },
+  {
+    "id": "g4n3_c",
+    "type": "comment",
+    "z": "ex_tab_4",
+    "name": "场景 (ha-mqtt-scene)",
+    "info": "场景实体。没有输入端口，由 Home Assistant 侧触发；右侧输出为场景激活事件。",
+    "x": 100,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "g4n3_node",
+    "type": "ha-mqtt-scene",
+    "z": "ex_tab_4",
+    "name": "场景",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 440,
+    "wires": [
+      [
+        "g4n3_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g4n3_dbg",
+    "type": "debug",
+    "z": "ex_tab_4",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "g4n4_c",
+    "type": "comment",
+    "z": "ex_tab_4",
+    "name": "摄像头 (ha-mqtt-camera)",
+    "info": "摄像头实体。用 inject 下发图片 Buffer 更新画面。无输出端口。",
+    "x": 100,
+    "y": 550,
+    "wires": []
+  },
+  {
+    "id": "g4n4_in",
+    "type": "inject",
+    "z": "ex_tab_4",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 590,
+    "wires": [
+      [
+        "g4n4_node"
+      ]
+    ]
+  },
+  {
+    "id": "g4n4_node",
+    "type": "ha-mqtt-camera",
+    "z": "ex_tab_4",
+    "name": "摄像头",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 590,
+    "wires": []
+  }
+]

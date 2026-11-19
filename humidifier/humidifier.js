@@ -12,7 +12,7 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, mode, target_humidity } = msg
                 try {
-                    if (payload) {
+                    if (!ha.isEmpty(payload)) {
                         ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
                     if (attributes) {
@@ -21,7 +21,7 @@ module.exports = function (RED) {
                     if (mode) {
                         ha.publish(ha.config.mode_state_topic, mode, RED._(`node-red-contrib-ha-mqtt/common:publish.mode`))
                     }
-                    if (target_humidity) {
+                    if (!ha.isEmpty(target_humidity)) {
                         ha.publish(ha.config.target_humidity_state_topic, target_humidity, RED._(`node-red-contrib-ha-mqtt/common:publish.target_humidity`))
                     }
                 } catch (ex) {
@@ -56,13 +56,13 @@ module.exports = function (RED) {
                     max_humidity: 80
                 }
                 ha.discovery(discoveryConfig, () => {
-                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+                    this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
                 })
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }

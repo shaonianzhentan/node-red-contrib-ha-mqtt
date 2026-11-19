@@ -3,7 +3,7 @@
         <label for="node-input-server" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttServer"></label>
         <select id="node-input-server"></select>
     </div>
-    <div class="form-tips"><span data-i18n="[html]tip"></span></div>
+    <div class="form-tips"><span data-i18n="[html]node-red-contrib-ha-mqtt/discovery:tip"></span></div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ha-mqtt-discovery', {
@@ -17,7 +17,7 @@
         inputs: 1,
         outputs: 0,
         label: function () {
-            return this._("autoDiscovery");
+            return RED._("node-red-contrib-ha-mqtt/discovery:autoDiscovery");
         }
     });
 </script>

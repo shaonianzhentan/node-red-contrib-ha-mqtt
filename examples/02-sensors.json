@@ -1,0 +1,804 @@
+[
+  {
+    "id": "ex_tab_2",
+    "type": "tab",
+    "label": "HA MQTT 传感器与状态示例",
+    "disabled": false,
+    "info": "使用前请编辑 mqtt-broker 配置节点（填写你的 Home Assistant MQTT 服务地址）和 ha-mqtt-device 配置节点（填写设备名称/配置）。各节点的字段含义见仓库 README。",
+    "env": []
+  },
+  {
+    "id": "ha_mqtt_broker",
+    "type": "mqtt-broker",
+    "name": "Home Assistant MQTT",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ha_mqtt_device",
+    "type": "ha-mqtt-device",
+    "name": "示例设备",
+    "config": "",
+    "retain": false,
+    "haVersion": "latest"
+  },
+  {
+    "id": "g2n1_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "二值传感器 (ha-mqtt-binary_sensor)",
+    "info": "上报开/关（true/false）状态的传感器。无输出端口。",
+    "x": 100,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "g2n1_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 140,
+    "wires": [
+      [
+        "g2n1_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n1_node",
+    "type": "ha-mqtt-binary_sensor",
+    "z": "ex_tab_2",
+    "name": "二值传感器",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "g2n2_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "设备追踪 (ha-mqtt-device_tracker)",
+    "info": "上报设备位置或 home / not_home 状态。无输出端口。",
+    "x": 100,
+    "y": 250,
+    "wires": []
+  },
+  {
+    "id": "g2n2_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 290,
+    "wires": [
+      [
+        "g2n2_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n2_node",
+    "type": "ha-mqtt-device_tracker",
+    "z": "ex_tab_2",
+    "name": "设备追踪",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 290,
+    "wires": []
+  },
+  {
+    "id": "g2n3_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "事件 (ha-mqtt-event)",
+    "info": "上报事件。请先在节点属性的 types 中填写事件类型，再通过 msg.payload 触发。无输出端口。",
+    "x": 100,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "g2n3_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 440,
+    "wires": [
+      [
+        "g2n3_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n3_node",
+    "type": "ha-mqtt-event",
+    "z": "ex_tab_2",
+    "name": "事件",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "types": "",
+    "x": 400,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "g2n4_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "图像 (ha-mqtt-image)",
+    "info": "上报图片（Buffer 或图片地址）给 Home Assistant 显示。无输出端口。",
+    "x": 100,
+    "y": 550,
+    "wires": []
+  },
+  {
+    "id": "g2n4_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 590,
+    "wires": [
+      [
+        "g2n4_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n4_node",
+    "type": "ha-mqtt-image",
+    "z": "ex_tab_2",
+    "name": "图像",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 590,
+    "wires": []
+  },
+  {
+    "id": "g2n5_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "标签 (ha-mqtt-tag)",
+    "info": "上报标签 ID，用于触发 Home Assistant 的标签扫描自动化。无输出端口。",
+    "x": 100,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "g2n5_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 740,
+    "wires": [
+      [
+        "g2n5_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n5_node",
+    "type": "ha-mqtt-tag",
+    "z": "ex_tab_2",
+    "name": "标签",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "x": 400,
+    "y": 740,
+    "wires": []
+  },
+  {
+    "id": "g2n6_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "更新 (ha-mqtt-update)",
+    "info": "上报设备的固件更新状态。右侧输出为更新状态。",
+    "x": 100,
+    "y": 850,
+    "wires": []
+  },
+  {
+    "id": "g2n6_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 890,
+    "wires": [
+      [
+        "g2n6_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n6_node",
+    "type": "ha-mqtt-update",
+    "z": "ex_tab_2",
+    "name": "更新",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 890,
+    "wires": [
+      [
+        "g2n6_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n6_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 890,
+    "wires": []
+  },
+  {
+    "id": "g2n7_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "日期 (ha-mqtt-date)",
+    "info": "上报日期值（如 YYYY-MM-DD）。右侧输出为当前日期。",
+    "x": 100,
+    "y": 1000,
+    "wires": []
+  },
+  {
+    "id": "g2n7_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1040,
+    "wires": [
+      [
+        "g2n7_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n7_node",
+    "type": "ha-mqtt-date",
+    "z": "ex_tab_2",
+    "name": "日期",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1040,
+    "wires": [
+      [
+        "g2n7_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n7_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1040,
+    "wires": []
+  },
+  {
+    "id": "g2n8_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "日期时间 (ha-mqtt-datetime)",
+    "info": "上报日期时间值。右侧输出为当前日期时间。",
+    "x": 100,
+    "y": 1150,
+    "wires": []
+  },
+  {
+    "id": "g2n8_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1190,
+    "wires": [
+      [
+        "g2n8_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n8_node",
+    "type": "ha-mqtt-datetime",
+    "z": "ex_tab_2",
+    "name": "日期时间",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1190,
+    "wires": [
+      [
+        "g2n8_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n8_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1190,
+    "wires": []
+  },
+  {
+    "id": "g2n9_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "时间 (ha-mqtt-time)",
+    "info": "上报时间值（如 HH:MM:SS）。右侧输出为当前时间。",
+    "x": 100,
+    "y": 1300,
+    "wires": []
+  },
+  {
+    "id": "g2n9_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1340,
+    "wires": [
+      [
+        "g2n9_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n9_node",
+    "type": "ha-mqtt-time",
+    "z": "ex_tab_2",
+    "name": "时间",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1340,
+    "wires": [
+      [
+        "g2n9_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n9_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1340,
+    "wires": []
+  },
+  {
+    "id": "g2n10_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "文本 (ha-mqtt-text)",
+    "info": "上报任意文本值。右侧输出为当前文本。",
+    "x": 100,
+    "y": 1450,
+    "wires": []
+  },
+  {
+    "id": "g2n10_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1490,
+    "wires": [
+      [
+        "g2n10_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n10_node",
+    "type": "ha-mqtt-text",
+    "z": "ex_tab_2",
+    "name": "文本",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1490,
+    "wires": [
+      [
+        "g2n10_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n10_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1490,
+    "wires": []
+  },
+  {
+    "id": "g2n11_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "数值 (ha-mqtt-number)",
+    "info": "上报数值。右侧输出为当前数值。",
+    "x": 100,
+    "y": 1600,
+    "wires": []
+  },
+  {
+    "id": "g2n11_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1640,
+    "wires": [
+      [
+        "g2n11_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n11_node",
+    "type": "ha-mqtt-number",
+    "z": "ex_tab_2",
+    "name": "数值",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1640,
+    "wires": [
+      [
+        "g2n11_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n11_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1640,
+    "wires": []
+  },
+  {
+    "id": "g2n12_c",
+    "type": "comment",
+    "z": "ex_tab_2",
+    "name": "选项 (ha-mqtt-select)",
+    "info": "上报选项列表中的当前选项。右侧输出为当前选项。",
+    "x": 100,
+    "y": 1750,
+    "wires": []
+  },
+  {
+    "id": "g2n12_in",
+    "type": "inject",
+    "z": "ex_tab_2",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1790,
+    "wires": [
+      [
+        "g2n12_node"
+      ]
+    ]
+  },
+  {
+    "id": "g2n12_node",
+    "type": "ha-mqtt-select",
+    "z": "ex_tab_2",
+    "name": "选项",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1790,
+    "wires": [
+      [
+        "g2n12_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g2n12_dbg",
+    "type": "debug",
+    "z": "ex_tab_2",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1790,
+    "wires": []
+  }
+]

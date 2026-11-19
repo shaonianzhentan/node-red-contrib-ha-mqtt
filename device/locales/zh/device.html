@@ -11,10 +11,16 @@
         <dt>sw_version <span class="property-type">string</span></dt>
         <dt>via_device <span class="property-type">string</span></dt>
     </dl>
+    <h3>Home Assistant 版本</h3>
+    <p>
+        选择你正在使用的 HA 版本。所选版本尚未引入的平台会跳过发现报文发布，对应节点会显示黄色状态。
+        从 2022.9 起，binary_sensor 的旧设备类型值会自动映射为当前名称。默认「最新」不限制平台，
+        并使用当前 HA 的行为；选择旧版本则会保留旧设备类型值。
+    </p>
     <h3>详情</h3>
     <p>
         <a href="https://www.home-assistant.io/integrations/binary_sensor.mqtt/" target="_blank">
-            请参考HomeAssistant官方文档
+            请参考Home Assistant官方文档
         </a>
     </p>
  </script>

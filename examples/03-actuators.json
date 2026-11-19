@@ -1,0 +1,1073 @@
+[
+  {
+    "id": "ex_tab_3",
+    "type": "tab",
+    "label": "HA MQTT 控制类示例",
+    "disabled": false,
+    "info": "使用前请编辑 mqtt-broker 配置节点（填写你的 Home Assistant MQTT 服务地址）和 ha-mqtt-device 配置节点（填写设备名称/配置）。各节点的字段含义见仓库 README。",
+    "env": []
+  },
+  {
+    "id": "ha_mqtt_broker",
+    "type": "mqtt-broker",
+    "name": "Home Assistant MQTT",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ha_mqtt_device",
+    "type": "ha-mqtt-device",
+    "name": "示例设备",
+    "config": "",
+    "retain": false,
+    "haVersion": "latest"
+  },
+  {
+    "id": "g3n1_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "窗帘 (ha-mqtt-cover)",
+    "info": "窗帘/卷帘实体。输出依次为状态、位置、倾斜度。",
+    "x": 100,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "g3n1_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 140,
+    "wires": [
+      [
+        "g3n1_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n1_node",
+    "type": "ha-mqtt-cover",
+    "z": "ex_tab_3",
+    "name": "窗帘",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 140,
+    "wires": [
+      [
+        "g3n1_dbg"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n1_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "g3n2_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "空调 (ha-mqtt-climate)",
+    "info": "空调温控实体，可开启 preset_mode 预设模式。输出依次为温度、模式、摆风、风速、目标湿度、预设模式。",
+    "x": 100,
+    "y": 250,
+    "wires": []
+  },
+  {
+    "id": "g3n2_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 290,
+    "wires": [
+      [
+        "g3n2_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n2_node",
+    "type": "ha-mqtt-climate",
+    "z": "ex_tab_3",
+    "name": "空调",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "preset_mode": false,
+    "x": 400,
+    "y": 290,
+    "wires": [
+      [
+        "g3n2_dbg"
+      ],
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n2_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 290,
+    "wires": []
+  },
+  {
+    "id": "g3n3_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "风扇 (ha-mqtt-fan)",
+    "info": "风扇实体。输出依次为状态、风速、摆动、风向。",
+    "x": 100,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "g3n3_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 440,
+    "wires": [
+      [
+        "g3n3_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n3_node",
+    "type": "ha-mqtt-fan",
+    "z": "ex_tab_3",
+    "name": "风扇",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 440,
+    "wires": [
+      [
+        "g3n3_dbg"
+      ],
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n3_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "g3n4_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "加湿器 (ha-mqtt-humidifier)",
+    "info": "加湿器实体。输出依次为状态、目标湿度、当前湿度。",
+    "x": 100,
+    "y": 550,
+    "wires": []
+  },
+  {
+    "id": "g3n4_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 590,
+    "wires": [
+      [
+        "g3n4_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n4_node",
+    "type": "ha-mqtt-humidifier",
+    "z": "ex_tab_3",
+    "name": "加湿器",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 590,
+    "wires": [
+      [
+        "g3n4_dbg"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n4_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 590,
+    "wires": []
+  },
+  {
+    "id": "g3n5_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "热水器 (ha-mqtt-water_heater)",
+    "info": "热水器实体。输出依次为温度、模式、电源。",
+    "x": 100,
+    "y": 700,
+    "wires": []
+  },
+  {
+    "id": "g3n5_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 740,
+    "wires": [
+      [
+        "g3n5_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n5_node",
+    "type": "ha-mqtt-water_heater",
+    "z": "ex_tab_3",
+    "name": "热水器",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 740,
+    "wires": [
+      [
+        "g3n5_dbg"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n5_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 740,
+    "wires": []
+  },
+  {
+    "id": "g3n6_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "阀门 (ha-mqtt-valve)",
+    "info": "阀门实体。用 inject 下发开度/状态。",
+    "x": 100,
+    "y": 850,
+    "wires": []
+  },
+  {
+    "id": "g3n6_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 890,
+    "wires": [
+      [
+        "g3n6_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n6_node",
+    "type": "ha-mqtt-valve",
+    "z": "ex_tab_3",
+    "name": "阀门",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 890,
+    "wires": [
+      [
+        "g3n6_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n6_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 890,
+    "wires": []
+  },
+  {
+    "id": "g3n7_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "门锁 (ha-mqtt-lock)",
+    "info": "门锁实体。用 inject 下发锁定/解锁状态。",
+    "x": 100,
+    "y": 1000,
+    "wires": []
+  },
+  {
+    "id": "g3n7_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1040,
+    "wires": [
+      [
+        "g3n7_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n7_node",
+    "type": "ha-mqtt-lock",
+    "z": "ex_tab_3",
+    "name": "门锁",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1040,
+    "wires": [
+      [
+        "g3n7_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n7_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1040,
+    "wires": []
+  },
+  {
+    "id": "g3n8_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "警报器 (ha-mqtt-siren)",
+    "info": "警报器实体。用 inject 下发开启/关闭状态。",
+    "x": 100,
+    "y": 1150,
+    "wires": []
+  },
+  {
+    "id": "g3n8_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1190,
+    "wires": [
+      [
+        "g3n8_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n8_node",
+    "type": "ha-mqtt-siren",
+    "z": "ex_tab_3",
+    "name": "警报器",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1190,
+    "wires": [
+      [
+        "g3n8_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n8_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1190,
+    "wires": []
+  },
+  {
+    "id": "g3n9_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "扫地机器人 (ha-mqtt-vacuum)",
+    "info": "扫地机实体。输出依次为状态、风速、命令。",
+    "x": 100,
+    "y": 1300,
+    "wires": []
+  },
+  {
+    "id": "g3n9_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1340,
+    "wires": [
+      [
+        "g3n9_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n9_node",
+    "type": "ha-mqtt-vacuum",
+    "z": "ex_tab_3",
+    "name": "扫地机器人",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1340,
+    "wires": [
+      [
+        "g3n9_dbg"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n9_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1340,
+    "wires": []
+  },
+  {
+    "id": "g3n10_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "割草机 (ha-mqtt-lawn_mower)",
+    "info": "割草机实体。输出依次为状态、电量、命令。",
+    "x": 100,
+    "y": 1450,
+    "wires": []
+  },
+  {
+    "id": "g3n10_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1490,
+    "wires": [
+      [
+        "g3n10_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n10_node",
+    "type": "ha-mqtt-lawn_mower",
+    "z": "ex_tab_3",
+    "name": "割草机",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1490,
+    "wires": [
+      [
+        "g3n10_dbg"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "g3n10_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1490,
+    "wires": []
+  },
+  {
+    "id": "g3n11_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "报警面板 (ha-mqtt-alarm_control_panel)",
+    "info": "报警面板实体。用 inject 下发布防/撤防状态。",
+    "x": 100,
+    "y": 1600,
+    "wires": []
+  },
+  {
+    "id": "g3n11_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1640,
+    "wires": [
+      [
+        "g3n11_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n11_node",
+    "type": "ha-mqtt-alarm_control_panel",
+    "z": "ex_tab_3",
+    "name": "报警面板",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1640,
+    "wires": [
+      [
+        "g3n11_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n11_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1640,
+    "wires": []
+  },
+  {
+    "id": "g3n12_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "按钮 (ha-mqtt-button)",
+    "info": "按钮实体。用 inject 触发一次按钮事件。",
+    "x": 100,
+    "y": 1750,
+    "wires": []
+  },
+  {
+    "id": "g3n12_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1790,
+    "wires": [
+      [
+        "g3n12_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n12_node",
+    "type": "ha-mqtt-button",
+    "z": "ex_tab_3",
+    "name": "按钮",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 1790,
+    "wires": [
+      [
+        "g3n12_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n12_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1790,
+    "wires": []
+  },
+  {
+    "id": "g3n13_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "红外 (ha-mqtt-infrared)",
+    "info": "红外实体。schema 可选 emitter / receiver，输出为收到的红外码。",
+    "x": 100,
+    "y": 1900,
+    "wires": []
+  },
+  {
+    "id": "g3n13_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 1940,
+    "wires": [
+      [
+        "g3n13_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n13_node",
+    "type": "ha-mqtt-infrared",
+    "z": "ex_tab_3",
+    "name": "红外",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "schema": "emitter",
+    "x": 400,
+    "y": 1940,
+    "wires": [
+      [
+        "g3n13_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n13_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 1940,
+    "wires": []
+  },
+  {
+    "id": "g3n14_c",
+    "type": "comment",
+    "z": "ex_tab_3",
+    "name": "通知 (ha-mqtt-notify)",
+    "info": "通知实体。用 inject 下发通知内容。",
+    "x": 100,
+    "y": 2050,
+    "wires": []
+  },
+  {
+    "id": "g3n14_in",
+    "type": "inject",
+    "z": "ex_tab_3",
+    "name": "示例输入",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "str",
+    "x": 100,
+    "y": 2090,
+    "wires": [
+      [
+        "g3n14_node"
+      ]
+    ]
+  },
+  {
+    "id": "g3n14_node",
+    "type": "ha-mqtt-notify",
+    "z": "ex_tab_3",
+    "name": "通知",
+    "server": "ha_mqtt_broker",
+    "device": "ha_mqtt_device",
+    "config": "",
+    "x": 400,
+    "y": 2090,
+    "wires": [
+      [
+        "g3n14_dbg"
+      ]
+    ]
+  },
+  {
+    "id": "g3n14_dbg",
+    "type": "debug",
+    "z": "ex_tab_3",
+    "name": "调试输出",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 700,
+    "y": 2090,
+    "wires": []
+  }
+]

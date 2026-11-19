@@ -12,7 +12,7 @@ module.exports = function (RED) {
             node.on('input', function (msg) {
                 const { payload, attributes, preset_mode, percentage, oscillation } = msg
                 try {
-                    if (payload) {
+                    if (!ha.isEmpty(payload)) {
                         ha.publish(ha.config.state_topic, payload, RED._(`node-red-contrib-ha-mqtt/common:publish.state`))
                     }
                     if (attributes) {
@@ -21,7 +21,7 @@ module.exports = function (RED) {
                     if (preset_mode) {
                         ha.publish(ha.config.preset_mode_state_topic, preset_mode, RED._(`node-red-contrib-ha-mqtt/common:publish.preset_mode`))
                     }
-                    if (percentage) {
+                    if (!ha.isEmpty(percentage)) {
                         ha.publish(ha.config.percentage_state_topic, percentage, RED._(`node-red-contrib-ha-mqtt/common:publish.percentage`))                    
                     }
                     if (oscillation) {
@@ -67,13 +67,13 @@ module.exports = function (RED) {
                     speed_range_max: 100
                 }
                 ha.discovery(discoveryConfig, () => {
-                    this.status({ fill: "green", shape: "ring", text: `node-red-contrib-ha-mqtt/common:publish.config` });
+                    this.status({ fill: "green", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:publish.config') });
                 })
             } catch (ex) {
                 this.status({ fill: "red", shape: "ring", text: `${ex}` });
             }
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }

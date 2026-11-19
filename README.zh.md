@@ -24,12 +24,15 @@
 - ✔️  [camera - 摄像头](https://www.home-assistant.io/integrations/camera.mqtt/)
 - ✔️  [climate - 空调](https://www.home-assistant.io/integrations/climate.mqtt/)
 - ✔️  [cover - 窗帘](https://www.home-assistant.io/integrations/cover.mqtt/)
+- ✔️  [date - 日期](https://www.home-assistant.io/integrations/date.mqtt/)（HA 2026.5+）
+- ✔️  [datetime - 日期时间](https://www.home-assistant.io/integrations/datetime.mqtt/)（HA 2026.5+）
 - ✔️  [device_tracker - 设备检测](https://www.home-assistant.io/integrations/device_tracker.mqtt/)
 - ✔️  [device_automation - 设备自动化](https://www.home-assistant.io/integrations/device_trigger.mqtt/)
 - ✔️  [event - 事件](https://www.home-assistant.io/integrations/event.mqtt/)
 - ✔️  [fan - 风扇](https://www.home-assistant.io/integrations/fan.mqtt/)
 - ✔️  [humidifier - 加湿器](https://www.home-assistant.io/integrations/humidifier.mqtt/)
 - ✔️  [image - 图像](https://www.home-assistant.io/integrations/image.mqtt/)
+- ✔️  [infrared - 红外](https://www.home-assistant.io/integrations/infrared.mqtt/)（HA 2026.7+）
 - ✔️  [lawn_mower - 割草机](https://www.home-assistant.io/integrations/lawn_mower.mqtt/)
 - ✔️  [light - 灯](https://www.home-assistant.io/integrations/light.mqtt/)
 - ✔️  [lock - 锁](https://www.home-assistant.io/integrations/lock.mqtt/)
@@ -43,6 +46,7 @@
 - ✔️  [update - 更新](https://www.home-assistant.io/integrations/update.mqtt/)
 - ✔️  [tag - 标签](https://www.home-assistant.io/integrations/tag.mqtt/)
 - ✔️  [text - 文本](https://www.home-assistant.io/integrations/text.mqtt/)
+- ✔️  [time - 时间](https://www.home-assistant.io/integrations/time.mqtt/)（HA 2026.5+）
 - ✔️  [vacuum - 扫地机器人](https://www.home-assistant.io/integrations/vacuum.mqtt/)
 - ✔️  [valve - 阀门](https://www.home-assistant.io/integrations/valve.mqtt/)
 - ✔️  [water_heater - 热水器](https://www.home-assistant.io/integrations/water_heater.mqtt/)
@@ -53,6 +57,18 @@
 topic: homeassistant/status
 payload: online
 ```
+
+## Home Assistant 兼容性
+发现报文已按当前 HA MQTT discovery 规范生成，包含 `origin` 信息以及每个实体的可用性（`online` / `offline`）。`date`、`time`、`datetime` 需要 HA 2026.5 及以上版本，`infrared` 需要 HA 2026.7 及以上版本。如需为单个实体关闭可用性，可在其「配置」字段中设置 `"availability_topic": null`。
+
+### HA 版本选择
+设备配置节点中新增了 **Home Assistant 版本** 下拉框，默认「最新」，启用全部平台并使用当前 HA 的行为（包括映射旧版 binary sensor 设备类型）。如果使用较旧的 HA，请选择对应版本：
+
+- 该版本尚未引入的平台会跳过发现报文发布，对应节点显示黄色状态，不再向 HA 发送它无法识别的配置。
+- 仅新版本才支持的发现属性会被移除，包括实体「配置」字段中手写的 JSON 字段。
+- 从 HA 2022.9 起，`binary_sensor` 的旧设备类型值（`cool`、`warm`、`carbon_monoxide`）会映射为 `cold`、`heat`、`gas`；选择更早版本时保留原值。
+
+这是手动设置。升级 HA 后请同步修改该选项，以启用新平台。
 
 ## 如果这个项目对你有帮助，请我喝杯<del style="font-size: 14px;">咖啡</del>奶茶吧😘
 |  |支付宝|微信|

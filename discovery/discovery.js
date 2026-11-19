@@ -9,10 +9,10 @@ module.exports = function (RED) {
             const node = this
             node.on('input', function (msg) {
                 HomeAssistant.AutoDiscovery(RED.nodes)
-                this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} ${RED._("autoDiscoverySent")}` });
+                this.status({ fill: "green", shape: "ring", text: `${new Date().toLocaleTimeString()} ${RED._("node-red-contrib-ha-mqtt/discovery:autoDiscoverySent")}` });
             })
         } else {
-            this.status({ fill: "red", shape: "ring", text: `node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured` });
+            this.status({ fill: "red", shape: "ring", text: RED._('node-red-contrib-ha-mqtt/common:errors.mqttNotConfigured') });
         }
     })
 }
